@@ -1,0 +1,27 @@
+.env
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Dataset and any local database. Never commit Torob exports.
+data/
+*.csv
+*.zip
+*.db
+*.db-wal
+*.db-shm
+*.db.building
+*.sqlite
+*.sqlite3
+*.partial
+
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+dist/

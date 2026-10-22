@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f3ecdf" />
+  <title>استارکوچ | خرید حضوری</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M5 26V14.5L16 5l11 9.5V26" />
+          <path d="M12 26v-8h8v8" />
+        </svg>
+        <div>
+          <p class="kicker">خرید حضوری از دادهٔ ترب</p>
+          <h1>استارکوچ</h1>
+        </div>
+      </div>
+      <p id="meta-line" class="meta-line">در حال بررسی پایگاه داده…</p>
+    </header>
+
+    <section class="loc" aria-label="موقعیت شما">
+      <div class="loc-head">
+        <h2>موقعیت شما</h2>
+        <p id="loc-label"></p>
+      </div>
+      <p class="hint">فاصلهٔ فروشگاه‌ها با این نقطه حساب می‌شود. مختصات آماده، مرکز فروشگاه‌های همان محدوده در داده است.</p>
+      <div id="presets" class="chips"></div>
+      <form id="loc-form" class="loc-form">
+        <input id="lat" inputmode="decimal" aria-label="عرض جغرافیایی" placeholder="عرض" />
+        <input id="lon" inputmode="decimal" aria-label="طول جغرافیایی" placeholder="طول" />
+        <button type="submit">ثبت</button>
+        <button type="button" data-action="geo">موقعیت فعلی</button>
+      </form>
+    </section>
+
+    <main id="main">
+      <section id="view-search">
+        <form id="search-form" class="search-form">
+          <label class="sr-only" for="q">جست‌وجوی کالا</label>
+          <div class="search-row">
+            <input id="q" name="q" maxlength="200" placeholder="مثلاً گوشی سامسونگ یا کابل شارژ" autocomplete="off" />
+            <button type="submit" id="search-btn">جستجو</button>
+          </div>
+        </form>
+        <div class="chips" id="quick">
+          <button type="button" data-action="quick" data-q="سامسونگ">سامسونگ</button>
+          <button type="button" data-action="quick" data-q="شیائومی">شیائومی</button>
+          <button type="button" data-action="quick" data-q="گوشی موبایل">گوشی موبایل</button>
+          <button type="button" data-action="quick" data-q="لپ‌تاپ">لپ‌تاپ</button>
+          <button type="button" data-action="quick" data-q="هندزفری">هندزفری</button>
+        </div>
+        <button type="button" class="text-btn" data-action="toggle-filters" aria-expanded="false">فیلترها</button>
+        <div id="filters" class="filters" hidden>
+          <label>برند <input id="brand" maxlength="80" placeholder="سامسونگ" /></label>
+          <label>دسته <input id="category" maxlength="80" placeholder="گوشی موبایل" /></label>
+          <label>از قیمت (تومان) <input id="min-price" inputmode="numeric" maxlength="20" /></label>
+          <label>تا قیمت (تومان) <input id="max-price" inputmode="numeric" maxlength="20" /></label>
+        </div>
+        <p id="status" class="status" aria-live="polite"></p>
+        <div id="results"></div>
+        <div id="tray" class="tray" hidden></div>
+        <p class="fineprint">قیمت‌ها از دادهٔ ترب‌اند و ممکن است کهنه باشند. شمارهٔ تماس فروشگاه‌ها ساختگی است.</p>
+      </section>
+
+      <section id="view-product" hidden>
+        <button type="button" class="text-btn back" data-action="back">بازگشت به نتیجه</button>
+        <div id="product"></div>
+      </section>
+
+      <section id="view-compare" hidden>
+        <h2 class="section-title">مقایسهٔ محصولات</h2>
+        <div id="compare-body"></div>
+      </section>
+
+      <section id="view-chat" hidden>
+        <h2 class="section-title">گفتگو</h2>
+        <p class="hint">پاسخ از نتیجهٔ ابزار روی داده ساخته می‌شود. اگر مدل زبانی تنظیم نشده باشد، همان جست‌وجو اجرا می‌شود.</p>
+        <div id="log" class="log" aria-live="polite"></div>
+        <form id="chat-form" class="chat-form">
+          <label class="sr-only" for="chat-input">پیام</label>
+          <input id="chat-input" maxlength="2000" placeholder="مثلاً یک گوشی سامسونگ نزدیک فردوسی" />
+          <button type="submit">بفرست</button>
+        </form>
+      </section>
+    </main>
+
+    <nav class="tabbar" aria-label="ناوبری">
+      <button type="button" data-action="nav" data-view="search" aria-current="page">جستجو</button>
+      <button type="button" data-action="nav" data-view="compare">مقایسه</button>
+      <button type="button" data-action="nav" data-view="chat">گفتگو</button>
+    </nav>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">اطلاعات تماس</h2>
+      <div id="modal-body"></div>
+      <button type="button" class="full" data-action="close-modal">بستن</button>
+    </div>
+  </div>
+  <div id="toast" class="toast" hidden role="status"></div>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

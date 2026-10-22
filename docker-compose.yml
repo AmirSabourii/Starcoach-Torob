@@ -1,0 +1,14 @@
+services:
+  starcoach:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_PATH: /data/starcoach.db
+      BOXAPI_API_KEY: ${BOXAPI_API_KEY:-}
+      BOXAPI_BASE_URL: ${BOXAPI_BASE_URL:-}
+      BOXAPI_MODEL: ${BOXAPI_MODEL:-}
+      STALE_PRICE_DAYS: ${STALE_PRICE_DAYS:-30}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+    volumes:
+      - ./data:/data

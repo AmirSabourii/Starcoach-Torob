@@ -1,0 +1,12 @@
+{
+  "app": "starcoach-torob",
+  "platform": "docker",
+  "port": 8000,
+  "healthCheck": {
+    "command": "CMD python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')\"",
+    "interval": 30,
+    "timeout": 10,
+    "retries": 3,
+    "startPeriod": 20
+  }
+}
