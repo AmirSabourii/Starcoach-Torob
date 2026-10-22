@@ -1,0 +1,2969 @@
+{
+  "meta": {
+    "db": "torob.sqlite",
+    "reference_date": "2026-10-22",
+    "price_rule": "price_toman NULL if <1000 or >1e11 (or missing)",
+    "distance": "haversine straight-line km from (user_lat,user_lon) to shop lat/lon",
+    "shop_price": "a shop's price for a product = its cheapest valid offer (variants collapse)",
+    "outlier_rule": "suspicious if < 0.4× or > 2.5× median of per-shop prices",
+    "bnpl_providers": [
+      "اسنپ‌پی",
+      "ترب‌پی",
+      "دیجی پی",
+      "تارا",
+      "ازکی‌وام"
+    ],
+    "n_items": 60,
+    "by_category": {
+      "simple_lookup": 7,
+      "filtered_search": 7,
+      "nearest_stores": 7,
+      "cheapest_compare_stores": 7,
+      "compare_products": 5,
+      "freshness": 4,
+      "payment_installment": 5,
+      "store_contact": 4,
+      "unanswerable": 8,
+      "ambiguous": 6
+    }
+  },
+  "items": [
+    {
+      "id": "L01",
+      "category": "simple_lookup",
+      "difficulty": "easy",
+      "question": "قیمت گوشی سامسونگ S25 FE با حافظه ۲۵۶ و رم ۸ چنده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_6c62d575e3d247f6f29e051a"
+        ],
+        "price_summary": {
+          "product_id": "product_6c62d575e3d247f6f29e051a",
+          "persian_title": "گوشی سامسونگ (ویتنام) S25 FE 5G | حافظه 256 رم 8 گیگابایت",
+          "brand_name": "سامسونگ",
+          "category_name": "گوشی موبایل",
+          "n_offers": 34,
+          "n_shops": 34,
+          "n_offers_null_price": 1,
+          "n_shops_with_valid_price": 33,
+          "latest_price_change": "2026-10-12T20:34:38.567251+00:00",
+          "min_price": 184000000.0,
+          "median_price": 195000000.0,
+          "max_price": 223675000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": []
+        }
+      },
+      "correct_answer_must": "Identify product_6c62…; quote a price range from the dataset (min ≈ 184,000,000 toman, max ≈ 223,675,000) and/or the cheapest shop; mention it is sold in many (34) shops. No invented prices."
+    },
+    {
+      "id": "L02",
+      "category": "simple_lookup",
+      "difficulty": "easy",
+      "question": "آیفون ۱۶ معمولی ۱۲۸ گیگ نات‌اکتیو چند درمیاد؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_76d08413c6fa1d8efc4cea19"
+        ],
+        "price_summary": {
+          "product_id": "product_76d08413c6fa1d8efc4cea19",
+          "persian_title": "گوشی آیفون 16 | حافظه 128 گیگابایت دو سیم‌کارت نات اکتیو",
+          "brand_name": "اپل",
+          "category_name": "گوشی موبایل",
+          "n_offers": 14,
+          "n_shops": 14,
+          "n_offers_null_price": 2,
+          "n_shops_with_valid_price": 12,
+          "latest_price_change": "2026-10-12T16:45:24.802549+00:00",
+          "min_price": 175000000.0,
+          "median_price": 222500000.0,
+          "max_price": 339000000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": []
+        }
+      },
+      "correct_answer_must": "Quote the dataset price range for the iPhone 16 128GB Not-Active product; must not use iPhone 16 Pro/Pro Max or \"طرح اپل\" knock-off prices. Should note outlier spread (min 175M vs median)."
+    },
+    {
+      "id": "L03",
+      "category": "simple_lookup",
+      "difficulty": "medium",
+      "question": "قیمت ایرپاد پرو ۳ چقدره؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_13dcd3e74bde3139871f4b7f",
+          "product_e4516e047e6d6a15b53ae808"
+        ],
+        "price_summary": [
+          {
+            "product_id": "product_13dcd3e74bde3139871f4b7f",
+            "persian_title": "هدفون بی سیم اپل مدل ایرپاد پرو 3",
+            "brand_name": "اپل",
+            "category_name": "هدفون، هدست و هندزفری",
+            "n_offers": 11,
+            "n_shops": 11,
+            "n_offers_null_price": 0,
+            "n_shops_with_valid_price": 11,
+            "latest_price_change": "2026-10-12T18:17:40.998106+00:00",
+            "min_price": 60500000.0,
+            "median_price": 63000000.0,
+            "max_price": 68000000.0,
+            "suspicious_low_offers": [],
+            "suspicious_high_offers": []
+          },
+          {
+            "product_id": "product_e4516e047e6d6a15b53ae808",
+            "persian_title": "هدفون بی سیم اپل مدل ایرپاد پرو 3",
+            "brand_name": "اپل",
+            "category_name": "هدفون، هدست و هندزفری",
+            "n_offers": 5,
+            "n_shops": 4,
+            "n_offers_null_price": 0,
+            "n_shops_with_valid_price": 4,
+            "latest_price_change": "2026-10-12T03:42:13.154347+00:00",
+            "min_price": 3100000.0,
+            "median_price": 40225000.0,
+            "max_price": 63500000.0,
+            "suspicious_low_offers": [
+              {
+                "shop_id": "shop_959ad48fd34862d99bd8e4bd",
+                "shop_name": "رامیلا رامیرا",
+                "price_toman": 3100000.0,
+                "last_price_changed_at": "2026-05-24T12:51:06.194446+00:00"
+              }
+            ],
+            "suspicious_high_offers": []
+          }
+        ]
+      },
+      "correct_answer_must": "Two catalogue entries share the title \"هدفون بی سیم اپل مدل ایرپاد پرو 3\"; correct answer quotes ~60.5M–68M toman. A 3.1M offer exists on the second entry and is an implausible outlier (likely a copy/part) – answer must not present 3.1M as the normal price without caveat. Must not quote AirPods Pro 2 / AirPods 4."
+    },
+    {
+      "id": "L04",
+      "category": "simple_lookup",
+      "difficulty": "easy",
+      "question": "PS5 Pro دیجیتال الان چنده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_276a0d054f2f0174819277bc"
+        ],
+        "price_summary": {
+          "product_id": "product_276a0d054f2f0174819277bc",
+          "persian_title": "کنسول بازی سونی PS5 Pro Digital",
+          "brand_name": "سونی",
+          "category_name": "کنسول بازی  PS5",
+          "n_offers": 14,
+          "n_shops": 14,
+          "n_offers_null_price": 1,
+          "n_shops_with_valid_price": 13,
+          "latest_price_change": "2026-10-12T10:09:15.770552+00:00",
+          "min_price": 319900000.0,
+          "median_price": 365000000.0,
+          "max_price": 385000000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": []
+        }
+      },
+      "correct_answer_must": "Quote dataset price range for \"کنسول بازی سونی PS5 Pro Digital\" (≈319.9M–385M toman). Must not confuse with PS5 Slim."
+    },
+    {
+      "id": "L05",
+      "category": "simple_lookup",
+      "difficulty": "easy",
+      "question": "ردمی نوت ۱۵ با ۲۵۶ گیگ حافظه قیمتش چنده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_519f1ee3c5057b0b1f98d9d4"
+        ],
+        "price_summary": {
+          "product_id": "product_519f1ee3c5057b0b1f98d9d4",
+          "persian_title": "گوشی شیائومی Redmi Note 15 | حافظه 256 رم 8 گیگابایت",
+          "brand_name": "شیائومی",
+          "category_name": "گوشی موبایل",
+          "n_offers": 22,
+          "n_shops": 22,
+          "n_offers_null_price": 0,
+          "n_shops_with_valid_price": 22,
+          "latest_price_change": "2026-10-12T19:01:07.798518+00:00",
+          "min_price": 84900000.0,
+          "median_price": 88290000.0,
+          "max_price": 109000000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": []
+        },
+        "distractors_to_avoid": [
+          "product_c7e6f3169941e407d8bf2a5d",
+          "product_63025758f12ac729f6792773",
+          "product_75fd1ca6560c936a03afdb7f",
+          "product_615fa3bed2ffe927e6c2fe28",
+          "product_626beaabaddba40e7de3e977"
+        ]
+      },
+      "correct_answer_must": "Must pick Redmi Note 15 256/8 (not Note 15 Pro / Pro+). Quote ≈84.9M–109M range."
+    },
+    {
+      "id": "L06",
+      "category": "simple_lookup",
+      "difficulty": "medium",
+      "question": "Apple Watch Series 11 42mm چند؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_7e355a8fc49afcd4df77a875"
+        ],
+        "price_summary": {
+          "product_id": "product_7e355a8fc49afcd4df77a875",
+          "persian_title": "ساعت هوشمند اپل واچ سری ۱۱ آلومینیوم ۴۲ میلی‌متری با بند سیلیکونی",
+          "brand_name": "اپل",
+          "category_name": "ساعت و مچ بند هوشمند",
+          "n_offers": 12,
+          "n_shops": 12,
+          "n_offers_null_price": 1,
+          "n_shops_with_valid_price": 11,
+          "latest_price_change": "2026-10-12T15:35:10.474757+00:00",
+          "min_price": 84000000.0,
+          "median_price": 86500000.0,
+          "max_price": 99500000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": []
+        }
+      },
+      "correct_answer_must": "English query must map to the Persian title \"ساعت هوشمند اپل واچ سری ۱۱ آلومینیوم ۴۲ میلی‌متری…\"; quote ≈84M–99.5M."
+    },
+    {
+      "id": "L07",
+      "category": "simple_lookup",
+      "difficulty": "medium",
+      "question": "اسپیکر هارمن کاردن Aura Studio 5 کجا و چند می‌فروشن؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_241eb5d0978b4382eddeeddf"
+        ],
+        "price_summary": {
+          "product_id": "product_241eb5d0978b4382eddeeddf",
+          "persian_title": "اسپیکر بلوتوثی هارمن کاردن مدل Aura Studio 5",
+          "brand_name": "هارمن کاردن",
+          "category_name": "اسپیکر و سیستم صوتی",
+          "n_offers": 39,
+          "n_shops": 37,
+          "n_offers_null_price": 0,
+          "n_shops_with_valid_price": 37,
+          "latest_price_change": "2026-10-12T18:39:05.979719+00:00",
+          "min_price": 53900000.0,
+          "median_price": 60490000.0,
+          "max_price": 680000000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": [
+            {
+              "shop_id": "shop_b954ec50f0b975de809e0536",
+              "shop_name": "روان ویسا",
+              "price_toman": 680000000.0,
+              "last_price_changed_at": "2026-09-23T16:01:59.707196+00:00"
+            }
+          ]
+        },
+        "cheapest": {
+          "product": {
+            "product_id": "product_241eb5d0978b4382eddeeddf",
+            "persian_title": "اسپیکر بلوتوثی هارمن کاردن مدل Aura Studio 5",
+            "brand_name": "هارمن کاردن",
+            "category_name": "اسپیکر و سیستم صوتی"
+          },
+          "cheapest": {
+            "shop_id": "shop_3bebdfd18ee826120174e53c",
+            "shop_name": "رویلا مانسا",
+            "price_toman": 53900000.0,
+            "last_price_changed_at": "2026-10-12T13:30:47.190662+00:00",
+            "address": "ستاری شمال، نبش پاساژ کوروش مال، پلاک ۱۳"
+          },
+          "top_cheapest": [
+            {
+              "shop_id": "shop_3bebdfd18ee826120174e53c",
+              "shop_name": "رویلا مانسا",
+              "price_toman": 53900000.0,
+              "last_price_changed_at": "2026-10-12T13:30:47.190662+00:00"
+            },
+            {
+              "shop_id": "shop_ecf4d2da925522d85803475d",
+              "shop_name": "نودیس آذریس",
+              "price_toman": 56400000.0,
+              "last_price_changed_at": "2026-10-12T14:27:17.796814+00:00"
+            },
+            {
+              "shop_id": "shop_3bb0f132f93f37db296a6460",
+              "shop_name": "نیکیرا آریسا",
+              "price_toman": 56490000.0,
+              "last_price_changed_at": "2026-10-10T15:56:27.816649+00:00"
+            }
+          ],
+          "n_shops_with_valid_price": 37,
+          "median_shop_price": 60490000.0,
+          "max_price": 680000000.0
+        }
+      },
+      "correct_answer_must": "Quote cheapest shop + price and a plausible range; the 680M max is a clear outlier (≫ median) and should not be presented as typical."
+    },
+    {
+      "id": "S01",
+      "category": "filtered_search",
+      "difficulty": "medium",
+      "question": "گوشی سامسونگ زیر ۶۰ میلیون تومن چی هست؟",
+      "ground_truth": {
+        "n_matching_products": 37,
+        "expected_product_ids": [
+          "product_7b2f81b1c505834301755fe7",
+          "product_984df404c83a9782f4d5480b",
+          "product_7663583bbc7ed3fe2427b78d",
+          "product_0b3f05fb4368304a2d562afd",
+          "product_42b4c1b9c40107dca38393be",
+          "product_8a2ab0cfee5a7f10ae909625",
+          "product_dd777d33f5ef6fbf14190fce",
+          "product_af24a7f71f80655b178fa9c1",
+          "product_f96b9acaa7cbd3377b246d4f",
+          "product_05c23ecb17a75d3b3311b490",
+          "product_1047c30db8234343ffdd9ef0",
+          "product_c97a831f5c7bb6a4814c1b60",
+          "product_5cfd48a2de945900fb5e078b",
+          "product_8da10dad22ba881be5f817d7",
+          "product_a3563958c23ac7ccd3af6a2e",
+          "product_1e321d59bceec180ae2aacca",
+          "product_74f8622be236d6e23b23f636",
+          "product_cd9ab043b0bc8699723bb107",
+          "product_b9e4e9082249f614aad052c2",
+          "product_58f037c45da3bf1f5cfdf3ec",
+          "product_36928c166046168bce4b9a31",
+          "product_adfdc73bc839d15cd7754318",
+          "product_6419a44e5f0917e7075d7c92",
+          "product_2d2085fd5e70f03d36b611af",
+          "product_8eaba34d56960fb44ed580dd",
+          "product_92f99ad1436168ab75293517",
+          "product_3d1290a3534f581c9e3d12cc",
+          "product_84090c4d5fad4b44cccd3452",
+          "product_eccf0c188abd567d2f1ca943",
+          "product_c6cd174e62db3005891a770e",
+          "product_b1177077a4ba07ab6b64c1d0",
+          "product_d24b597176bdf2a82035dcc2",
+          "product_3d46be8f5ae7503003c2ab8b",
+          "product_510439a510da93078bc790f7",
+          "product_a6dbc4095242cc3651db5001",
+          "product_f039b9f736db8be034e637d0",
+          "product_b4bbdc7982e1350975fd1651"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_7b2f81b1c505834301755fe7",
+            "persian_title": "گوشی سامسونگ Keystone 2 GT-E1205Y  | حافظه 64 مگابایت",
+            "brand_name": "سامسونگ",
+            "min_price": 2000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_984df404c83a9782f4d5480b",
+            "persian_title": "گوشی سامسونگ BM310 Mini | حافظه 32 مگابایت",
+            "brand_name": "سامسونگ",
+            "min_price": 2000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_7663583bbc7ed3fe2427b78d",
+            "persian_title": "گوشی سامسونگ B315E | حافظه 4 مگابایت",
+            "brand_name": "سامسونگ",
+            "min_price": 2100000.0,
+            "n_shops": 2
+          },
+          {
+            "product_id": "product_0b3f05fb4368304a2d562afd",
+            "persian_title": "گوشی سامسونگ B310E | حافظه 4 مگابایت",
+            "brand_name": "سامسونگ",
+            "min_price": 2200000.0,
+            "n_shops": 4
+          },
+          {
+            "product_id": "product_42b4c1b9c40107dca38393be",
+            "persian_title": "گوشی طرح سامسونگ B310E | حافظه 4 مگابایت",
+            "brand_name": "سامسونگ",
+            "min_price": 2200000.0,
+            "n_shops": 3
+          }
+        ],
+        "filter": "category=گوشی موبایل AND brand=سامسونگ AND cheapest valid offer <= 60,000,000"
+      },
+      "correct_answer_must": "Every product listed must be in expected_product_ids (precision) and quoted price must be ≤60M from a real offer. Listing several real options (e.g. Galaxy A07 64/4 from ≈38.9M) is sufficient; must not list accessories or non-Samsung phones."
+    },
+    {
+      "id": "S02",
+      "category": "filtered_search",
+      "difficulty": "medium",
+      "question": "ساعت هوشمند شیائومی تا ۱۰ میلیون پیشنهاد بده",
+      "ground_truth": {
+        "n_matching_products": 46,
+        "expected_product_ids": [
+          "product_f0a3738f7442c34f4063b786",
+          "product_f902faff126eee34b533c45d",
+          "product_25f80113b1d5a48a426b1312",
+          "product_fbff7b9091cf0abc44e064a4",
+          "product_2bcf2b2ba693d09c5f60c6e1",
+          "product_00abf1168c5a01b39beb1a6d",
+          "product_8ee4cf4af7f2d76baf656f44",
+          "product_7457acae09ff3d3e0666778c",
+          "product_2cbc688a29de93e32fd2bedd",
+          "product_d028a5b2ae4a982b0b7f282b",
+          "product_840c67cdf9830889ee8b7125",
+          "product_ff49baca8595aa4b03f980ab",
+          "product_4f049d9fcfa0723058ae3f08",
+          "product_f927951097a297890b2e98d7",
+          "product_400c9ae664d21ef39662b61a",
+          "product_4a5287b3c567e312283e7467",
+          "product_b466f3f59f753238a2051f7f",
+          "product_618cc3304288bb7d72b8b11c",
+          "product_ee06a4d82c0689c328a17ad1",
+          "product_47872f06fbcb34b598361119",
+          "product_d915a44f7878e2a18904d188",
+          "product_eda0c358505fa08f1dd2b2ad",
+          "product_c5535d6f23873c80698bc9a2",
+          "product_8230b46cf096ce8fbc593c5f",
+          "product_79da827a76fee6594f8e3862",
+          "product_93760f4f96681e7e97a0fcca",
+          "product_2cdb509005750eafdaa0a5b5",
+          "product_3687c1dbf56d7d581c65d92e",
+          "product_217fd82aa555571962f6e4aa",
+          "product_eb5560ff6a43940b6952d243",
+          "product_69820419d6892f4296578d9a",
+          "product_2134c20a04bd8731d70b664c",
+          "product_a77d1654161df297b16e2f5d",
+          "product_a25755eb04b8fece3cb0f4b7",
+          "product_5651957a6cddf552354a52fa",
+          "product_381ef7f2108564c5efefe1bf",
+          "product_dfd9764fddb564056ede5592",
+          "product_54d86900ac6d2675e65de9ad",
+          "product_9b5f1a7e84b916bf6410621b",
+          "product_6a4cb0e555867a8ee2efcb13",
+          "product_18191d83e0163f833c7efe55",
+          "product_93a81ca3f9a876932aba2a74",
+          "product_1f095791708b36953ac5f830",
+          "product_dae6e14be53cf19ff7c1cb4d",
+          "product_92a6274571040714192e6edd",
+          "product_02396e55da76e89dc7ce1141"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_f0a3738f7442c34f4063b786",
+            "persian_title": "ساعت هوشمند شیائومی مدل TG1 با بدنه فلزی و بند سیلیکونی",
+            "brand_name": "شیائومی",
+            "min_price": 3980000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_f902faff126eee34b533c45d",
+            "persian_title": "ساعت هوشمند هایلو مدل S6 با بدنه پلاستیکی و بند سیلیکونی",
+            "brand_name": "شیائومی",
+            "min_price": 4670000.0,
+            "n_shops": 7
+          },
+          {
+            "product_id": "product_25f80113b1d5a48a426b1312",
+            "persian_title": "ساعت هوشمند 46 میلی‌متری شیائومی مدل Smart Band 9 Active",
+            "brand_name": "شیائومی",
+            "min_price": 4700000.0,
+            "n_shops": 3
+          },
+          {
+            "product_id": "product_fbff7b9091cf0abc44e064a4",
+            "persian_title": "ساعت هوشمند شیائومی مدل QCY Watch Elite با بدنه رویه زینک و بند سیلیکونی",
+            "brand_name": "شیائومی",
+            "min_price": 4950000.0,
+            "n_shops": 11
+          },
+          {
+            "product_id": "product_2bcf2b2ba693d09c5f60c6e1",
+            "persian_title": "ساعت هوشمند شیائومی مدل Black Shark GT3 Neo با بدنه آلومینیومی و بند سیلیکونی",
+            "brand_name": "شیائومی",
+            "min_price": 4997000.0,
+            "n_shops": 1
+          }
+        ]
+      },
+      "correct_answer_must": "Recommend only products from expected_product_ids with a real offer ≤10M (e.g. Redmi Watch 5 Lite ≈9.4M, Redmi Watch 5 Active ≈6.78M, Mi Band 10 ≈8.9M)."
+    },
+    {
+      "id": "S03",
+      "category": "filtered_search",
+      "difficulty": "hard",
+      "question": "تلویزیون ۵۵ اینچ زیر ۱۲۰ میلیون می‌خوام، چه گزینه‌هایی هست؟",
+      "ground_truth": {
+        "n_matching_products": 50,
+        "expected_product_ids": [
+          "product_33f1e24f9a8f50fb1272a329",
+          "product_def5b83e23bdd7654258db0e",
+          "product_4278e518655ab2e3b4209813",
+          "product_8376dace5bb6b0dbfd964ee3",
+          "product_590874db41a6353c098a77a7",
+          "product_a27166390d8673c3e91c3d3c",
+          "product_0c20b51a38469c2c1e53812b",
+          "product_8b0085e86b1197e1a4ab04aa",
+          "product_4771b86876e36fb43f34ed9e",
+          "product_f15d9830864397297cac38d9",
+          "product_0498473c1d5dd8a613b5b00e",
+          "product_57e82d4fe2c48b6c61ae040f",
+          "product_9cfdef19b3793f3de783bb58",
+          "product_1bb6cf042d143f5939ddc64e",
+          "product_b7114ab5d4d4e58a4fd53f3e",
+          "product_b712badccfb27bf519999d22",
+          "product_44a4d7f5f747a4cd0bffffd3",
+          "product_099a8ea2310d316f605306d2",
+          "product_9ea1ab1dc7463383d053e8cd",
+          "product_7fc6017c2a82dde073f1693c",
+          "product_8bcde434ede03f039ffaccf6",
+          "product_765f0e3736981fff3a412503",
+          "product_80cc7b8a9fa58616d282b7c2",
+          "product_0252983e3e068d4e6b5a37c5",
+          "product_89994858d33ba8f4a80dcaf0",
+          "product_834384478dd0b16909a15d8c",
+          "product_b5e291d86616dbe26ebfbd24",
+          "product_50cd87f80d07ee7ff9666d91",
+          "product_abe5019dad3d3fbc0226c80b",
+          "product_45b821dd1cb157e248a53259",
+          "product_6932f34b842a61ac640012fd",
+          "product_2a6d763abe21ff6cf6938844",
+          "product_aca4f048cfb9933717c94609",
+          "product_3a5e705929a7c5706122ac6a",
+          "product_72c3daa97cae29da94cd5ac8",
+          "product_242add51bfcf1bcad7fcf019",
+          "product_832e4d0a782e0800e6ad2a49",
+          "product_e7eed2cfa3189674e5b3ff92",
+          "product_801a628f5085b96e4a218ed8",
+          "product_fbd0953d4a45306b356d884a",
+          "product_8effb682d2773e8d7264d6a1",
+          "product_c5b50f027586f97a640bc584",
+          "product_029c70094e4b953237d51f85",
+          "product_90cfb26a42adfaf720ae4d59",
+          "product_c9c87f10eeab507ebea51dc5",
+          "product_0bfc38d5403fca102a0f7c54",
+          "product_5e01f48003da73f210fcb526",
+          "product_6afd6fe7f7adc8f8279d083f",
+          "product_276d4bcb0a0cf98ce582436d",
+          "product_9b8799d8bf7b9ab6ca888c5e"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_33f1e24f9a8f50fb1272a329",
+            "persian_title": "تلویزیون هوشمند نکسار مدل NTV-U55T722NE سایز ۵۵ اینچ LED Ultra HD 4K",
+            "brand_name": "نکسار",
+            "min_price": 80000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_def5b83e23bdd7654258db0e",
+            "persian_title": "تلویزیون ایکس ویژن مدل XYU795B سایز ۵۵ اینچ ال ای دی Ultra HD 4K",
+            "brand_name": "ایکس ویژن",
+            "min_price": 83000000.0,
+            "n_shops": 3
+          },
+          {
+            "product_id": "product_4278e518655ab2e3b4209813",
+            "persian_title": "8050 UR سایز 55ال جی",
+            "brand_name": null,
+            "min_price": 85500000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_8376dace5bb6b0dbfd964ee3",
+            "persian_title": "تلویزیون هوشمند سام الکترونیک مدل 55FU7500 سایز ۵۵ اینچ Ultra HD 4K",
+            "brand_name": "سام الکترونیک",
+            "min_price": 85990000.0,
+            "n_shops": 2
+          },
+          {
+            "product_id": "product_590874db41a6353c098a77a7",
+            "persian_title": "تلویزیون ایکس ویژن مدل XYU785 سایز ۵۵ اینچ UHD 4K هوشمند",
+            "brand_name": "ایکس ویژن",
+            "min_price": 88000000.0,
+            "n_shops": 3
+          }
+        ]
+      },
+      "correct_answer_must": "All suggestions must be 55-inch TVs from expected_product_ids priced ≤120M (title-based size filter). Must not suggest 50/65-inch or TV stands.",
+      "notes": "Size filter is title-based (digits normalised); a model doing spec-based filtering may legitimately find a superset — grade by precision."
+    },
+    {
+      "id": "S04",
+      "category": "filtered_search",
+      "difficulty": "medium",
+      "question": "هندزفری یا هدفون انکر زیر ۳ میلیون سراغ داری؟",
+      "ground_truth": {
+        "n_matching_products": 28,
+        "expected_product_ids": [
+          "product_92ac53fa75e18e8e73f20b56",
+          "product_14ac0d9129cd6330617d27b4",
+          "product_196e112369471212f93e9898",
+          "product_07966985b9791ada912abd75",
+          "product_1f533aba731d8e9feff2e7e5",
+          "product_adcd45645a563191757fb151",
+          "product_ae253ba22d1455a12ca4cffd",
+          "product_258ab3af212a1f8bc4cde006",
+          "product_08ed0da1e16d2db68d041366",
+          "product_24e20485148d72cb2f46305d",
+          "product_32abd8befca98995b6512e85",
+          "product_1d8625ce4f1518600aa4d24c",
+          "product_12eddccf43576e4050485f41",
+          "product_3298178c440bc33a901fdd83",
+          "product_2c201a4e5eb44dca7a105e3d",
+          "product_6e4678b957e43984e95e3fde",
+          "product_6d9a7e298fd58f982617ba3c",
+          "product_451de88557c2f1438459cabe",
+          "product_081db5846c5af67105cc0c04",
+          "product_b5360def23c574ad62d601e8",
+          "product_30d5ffae1c6bfb9c6d5c9335",
+          "product_71282a685edacc58be5ca055",
+          "product_1ed99392cab58404087761fa",
+          "product_5c3949fb79b8a130f7d661ef",
+          "product_902185765cc935b181a0f906",
+          "product_49f927c3955f431b5415f012",
+          "product_3ebdf2ec9daf1b4f3d39e9e6",
+          "product_ea1a9076798bd0e4b3f6e0f9"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_92ac53fa75e18e8e73f20b56",
+            "persian_title": "هدفون بلوتوثی انکر Soundcore R50i مدل A3949",
+            "brand_name": "انکر",
+            "min_price": 1390000.0,
+            "n_shops": 30
+          },
+          {
+            "product_id": "product_14ac0d9129cd6330617d27b4",
+            "persian_title": "هندزفری بلوتوثی Anker مدل R80i",
+            "brand_name": "انکر",
+            "min_price": 1750000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_196e112369471212f93e9898",
+            "persian_title": "هندزفری بی سیم انکر مدل R50i",
+            "brand_name": "انکر",
+            "min_price": 1843200.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_07966985b9791ada912abd75",
+            "persian_title": "هدفون بی سیم انکر مدل Soundcore K20i A3994",
+            "brand_name": "انکر",
+            "min_price": 1995000.0,
+            "n_shops": 7
+          },
+          {
+            "product_id": "product_1f533aba731d8e9feff2e7e5",
+            "persian_title": "هندزفری بلوتوثی انکر مدل Soundcore R50i",
+            "brand_name": "انکر",
+            "min_price": 2000000.0,
+            "n_shops": 1
+          }
+        ]
+      },
+      "correct_answer_must": "Only Anker headphones in expected_product_ids with a real offer ≤3M (e.g. Soundcore R50i from 1.39M)."
+    },
+    {
+      "id": "S05",
+      "category": "filtered_search",
+      "difficulty": "hard",
+      "question": "کولر گازی اینورتر ۲۴ هزار چه مدل‌هایی دارید و قیمتشون چنده؟",
+      "ground_truth": {
+        "n_matching_products": 11,
+        "expected_product_ids": [
+          "product_c92752a1f33ace21732f5661",
+          "product_b1c41faad4f4ba1908342226",
+          "product_d4011f10400fa31671dd1c55",
+          "product_e19c5935f00798b33d97a93b",
+          "product_59a3a37377038a6d7800996b",
+          "product_98eda40792f1111ea532faea",
+          "product_15be163dfa78a725165e4707",
+          "product_5907b17ad84a9d759c574c71",
+          "product_0106e8496071e5dc6ead6708",
+          "product_82f3e07f5b27f619fbd834f9",
+          "product_6a4f2c99a5b25e7e787b5e3e"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_c92752a1f33ace21732f5661",
+            "persian_title": "کولرگازی جی پلاس مدل اینورتر دارGAC-HV24TV1 ظرفیت 24000",
+            "brand_name": "جی پلاس",
+            "min_price": 125000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_b1c41faad4f4ba1908342226",
+            "persian_title": "کولر گازی ایران رادیاتور ALL THERM ظرفیت ۲۴ هزار اینورتر سرمایشی و گرمایشی",
+            "brand_name": "ایران رادیاتور",
+            "min_price": 135000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_d4011f10400fa31671dd1c55",
+            "persian_title": "کولر گازی جی پلاس مدل اینورتر دار GAC-HV24M1 ظرفیت 24000",
+            "brand_name": "جی پلاس",
+            "min_price": 139900000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_e19c5935f00798b33d97a93b",
+            "persian_title": "کولر گازی جی پلاس 24000 اینورتر اسمارت R32",
+            "brand_name": "جی پلاس",
+            "min_price": 142317000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_59a3a37377038a6d7800996b",
+            "persian_title": "اسپلیت اینورتر اسمارت ۲۴ هزار چی پلاس مدل GAC\nHV24CBU1",
+            "brand_name": null,
+            "min_price": 142317000.0,
+            "n_shops": 1
+          }
+        ]
+      },
+      "correct_answer_must": "List inverter 24000-BTU AC models from expected_product_ids with their real cheapest price. Must not include non-inverter models or 12/30k units."
+    },
+    {
+      "id": "S06",
+      "category": "filtered_search",
+      "difficulty": "medium",
+      "question": "لپ‌تاپ ایسوس تا ۱۵۰ میلیون تومن چی موجوده؟",
+      "ground_truth": {
+        "n_matching_products": 9,
+        "expected_product_ids": [
+          "product_f341fab9a99a0fe79418624a",
+          "product_7fcd5b1a411c3bb924c7e8e3",
+          "product_cd600ac3444f771bdcd69125",
+          "product_295eeaeb5bc447429ae1695e",
+          "product_509c2e823755c329598eb433",
+          "product_8f2f9faa83c9d31bebeadab0",
+          "product_38fd67c843cc98a92c0091f0",
+          "product_c6e4e0354a6b6a311c7cd0cc",
+          "product_c36aaff95fd3f69632f7d2fa"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_f341fab9a99a0fe79418624a",
+            "persian_title": "لپ تاپ ایسوس کارکرده AUSUS X455 LD 256GB SSD",
+            "brand_name": "ایسوس",
+            "min_price": 38000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_7fcd5b1a411c3bb924c7e8e3",
+            "persian_title": "لپ تاپ ایسوس E410KA | 4GB RAM | 256GB SSD | Celeron N4500",
+            "brand_name": "ایسوس",
+            "min_price": 74198940.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_cd600ac3444f771bdcd69125",
+            "persian_title": "لپ تاپ ایسوس X1504VA | 4GB RAM | 512GB SSD | I3 1315U",
+            "brand_name": "ایسوس",
+            "min_price": 131000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_295eeaeb5bc447429ae1695e",
+            "persian_title": "لپ تاپ ایسوس X1404VA | 8GB RAM | 512GB SSD | Core i3 1315U",
+            "brand_name": "ایسوس",
+            "min_price": 135678940.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_509c2e823755c329598eb433",
+            "persian_title": "لپ تاپ ایسوس X1504VA | 8GB RAM | 512GB SSD | I3 1315U",
+            "brand_name": "ایسوس",
+            "min_price": 140000000.0,
+            "n_shops": 2
+          }
+        ]
+      },
+      "correct_answer_must": "Only ASUS laptops from expected_product_ids with real offer ≤150M; if few, say so honestly."
+    },
+    {
+      "id": "S07",
+      "category": "filtered_search",
+      "difficulty": "medium",
+      "question": "اسپیکر بلوتوثی JBL زیر ۲۰ میلیون که تو چند تا مغازه باشه می‌خوام",
+      "ground_truth": {
+        "n_matching_products": 8,
+        "expected_product_ids": [
+          "product_3bec8cc0877689b21cd593f1",
+          "product_ccd31625b0afd4676ce07309",
+          "product_53e1e3895699be1ef3c5f3f9",
+          "product_7715f692525a0e950f7582ae",
+          "product_ffc571a7f782b35a10ece2f2",
+          "product_016fffcbf5ffc1b11b11ffcf",
+          "product_efb372f9479c0b78b3b535fd",
+          "product_0e5683d9b93c66f2e38a1c0e"
+        ],
+        "cheapest_5": [
+          {
+            "product_id": "product_3bec8cc0877689b21cd593f1",
+            "persian_title": "اسپیکر جی بی ال مدل GO4",
+            "brand_name": "جی بی ال",
+            "min_price": 5500000.0,
+            "n_shops": 7
+          },
+          {
+            "product_id": "product_ccd31625b0afd4676ce07309",
+            "persian_title": "اسپیکر جی بی ال مدل GO4",
+            "brand_name": "جی بی ال",
+            "min_price": 7200000.0,
+            "n_shops": 6
+          },
+          {
+            "product_id": "product_53e1e3895699be1ef3c5f3f9",
+            "persian_title": "اسپیکر JBL مدل Go 5",
+            "brand_name": "جی بی ال",
+            "min_price": 8100000.0,
+            "n_shops": 20
+          },
+          {
+            "product_id": "product_7715f692525a0e950f7582ae",
+            "persian_title": "اسپیکر بلوتوثی قابل حمل جی بی ال مدل Clip 5",
+            "brand_name": "جی بی ال",
+            "min_price": 8900000.0,
+            "n_shops": 18
+          },
+          {
+            "product_id": "product_ffc571a7f782b35a10ece2f2",
+            "persian_title": "اسپیکر جی بی ال مدل Grip",
+            "brand_name": "جی بی ال",
+            "min_price": 13500000.0,
+            "n_shops": 6
+          }
+        ],
+        "filter": "brand=جی بی ال, category=اسپیکر و سیستم صوتی, min price ≤20M, carried by ≥5 shops"
+      },
+      "correct_answer_must": "Suggestions must come from expected_product_ids (e.g. JBL GO4 from 5.5M, Go 5 ≈8.1M, Clip 5 ≈8.9M, Flip 7 ≈19.53M). Bonus: mention number of shops."
+    },
+    {
+      "id": "N01",
+      "category": "nearest_stores",
+      "difficulty": "medium",
+      "question": "من الان میدون تجریشم، نزدیک‌ترین جایی که S25 FE داره کجاست؟",
+      "user_lat": 35.8044,
+      "user_lon": 51.4337,
+      "user_location_label": "میدان تجریش",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_6c62d575e3d247f6f29e051a"
+        ],
+        "k": 3,
+        "nearest_shops": [
+          {
+            "shop_id": "shop_27e1705d85f29ea3939919c3",
+            "shop_name": "نیکیرا نیکدیس",
+            "address": "خیابان فرحزادی، خیابان شهید منفرد نیاکی، مجتمع اپال، واحد ۷۱۰",
+            "location_label": "آسمان",
+            "price_toman": 196000000.0,
+            "distance_km": 7.984
+          },
+          {
+            "shop_id": "shop_0201f9487d68b9ba04ec2e1d",
+            "shop_name": "آروان دیسین",
+            "address": "میدان فردوسی، مجتمع تجارت جهانی فردوسی، طبقه ششم، واحد 25",
+            "location_label": "فردوسی",
+            "price_toman": 197898000.0,
+            "distance_km": 11.58
+          },
+          {
+            "shop_id": "shop_e9d715c2c3c6b4f029f56ac8",
+            "shop_name": "آذریس نونوش",
+            "address": "خیابان جمهوری اسلامی، خیابان بابی ساندز، پلاک ۱۴، واحد ۲",
+            "location_label": "فردوسی",
+            "price_toman": 203000000.0,
+            "distance_km": 12.182
+          }
+        ],
+        "acceptable_shop_ids_for_top_k": [
+          "shop_27e1705d85f29ea3939919c3",
+          "shop_0201f9487d68b9ba04ec2e1d",
+          "shop_e9d715c2c3c6b4f029f56ac8"
+        ],
+        "n_candidate_shops": 33
+      },
+      "correct_answer_must": "List the 3 nearest shops (by straight-line distance from the user) that carry the product with a valid price, with shop name, approximate distance and price; shop set must match acceptable_shop_ids_for_top_k (ties within 50 m allowed). Must not invent shops."
+    },
+    {
+      "id": "N02",
+      "category": "nearest_stores",
+      "difficulty": "medium",
+      "question": "دنبال PS5 اسلیم دیجیتال هستم، نزدیک من کجا می‌تونم حضوری بخرم؟",
+      "user_lat": 35.7775,
+      "user_lon": 51.354,
+      "user_location_label": "شهرک غرب / سعادت‌آباد (نزدیک خوشه آسمان)",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_fef87f08e57d174809f5dc93"
+        ],
+        "k": 3,
+        "nearest_shops": [
+          {
+            "shop_id": "shop_27e1705d85f29ea3939919c3",
+            "shop_name": "نیکیرا نیکدیس",
+            "address": "خیابان فرحزادی، خیابان شهید منفرد نیاکی، مجتمع اپال، واحد ۷۱۰",
+            "location_label": "آسمان",
+            "price_toman": 185000000.0,
+            "distance_km": 0.198
+          },
+          {
+            "shop_id": "shop_62c4a8966c6b8f93d4e570ef",
+            "shop_name": "مانینا آذرینا",
+            "address": "سعادت آباد، مرکز تجاری اپال، طبقه هفتم، واحد 751",
+            "location_label": "آسمان",
+            "price_toman": 173000000.0,
+            "distance_km": 0.223
+          },
+          {
+            "shop_id": "shop_8e7be613071e46b3e8d0aa63",
+            "shop_name": "پاکوان سرویلا",
+            "address": "بلوار شهید منفرد نیاکی، مجتمع تجاری اپال، طبقه ۷، پلاک ۷۲۶",
+            "location_label": "آسمان",
+            "price_toman": 179000000.0,
+            "distance_km": 0.252
+          }
+        ],
+        "acceptable_shop_ids_for_top_k": [
+          "shop_27e1705d85f29ea3939919c3",
+          "shop_62c4a8966c6b8f93d4e570ef",
+          "shop_8e7be613071e46b3e8d0aa63"
+        ],
+        "n_candidate_shops": 23
+      },
+      "correct_answer_must": "List the 3 nearest shops (by straight-line distance from the user) that carry the product with a valid price, with shop name, approximate distance and price; shop set must match acceptable_shop_ids_for_top_k (ties within 50 m allowed). Must not invent shops."
+    },
+    {
+      "id": "N03",
+      "category": "nearest_stores",
+      "difficulty": "medium",
+      "question": "شارژر ۲۰ وات اپل سه‌پین رو نزدیک خونه‌م کجا پیدا کنم؟",
+      "user_lat": 35.7385,
+      "user_lon": 51.31,
+      "user_location_label": "جنت‌آباد جنوبی",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_df1dfb162403cf73df70fdf3",
+          "product_99316b03484cd879f989633b"
+        ],
+        "k": 3,
+        "nearest_shops": [
+          {
+            "shop_id": "shop_6e3fdb5f11a5953b29d3c428",
+            "shop_name": "رامانوش سروینا",
+            "address": "بزرگراه ستاری، خجسته پور، بین هجرت و گلشن، پلاک 234",
+            "location_label": "باغ فیض",
+            "price_toman": 4298000.0,
+            "distance_km": 0.668
+          },
+          {
+            "shop_id": "shop_8e7be613071e46b3e8d0aa63",
+            "shop_name": "پاکوان سرویلا",
+            "address": "بلوار شهید منفرد نیاکی، مجتمع تجاری اپال، طبقه ۷، پلاک ۷۲۶",
+            "location_label": "آسمان",
+            "price_toman": 8500000.0,
+            "distance_km": 5.676
+          },
+          {
+            "shop_id": "shop_90da7e6f7401530310850ba2",
+            "shop_name": "آووان مهرنوش",
+            "address": "سعادت آباد، میدان کتاب، خیابان کوهستان، مرکز تجاری اپال، طبقه هفتم، واحد 740",
+            "location_label": "آسمان",
+            "price_toman": 6790000.0,
+            "distance_km": 5.705
+          }
+        ],
+        "acceptable_shop_ids_for_top_k": [
+          "shop_6e3fdb5f11a5953b29d3c428",
+          "shop_8e7be613071e46b3e8d0aa63",
+          "shop_90da7e6f7401530310850ba2"
+        ],
+        "n_candidate_shops": 78
+      },
+      "correct_answer_must": "The title \"شارژر اپل توان 20 وات سه پین\" exists as two product_ids; union both. List the 3 nearest shops with distance & price."
+    },
+    {
+      "id": "N04",
+      "category": "nearest_stores",
+      "difficulty": "hard",
+      "question": "من کیانشهرم؛ ردمی نوت ۱۵ رو نزدیک‌ترین جا کجا می‌فروشن؟ چقدر راهه؟",
+      "user_lat": 35.642,
+      "user_lon": 51.445,
+      "user_location_label": "کیانشهر",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_519f1ee3c5057b0b1f98d9d4"
+        ],
+        "k": 3,
+        "nearest_shops": [
+          {
+            "shop_id": "shop_20d56d048f03a19fec6bf58c",
+            "shop_name": "نویار آذروش",
+            "address": "خیابان حافظ، بین سیف و غزالی، بازار موبایل ایران، طبقه دوم، پلاک ۴۰۷",
+            "location_label": "شیخ هادی",
+            "price_toman": 92500000.0,
+            "distance_km": 6.233
+          },
+          {
+            "shop_id": "shop_2ab3f2a7ea126937f40150bf",
+            "shop_name": "نیکآرا ویآرا",
+            "address": "خیابان حافظ، بین خیابان اقتدار و غزالی، بازار موبایل ایران، طبقه همکف، پلاک ۲۳۴",
+            "location_label": "شیخ هادی",
+            "price_toman": 85500000.0,
+            "distance_km": 6.237
+          },
+          {
+            "shop_id": "shop_b6c2ac1ce44ee8f6be5cc7c2",
+            "shop_name": "سروانوش روسا",
+            "address": "خیابان حافظ، بعداز چهارراه جمهوری، نبش خیابان اقتدار، بازار موبایل ایران، طبقه زیرهمکف، پلاک ۱۳۶",
+            "location_label": "شیخ هادی",
+            "price_toman": 94500000.0,
+            "distance_km": 6.252
+          }
+        ],
+        "acceptable_shop_ids_for_top_k": [
+          "shop_20d56d048f03a19fec6bf58c",
+          "shop_2ab3f2a7ea126937f40150bf",
+          "shop_b6c2ac1ce44ee8f6be5cc7c2"
+        ],
+        "n_candidate_shops": 22
+      },
+      "correct_answer_must": "Nearest shops are far (central Tehran); a correct answer gives the nearest ones with their (large) distance honestly rather than claiming a shop in Kianshahr."
+    },
+    {
+      "id": "N05",
+      "category": "nearest_stores",
+      "difficulty": "medium",
+      "question": "نزدیک‌ترین موبایل‌فروشی به من کجاست؟ (تهرانپارس هستم)",
+      "user_lat": 35.73,
+      "user_lon": 51.52,
+      "user_location_label": "تهرانپارس",
+      "ground_truth": {
+        "definition": "shops with ≥1 valid-priced offer in category گوشی موبایل, ordered by distance",
+        "nearest_shops": [
+          {
+            "shop_id": "shop_fb0b63869655e639aaff6a5e",
+            "shop_name": "فریس وینوش",
+            "address": "میدان هفت تیر، خیابان قائم مقام، خیابان مشاهیر، پلاک ۴۴، طبقه همکف، واحد زیر همکف",
+            "location_label": "سنائی",
+            "distance_km": 8.726,
+            "n_phone_products": 1
+          },
+          {
+            "shop_id": "shop_d1569f61d953e997c4ab0618",
+            "shop_name": "آذریرا نیکنوش",
+            "address": "نرسیده به میدان فردوسی، مرکز تجارت جهانی فردوسی، طبقه دوم، واحد 273",
+            "location_label": "فردوسی",
+            "distance_km": 9.613,
+            "n_phone_products": 1
+          },
+          {
+            "shop_id": "shop_bd6e24abdc5086b2d26f6473",
+            "shop_name": "ویسا آذریار",
+            "address": "خیابان فردوسی، نرسیده به میدان فردوسی، پاساژ تجارت جهانی، طبقه 3/1، واحد B12",
+            "location_label": "فردوسی",
+            "distance_km": 9.629,
+            "n_phone_products": 1
+          }
+        ],
+        "next_candidates": [
+          {
+            "shop_id": "shop_066349c22e81d28771eb638b",
+            "shop_name": "نینوش سرویس",
+            "address": "میدان فردوسی، پاساژ تجارت جهانی، طبقه ۲، پلاک 279",
+            "location_label": "فردوسی",
+            "distance_km": 9.632,
+            "n_phone_products": 4
+          },
+          {
+            "shop_id": "shop_188822653e77065f82c98014",
+            "shop_name": "نیکوش مهرین",
+            "address": "میدان فردوسی، مرکز تجارت جهانی فردوسی، طبقه ششم، واحد 21",
+            "location_label": "فردوسی",
+            "distance_km": 9.633,
+            "n_phone_products": 22
+          }
+        ],
+        "acceptable_shop_ids_for_top_k": [
+          "shop_fb0b63869655e639aaff6a5e",
+          "shop_d1569f61d953e997c4ab0618",
+          "shop_bd6e24abdc5086b2d26f6473",
+          "shop_066349c22e81d28771eb638b",
+          "shop_188822653e77065f82c98014"
+        ]
+      },
+      "correct_answer_must": "Return the nearest phone-selling shops with distance; should not rely on free-form shop category_names only (offers are the ground truth)."
+    },
+    {
+      "id": "N06",
+      "category": "nearest_stores",
+      "difficulty": "medium",
+      "question": "میدون انقلابم، ایرپاد ۴ نویز کنسلینگ رو نزدیک‌ترین جا چند می‌دن؟",
+      "user_lat": 35.7009,
+      "user_lon": 51.391,
+      "user_location_label": "میدان انقلاب",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_af79a481acdade4e9d1460fe",
+          "product_d145d125dbf5e185c3a80029",
+          "product_94bc1b6742d5abe41fe95723",
+          "product_5add81126e89fb96b4fa4a58",
+          "product_7e7f3f7463a0f200a086a733",
+          "product_7fa8c3a43559c5266b7aef75"
+        ],
+        "k": 3,
+        "nearest_shops": [
+          {
+            "shop_id": "shop_22bdad15b9cbbc64a3c087e5",
+            "shop_name": "سروورا مانوش",
+            "address": "خیابان جمهوری اسلامی، نرسیده به پل حافظ، نبش کوچه کلانتری، پاساژ خانه موبایل، طبقه 8، پلاک 811",
+            "location_label": "شیخ هادی",
+            "price_toman": 41000000.0,
+            "distance_km": 1.875
+          },
+          {
+            "shop_id": "shop_f6ce710399370a6c662dfa5a",
+            "shop_name": "آذریلا آذرورا",
+            "address": "جمهوری اسلامی، نرسیده به پل حافظ، پاساژ خانه موبایل، طبقه همکف، پلاک 14",
+            "location_label": "شیخ هادی",
+            "price_toman": 36000000.0,
+            "distance_km": 1.883
+          },
+          {
+            "shop_id": "shop_d8164a485c2bdbbdeb3df03b",
+            "shop_name": "مهران آذرورا",
+            "address": "جمهوری اسلامی، حافظ، زیر پل حافظ، کوچه اشهری، پاساژ حافظ نو، طبقه همکف، پلاک ۱۲",
+            "location_label": "شیخ هادی",
+            "price_toman": 41000000.0,
+            "distance_km": 1.918
+          }
+        ],
+        "acceptable_shop_ids_for_top_k": [
+          "shop_22bdad15b9cbbc64a3c087e5",
+          "shop_f6ce710399370a6c662dfa5a",
+          "shop_d8164a485c2bdbbdeb3df03b",
+          "shop_51f97e6bd4c787a2026f4366",
+          "shop_c01af6f714f802116231fbbf",
+          "shop_763f7c02ceb9f8ec464e6c64",
+          "shop_2bc7a2f96fb89ad40ee2fd22",
+          "shop_0855aaf14ffb471e3b579ce9",
+          "shop_28fea73ebb580e0f34224fe2",
+          "shop_9a4f53e29312c28550c04964",
+          "shop_d6bcf7fc585a643135d3f9bd",
+          "shop_2ffa8cb212d17934396ca389"
+        ],
+        "n_candidate_shops": 25
+      },
+      "correct_answer_must": "AirPods 4 ANC (full set) is listed under 6 catalogue entries (2 identical titles + 4 variants of the name); union them, excluding single-ear and used listings. Name the nearest shop(s) with distance and price."
+    },
+    {
+      "id": "N07",
+      "category": "nearest_stores",
+      "difficulty": "hard",
+      "question": "تو شعاع یک کیلومتری میدون فردوسی، ارزون‌ترین جایی که گلکسی A17 با ۱۲۸ گیگ و رم ۴ داره کجاست؟",
+      "user_lat": 35.7013,
+      "user_lon": 51.4204,
+      "user_location_label": "میدان فردوسی",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_d24b597176bdf2a82035dcc2"
+        ],
+        "radius_km": 1.0,
+        "n_shops_in_radius": 2,
+        "cheapest_in_radius": {
+          "shop_id": "shop_188822653e77065f82c98014",
+          "shop_name": "نیکوش مهرین",
+          "price_toman": 58970000.0,
+          "distance_km": 0.102
+        },
+        "top5_in_radius_by_price": [
+          {
+            "shop_id": "shop_188822653e77065f82c98014",
+            "shop_name": "نیکوش مهرین",
+            "price_toman": 58970000.0,
+            "distance_km": 0.102
+          },
+          {
+            "shop_id": "shop_0201f9487d68b9ba04ec2e1d",
+            "shop_name": "آروان دیسین",
+            "price_toman": 59489000.0,
+            "distance_km": 0.106
+          }
+        ],
+        "global_cheapest": {
+          "shop_id": "shop_8281454d8fc1ff7c127aa603",
+          "shop_name": "ماهیار نیکینا",
+          "price_toman": 53900000.0,
+          "last_price_changed_at": "2026-10-12T13:20:57.626967+00:00",
+          "address": "خیابان جمهوری اسلامی، تقاطع خیابان حافظ، پاساژ چهارسو، طبقه اول، پلاک c۵۲"
+        }
+      },
+      "correct_answer_must": "Must apply both the 1 km radius and the price sort; answer = cheapest_in_radius shop and price."
+    },
+    {
+      "id": "K01",
+      "category": "cheapest_compare_stores",
+      "difficulty": "easy",
+      "question": "ارزون‌ترین جا برای سامسونگ A56 با ۲۵۶ گیگ و ۸ رم کجاست؟",
+      "ground_truth": {
+        "product": {
+          "product_id": "product_e743ce86bbc5c2a0c9bd16f4",
+          "persian_title": "گوشی سامسونگ A56 5G | حافظه 256 رم 8 گیگابایت",
+          "brand_name": "سامسونگ",
+          "category_name": "گوشی موبایل"
+        },
+        "cheapest": {
+          "shop_id": "shop_1ffc7576fed58fa57cd99a21",
+          "shop_name": "نیآرا آروان",
+          "price_toman": 116800000.0,
+          "last_price_changed_at": "2026-10-12T15:23:25.348968+00:00",
+          "address": "خیابان جمهوری اسلامی، نرسیده به خیابان حافظ، پاساژ بزرگمهر، طبقه همکف، پلاک ۱۸، واحد ۱۸"
+        },
+        "top_cheapest": [
+          {
+            "shop_id": "shop_1ffc7576fed58fa57cd99a21",
+            "shop_name": "نیآرا آروان",
+            "price_toman": 116800000.0,
+            "last_price_changed_at": "2026-10-12T15:23:25.348968+00:00"
+          },
+          {
+            "shop_id": "shop_d31ef83bf64457123dccc6f2",
+            "shop_name": "نیینا نیان",
+            "price_toman": 116900000.0,
+            "last_price_changed_at": "2026-10-12T10:32:25.858944+00:00"
+          },
+          {
+            "shop_id": "shop_ec32a89464e8016804212b92",
+            "shop_name": "رووان مهرآرا",
+            "price_toman": 117000000.0,
+            "last_price_changed_at": "2026-10-12T10:22:00.837148+00:00"
+          },
+          {
+            "shop_id": "shop_136f2685c845d29c870594bc",
+            "shop_name": "فران مانآرا",
+            "price_toman": 117140000.0,
+            "last_price_changed_at": "2026-10-12T08:42:08.009672+00:00"
+          },
+          {
+            "shop_id": "shop_5806cadc470fa226f15adbe2",
+            "shop_name": "رامیلا آویس",
+            "price_toman": 118900000.0,
+            "last_price_changed_at": "2026-10-06T08:56:43.246447+00:00"
+          }
+        ],
+        "n_shops_with_valid_price": 23,
+        "median_shop_price": 122000000.0,
+        "max_price": 156000000.0
+      },
+      "correct_answer_must": "Name the cheapest shop (shop name + price exactly as in ground truth); optionally next 2."
+    },
+    {
+      "id": "K02",
+      "category": "cheapest_compare_stores",
+      "difficulty": "medium",
+      "question": "قیمت دزدگیر سیم‌کارتی سایلکس SG8-805S رو بین مغازه‌ها مقایسه کن",
+      "ground_truth": {
+        "product": {
+          "product_id": "product_98c1e1a7d51493c9d1cf80dd",
+          "persian_title": "دزدگیر سیم کارتی سایلکس مدل SG8-805S",
+          "brand_name": "سایلکس",
+          "category_name": "دزدگیر اماکن و لوازم جانبی"
+        },
+        "cheapest": {
+          "shop_id": "shop_1575e6a6a64246ba5c0c9ca4",
+          "shop_name": "نوین فران",
+          "price_toman": 15400000.0,
+          "last_price_changed_at": "2026-09-09T15:34:47.740247+00:00",
+          "address": "جمهوری اسلامی، شیخ هادی، پاساژ علاالدین دوم، طبقه ۴، پلاک ۴۰۵/۱، واحد ۴"
+        },
+        "top_cheapest": [
+          {
+            "shop_id": "shop_1575e6a6a64246ba5c0c9ca4",
+            "shop_name": "نوین فران",
+            "price_toman": 15400000.0,
+            "last_price_changed_at": "2026-09-09T15:34:47.740247+00:00"
+          },
+          {
+            "shop_id": "shop_36971178653f32340daf8654",
+            "shop_name": "نیانوش سروین",
+            "price_toman": 15400000.0,
+            "last_price_changed_at": "2026-09-16T14:03:35.683838+00:00"
+          },
+          {
+            "shop_id": "shop_77921ef7a0bbe4b440a30f53",
+            "shop_name": "آویسا سروآرا",
+            "price_toman": 15400000.0,
+            "last_price_changed_at": "2026-08-31T20:09:13.105867+00:00"
+          },
+          {
+            "shop_id": "shop_8670c71ca3baff62d68de422",
+            "shop_name": "نییار مانورا",
+            "price_toman": 15400000.0,
+            "last_price_changed_at": "2026-09-15T14:07:55.509015+00:00"
+          },
+          {
+            "shop_id": "shop_af02adae0bdd7e072ca665d6",
+            "shop_name": "ماهسا مهرسا",
+            "price_toman": 15400000.0,
+            "last_price_changed_at": "2026-08-22T09:15:34.081582+00:00"
+          }
+        ],
+        "n_shops_with_valid_price": 47,
+        "median_shop_price": 17200000.0,
+        "max_price": 22500000.0
+      },
+      "correct_answer_must": "Give the price spread (min→max), the 3–5 cheapest shops with prices, and number of shops (≈49)."
+    },
+    {
+      "id": "K03",
+      "category": "cheapest_compare_stores",
+      "difficulty": "hard",
+      "question": "شارژر ۲۰ وات اپل سه پین ارزون‌ترین کجاست؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_df1dfb162403cf73df70fdf3",
+          "product_99316b03484cd879f989633b"
+        ],
+        "per_product": [
+          {
+            "product": {
+              "product_id": "product_df1dfb162403cf73df70fdf3",
+              "persian_title": "شارژر اپل توان 20 وات سه پین",
+              "brand_name": "اپل",
+              "category_name": "شارژر گوشی"
+            },
+            "cheapest": {
+              "shop_id": "shop_49b9854ac58b71ef66bd529b",
+              "shop_name": "دیسینا نیکیس",
+              "price_toman": 480000.0,
+              "last_price_changed_at": "2025-12-05T11:21:51.639024+00:00",
+              "address": "خیابان جمهوری، جنب پل حافظ، پاساژ علاالدین، طبقه منفی۲، پلاک ۱۳۸"
+            },
+            "top_cheapest": [
+              {
+                "shop_id": "shop_49b9854ac58b71ef66bd529b",
+                "shop_name": "دیسینا نیکیس",
+                "price_toman": 480000.0,
+                "last_price_changed_at": "2025-12-05T11:21:51.639024+00:00"
+              },
+              {
+                "shop_id": "shop_eadeb333b13b630ac2f2daf2",
+                "shop_name": "آریس آونوش",
+                "price_toman": 550000.0,
+                "last_price_changed_at": "2026-04-25T07:49:39.026396+00:00"
+              },
+              {
+                "shop_id": "shop_d1569f61d953e997c4ab0618",
+                "shop_name": "آذریرا نیکنوش",
+                "price_toman": 853000.0,
+                "last_price_changed_at": "2025-05-14T12:48:12.045297+00:00"
+              },
+              {
+                "shop_id": "shop_fdd4110073ad6afcf573ff87",
+                "shop_name": "مهرنوش نووان",
+                "price_toman": 890000.0,
+                "last_price_changed_at": "2026-06-30T15:17:50.268881+00:00"
+              },
+              {
+                "shop_id": "shop_75357d72fb5068e978a0d0e1",
+                "shop_name": "مهریسا رویلا",
+                "price_toman": 1096700.0,
+                "last_price_changed_at": "2026-09-19T14:20:43.393650+00:00"
+              }
+            ],
+            "n_shops_with_valid_price": 57,
+            "median_shop_price": 3500000.0,
+            "max_price": 13800000.0,
+            "cheapest_plausible_excluding_outliers": {
+              "shop_id": "shop_40076dabaad5fa446cf4fc4b",
+              "shop_name": "آذریار رویس",
+              "price_toman": 1560000.0,
+              "last_price_changed_at": "2026-08-27T12:57:10.326419+00:00"
+            }
+          },
+          {
+            "product": {
+              "product_id": "product_99316b03484cd879f989633b",
+              "persian_title": "شارژر اپل توان 20 وات سه پین",
+              "brand_name": "اپل",
+              "category_name": "شارژر گوشی"
+            },
+            "cheapest": {
+              "shop_id": "shop_40076dabaad5fa446cf4fc4b",
+              "shop_name": "آذریار رویس",
+              "price_toman": 4079600.0,
+              "last_price_changed_at": "2026-09-21T16:32:14.550190+00:00",
+              "address": "چهارراه حافظ، خیابان جمهوری، پاساژ علاالدین، طبقه چهارم، پلاک 432"
+            },
+            "top_cheapest": [
+              {
+                "shop_id": "shop_40076dabaad5fa446cf4fc4b",
+                "shop_name": "آذریار رویس",
+                "price_toman": 4079600.0,
+                "last_price_changed_at": "2026-09-21T16:32:14.550190+00:00"
+              },
+              {
+                "shop_id": "shop_613e5d143b4b2b5ac73add40",
+                "shop_name": "آذروش نویرا",
+                "price_toman": 4079600.0,
+                "last_price_changed_at": "2026-09-28T16:08:15.526954+00:00"
+              },
+              {
+                "shop_id": "shop_b836cd8c07edc0d9cdbc05c7",
+                "shop_name": "پاکینا ماهیلا",
+                "price_toman": 4079600.0,
+                "last_price_changed_at": "2026-09-29T14:42:56.024104+00:00"
+              },
+              {
+                "shop_id": "shop_c2a123198ab4e47683e3a526",
+                "shop_name": "آرورا ویدیس",
+                "price_toman": 4079600.0,
+                "last_price_changed_at": "2026-10-04T17:43:24.858497+00:00"
+              },
+              {
+                "shop_id": "shop_2ded0b981f69557cc899d461",
+                "shop_name": "سروسا مانینا",
+                "price_toman": 4188000.0,
+                "last_price_changed_at": "2026-09-29T11:03:59.563819+00:00"
+              }
+            ],
+            "n_shops_with_valid_price": 28,
+            "median_shop_price": 5848500.0,
+            "max_price": 9200000.0
+          }
+        ],
+        "overall_cheapest": {
+          "shop_id": "shop_49b9854ac58b71ef66bd529b",
+          "shop_name": "دیسینا نیکیس",
+          "price_toman": 480000.0,
+          "last_price_changed_at": "2025-12-05T11:21:51.639024+00:00",
+          "address": "خیابان جمهوری، جنب پل حافظ، پاساژ علاالدین، طبقه منفی۲، پلاک ۱۳۸"
+        }
+      },
+      "correct_answer_must": "Union of both same-titled products. The 480,000 offer is cheapest but its last price change is ~Dec-2025 (stale) and far below the median shop price (~3.5M) – a good answer flags it as old/suspicious and also gives the cheapest plausible, recent offer."
+    },
+    {
+      "id": "K04",
+      "category": "cheapest_compare_stores",
+      "difficulty": "hard",
+      "question": "PS5 اسلیم استاندارد رو ارزون‌ترین با گارانتی کی می‌ده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_d979f62ee7d610cd5a71b9f0"
+        ],
+        "offers_with_warranty": [
+          {
+            "shop_id": "shop_1db54bc898661c8803b56836",
+            "shop_name": "نیکدیس مهرآرا",
+            "price_toman": 169000000.0,
+            "warranty_provider": "شرکتی",
+            "warranty_months": 12
+          },
+          {
+            "shop_id": "shop_e530d759e02471a9994b6d98",
+            "shop_name": "وینوش آذرسا",
+            "price_toman": 173000000.0,
+            "warranty_provider": "نو آوران فن آوازه",
+            "warranty_months": 18
+          },
+          {
+            "shop_id": "shop_6c6ad6397de5436e852b68db",
+            "shop_name": "ماننوش فریار",
+            "price_toman": 185000000.0,
+            "warranty_provider": "شرکتی",
+            "warranty_months": 18
+          },
+          {
+            "shop_id": "shop_ee723ce001a9af354b116dfc",
+            "shop_name": "آران فریار",
+            "price_toman": 185000000.0,
+            "warranty_provider": "شرکتی",
+            "warranty_months": 18
+          }
+        ],
+        "cheapest_with_warranty": {
+          "shop_id": "shop_1db54bc898661c8803b56836",
+          "shop_name": "نیکدیس مهرآرا",
+          "price_toman": 169000000.0,
+          "warranty_provider": "شرکتی",
+          "warranty_months": 12
+        },
+        "cheapest_any": {
+          "shop_id": "shop_f49075359bbeb6f60e0ebfea",
+          "shop_name": "دیسیسا آویار",
+          "price_toman": 162000000.0,
+          "last_price_changed_at": "2026-10-11T08:45:35.843209+00:00",
+          "address": "خيابان جمهوري، پاساژ چهارسو، طبقه اول، پلاك c42"
+        },
+        "note": "warranty = warranty_provider not null and not \"بدون گارانتی\""
+      },
+      "correct_answer_must": "If offers_with_warranty is empty, must say no offer with a recorded warranty exists (and may give cheapest overall). Otherwise name the cheapest warranted offer."
+    },
+    {
+      "id": "K05",
+      "category": "cheapest_compare_stores",
+      "difficulty": "hard",
+      "question": "تو پاساژ علاءالدین S25 FE رو کدوم مغازه ارزون‌تر می‌ده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_6c62d575e3d247f6f29e051a"
+        ],
+        "mall_filter_regex_on_normalized_address": "(پاساژ|مجتمع|بازار موبایل|مریم)\\s*علا\\s*ء?\\s*الدین|(پاساژ|مجتمع)\\s*علالدین",
+        "n_shops_in_mall": 9,
+        "cheapest_in_mall": {
+          "shop_id": "shop_0855aaf14ffb471e3b579ce9",
+          "shop_name": "دیسانوش مهرین",
+          "address": "خیابان جمهوری، پاساژعلاءالدین، طبقه پنجم، واحد 564",
+          "price_toman": 188698800.0
+        },
+        "all_in_mall_by_price": [
+          {
+            "shop_id": "shop_0855aaf14ffb471e3b579ce9",
+            "shop_name": "دیسانوش مهرین",
+            "address": "خیابان جمهوری، پاساژعلاءالدین، طبقه پنجم، واحد 564",
+            "price_toman": 188698800.0
+          },
+          {
+            "shop_id": "shop_539f4a371b4d8fcb9c38c717",
+            "shop_name": "ویان وییلا",
+            "address": "خیابان جمهوری، پاساژ علاالدین، طبقه 6، واحد 656",
+            "price_toman": 188790000.0
+          },
+          {
+            "shop_id": "shop_4934392f0e4fefe1526308c6",
+            "shop_name": "دیسورا پاکیار",
+            "address": "خیابان جمهوری، پاساژعلاالدین، طبقه 5، واحد 506",
+            "price_toman": 194900000.0
+          },
+          {
+            "shop_id": "shop_449ce53b5ce9f4b9481b20ac",
+            "shop_name": "فرین مهریس",
+            "address": "تقاطع حافظ و جمهوری، زیر پل حافظ، درب ورودی حافظ، پاساژ علاءالدین، طبقه همکف، واحد ۷۷، پلاک ۶۶۷۷",
+            "price_toman": 195500000.0
+          },
+          {
+            "shop_id": "shop_27f20bde8b90f1b398ecad4f",
+            "shop_name": "روسا نیوان",
+            "address": "خیابان حافظ، بین خیابان هاتف و جمهوری اسلامی، پاساژ علاالدین، طبقه ۶، واحد ۶۳۱",
+            "price_toman": 196000000.0
+          },
+          {
+            "shop_id": "shop_0b2d387c5a2ecd7d8d3e5065",
+            "shop_name": "مهرورا آرینا",
+            "address": "خیابان جمهوری، تقاطع حافظ، پاساژ علاءالدین، درب ورودی حافظ، طبقه همکف، پلاک ۶۲",
+            "price_toman": 197000000.0
+          },
+          {
+            "shop_id": "shop_d6bcf7fc585a643135d3f9bd",
+            "shop_name": "مهردیس پاکآرا",
+            "address": "خیابان جمهوری، پاساژ علاالدین، طبقه همکف، پلاک ۸۹",
+            "price_toman": 197000000.0
+          },
+          {
+            "shop_id": "shop_28fea73ebb580e0f34224fe2",
+            "shop_name": "رامنوش نیانوش",
+            "address": "پل حافظ، پاساژ علاءالدین، طبقه۶، واحد ۶۵۲",
+            "price_toman": 197900000.0
+          },
+          {
+            "shop_id": "shop_be8cf3f84cbf37588609b392",
+            "shop_name": "روانوش نیسا",
+            "address": "خیابان جمهوری اسلامی، تقاطع حافظ، پاساژ علاءالدین، طبقه ششم، پلاک ۶۶۶",
+            "price_toman": 199000000.0
+          }
+        ]
+      },
+      "correct_answer_must": "Mall filter must cope with spelling variants (علاالدین/علاءالدین/علاالدین ۲/۳). Answer = cheapest_in_mall shop and price."
+    },
+    {
+      "id": "K06",
+      "category": "cheapest_compare_stores",
+      "difficulty": "medium",
+      "question": "اسپیکر JBL PartyBox Stage 320 فرق قیمتش بین مغازه‌ها چقدره؟",
+      "ground_truth": {
+        "product": {
+          "product_id": "product_5ed27d0acc3f28d667f5abef",
+          "persian_title": "اسپیکر جی بی ال مدل partybox Stage 320",
+          "brand_name": "جی بی ال",
+          "category_name": "اسپیکر و سیستم صوتی"
+        },
+        "cheapest": {
+          "shop_id": "shop_ecf4d2da925522d85803475d",
+          "shop_name": "نودیس آذریس",
+          "price_toman": 87800000.0,
+          "last_price_changed_at": "2026-10-12T08:28:00.660246+00:00",
+          "address": "خیابان جمهوری اسلامی، خیابان شهید هادی جوان دلاور، روبروی پاساژ علاءالدین، پاساژ خانه موبایل، طبقه ۱-، پلاک B۱۲"
+        },
+        "top_cheapest": [
+          {
+            "shop_id": "shop_ecf4d2da925522d85803475d",
+            "shop_name": "نودیس آذریس",
+            "price_toman": 87800000.0,
+            "last_price_changed_at": "2026-10-12T08:28:00.660246+00:00"
+          },
+          {
+            "shop_id": "shop_3bb0f132f93f37db296a6460",
+            "shop_name": "نیکیرا آریسا",
+            "price_toman": 87990000.0,
+            "last_price_changed_at": "2026-10-12T07:12:49.577267+00:00"
+          },
+          {
+            "shop_id": "shop_755aa7532194a84f68466c94",
+            "shop_name": "رویس نیکآرا",
+            "price_toman": 88000000.0,
+            "last_price_changed_at": "2026-10-11T13:01:24.923851+00:00"
+          },
+          {
+            "shop_id": "shop_775af31a34c32c3a38d2a71c",
+            "shop_name": "سونی سنتر ایران",
+            "price_toman": 88795000.0,
+            "last_price_changed_at": "2026-10-11T09:43:39.594443+00:00"
+          },
+          {
+            "shop_id": "shop_c0c37b3ad8896f9aa0797971",
+            "shop_name": "رامینا آذرسا",
+            "price_toman": 89000000.0,
+            "last_price_changed_at": "2026-10-08T08:57:39.779869+00:00"
+          }
+        ],
+        "n_shops_with_valid_price": 33,
+        "median_shop_price": 94500000.0,
+        "max_price": 860000000.0,
+        "price_summary": {
+          "product_id": "product_5ed27d0acc3f28d667f5abef",
+          "persian_title": "اسپیکر جی بی ال مدل partybox Stage 320",
+          "brand_name": "جی بی ال",
+          "category_name": "اسپیکر و سیستم صوتی",
+          "n_offers": 33,
+          "n_shops": 33,
+          "n_offers_null_price": 0,
+          "n_shops_with_valid_price": 33,
+          "latest_price_change": "2026-10-12T18:39:32.290772+00:00",
+          "min_price": 87800000.0,
+          "median_price": 94500000.0,
+          "max_price": 860000000.0,
+          "suspicious_low_offers": [],
+          "suspicious_high_offers": [
+            {
+              "shop_id": "shop_b954ec50f0b975de809e0536",
+              "shop_name": "روان ویسا",
+              "price_toman": 860000000.0,
+              "last_price_changed_at": "2026-09-23T16:01:59.858415+00:00"
+            }
+          ]
+        }
+      },
+      "correct_answer_must": "Report min (87.8M) and a realistic range; must flag the 860M max as an obvious outlier/data error rather than a real spread."
+    },
+    {
+      "id": "K07",
+      "category": "cheapest_compare_stores",
+      "difficulty": "medium",
+      "question": "کدوم مغازه‌ها ایکس‌باکس سری S رو زیر ۹۰ میلیون می‌دن؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_1810be1d3dd6fbd02d38b4c0"
+        ],
+        "shops_under_90M": [
+          {
+            "shop_id": "shop_ed68af3030975adb56a25721",
+            "shop_name": "مهریار آرنوش",
+            "price_toman": 75000000.0
+          },
+          {
+            "shop_id": "shop_8a47ac065e18b1864e3351eb",
+            "shop_name": "سروآرا فروش",
+            "price_toman": 85900000.0
+          },
+          {
+            "shop_id": "shop_1db54bc898661c8803b56836",
+            "shop_name": "نیکدیس مهرآرا",
+            "price_toman": 87000000.0
+          }
+        ],
+        "n": 3
+      },
+      "correct_answer_must": "List exactly the shops in shops_under_90M (with prices); none outside."
+    },
+    {
+      "id": "C01",
+      "category": "compare_products",
+      "difficulty": "medium",
+      "question": "S25 FE رو با A56 (هر دو ۲۵۶ گیگ) مقایسه کن؛ دوربین و پردازنده و قیمت",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_6c62d575e3d247f6f29e051a",
+          "product_e743ce86bbc5c2a0c9bd16f4"
+        ],
+        "products": [
+          {
+            "product_id": "product_6c62d575e3d247f6f29e051a",
+            "title": "گوشی سامسونگ (ویتنام) S25 FE 5G | حافظه 256 رم 8 گیگابایت",
+            "min_price": 184000000.0,
+            "median_price": 195000000.0,
+            "n_shops": 34,
+            "specs": {
+              "chip": "تراشه: Samsung Exynos 2400",
+              "ram": "ظرفیت رم: 8 گیگابایت",
+              "storage": "حافظه داخلی: 256 گیگابایت",
+              "display_size": "اندازه نمایشگر: 6.7 اینچ",
+              "refresh_rate": "نرخ نوسازی: 120 هرتز",
+              "main_camera": "دوربین اصلی: 50 مگاپیکسل",
+              "battery": "گنجایش باتری: 4900 میلی‌آمپر ساعت",
+              "charging": "سرعت شارژ: 45 وات",
+              "ip_rating": "گواهی پایداری: IP68 | ضد آب و گرد و غبار",
+              "weight": "وزن: 190 گرم"
+            }
+          },
+          {
+            "product_id": "product_e743ce86bbc5c2a0c9bd16f4",
+            "title": "گوشی سامسونگ A56 5G | حافظه 256 رم 8 گیگابایت",
+            "min_price": 116800000.0,
+            "median_price": 122000000.0,
+            "n_shops": 24,
+            "specs": {
+              "chip": "مدل تراشه: Samsung Exynos ۱۵۸۰",
+              "ram": "رم اجرایی: ۸ گیگابایت",
+              "storage": "حافظه داخلی: ۲۵۶ گیگابایت",
+              "display_size": "ابعاد نمایشگر: ۶.۷ اینچ",
+              "refresh_rate": "حداکثر نرخ نوسازی (Refresh Rate): ۱۲۰ هرتز",
+              "main_camera": "دوربین اصلی - واید/استاندارد: ۵۰ مگاپیکسل، f/۱.۸، ۱/۱.۵۶ اینچ، PDAF، OIS",
+              "battery": "ظرفیت باتری: ۵۰۰۰ میلی‌آمپرساعت",
+              "ip_rating": "مقاومت دربرابر گردوغبار و آب: IP67",
+              "weight": "وزن: ۱۹۸ گرم",
+              "5g": "فناوری‌ ارتباطی: 5G"
+            }
+          }
+        ]
+      },
+      "correct_answer_must": "Specs must match dataset: S25 FE = Exynos 2400 + 8MP telephoto, 4900 mAh, 45W; A56 = Exynos 1580, 5MP macro, no telephoto. Prices from dataset (S25 FE ≈184M+, A56 ≈116.8M+). No invented specs."
+    },
+    {
+      "id": "C02",
+      "category": "compare_products",
+      "difficulty": "hard",
+      "question": "ردمی نوت ۱۵ بهتره یا پوکو X7 پرو؟ فرقشون چیه؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_519f1ee3c5057b0b1f98d9d4",
+          "product_175c8e43d2bd61614f667e3a"
+        ],
+        "products": [
+          {
+            "product_id": "product_519f1ee3c5057b0b1f98d9d4",
+            "title": "گوشی شیائومی Redmi Note 15 | حافظه 256 رم 8 گیگابایت",
+            "min_price": 84900000.0,
+            "median_price": 88290000.0,
+            "n_shops": 22,
+            "specs": {
+              "chip": "مدل تراشه: MediaTek Helio G100 Ultra",
+              "ram": "رم اجرایی: ۸ گیگابایت",
+              "storage": "حافظه داخلی: ۲۵۶ گیگابایت",
+              "display_size": "ابعاد نمایشگر: ۶.۷۷ اینچ",
+              "refresh_rate": "حداکثر نرخ نوسازی (Refresh Rate): ۱۲۰ هرتز",
+              "main_camera": "دوربین اصلی - واید/استاندارد: ۱۰۸ مگاپیکسل، f/۱.۷، سایز سنسور ۱/۱.۶۷ اینچ، PDAF، OIS",
+              "battery": "ظرفیت باتری: ۶۰۰۰ میلی‌آمپرساعت",
+              "ip_rating": "مقاومت دربرابر گردوغبار و آب: IP64",
+              "weight": "وزن: ۱۸۳.۷ گرم",
+              "5g": "فناوری‌ ارتباطی: 4G LTE، 3G HSPA، 2G GSM"
+            }
+          },
+          {
+            "product_id": "product_175c8e43d2bd61614f667e3a",
+            "title": "گوشی شیائومی Poco X7 Pro 5G | حافظه 512 رم 12 گیگابایت",
+            "min_price": 121500000.0,
+            "median_price": 139970000.0,
+            "n_shops": 13,
+            "specs": {
+              "chip": "تراشه: Dimensity 8400-Ultra, ,",
+              "storage": "حافظه داخلی: 512 گیگابایت, ,",
+              "display_size": "اندازه صفحه نمایش: 6.67 اینچ, ,",
+              "main_camera": "دوربین اصلی: 50MP main camera, ,",
+              "battery": "ظرفیت باتری: 6000 میلی آمپر بر ساعت, ,"
+            }
+          }
+        ]
+      },
+      "correct_answer_must": "Use dataset specs only: Redmi Note 15 (256/8) = Helio G100 Ultra, 108MP main, 6000 mAh, 4G only (no 5G), from ≈84.9M; Poco X7 Pro (512/12) = Dimensity 8400-Ultra, 50MP main, 6000 mAh, 5G, from ≈121.5M. Note the storage/RAM differ. Fields absent from the dataset (e.g. Poco refresh rate) must not be invented."
+    },
+    {
+      "id": "C03",
+      "category": "compare_products",
+      "difficulty": "medium",
+      "question": "آیفون ۱۶ ۱۲۸ نات اکتیو یا آیفون ۱۷ ۲۵۶؟ اختلاف قیمتشون چقدره؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_76d08413c6fa1d8efc4cea19",
+          "product_497ca33998585791fa1bd139"
+        ],
+        "products": [
+          {
+            "product_id": "product_76d08413c6fa1d8efc4cea19",
+            "title": "گوشی آیفون 16 | حافظه 128 گیگابایت دو سیم‌کارت نات اکتیو",
+            "min_price": 175000000.0,
+            "median_price": 222500000.0,
+            "n_shops": 14,
+            "specs": {
+              "chip": "مدل تراشه: Apple A18",
+              "ram": "رم: 8 گیگابایت رم",
+              "storage": "حافظه داخلی: ۱۲۸ گیگابایت",
+              "display_size": "ابعاد نمایشگر: 6.1 اینچ",
+              "refresh_rate": "حداکثر نرخ نوسازی (Refresh Rate): 60 هرتز",
+              "main_camera": "دوربین اصلی - واید/استاندارد: 48 مگاپیکسل",
+              "battery": "ظرفیت باتری: 3561 میلی‌آمپر ساعت",
+              "weight": "وزن: 170 گرم",
+              "5g": "فناوری‌ ارتباطی: GSM / CDMA / HSPA / EVDO / LTE / 5G"
+            }
+          },
+          {
+            "product_id": "product_497ca33998585791fa1bd139",
+            "title": "گوشی آیفون 17 | حافظه 256 گیگابایت دو سیم‌کارت نات اکتیو",
+            "min_price": 322000000.0,
+            "median_price": 374500000.0,
+            "n_shops": 10,
+            "specs": {
+              "chip": "تراشه: Apple A19 (3 nm)",
+              "storage": "حافظه داخلی: 256 گیگابایت",
+              "battery": "ظرفیت باتری: 3692 میلی آمپر ساعت",
+              "weight": "وزن: 177 گرم"
+            }
+          }
+        ]
+      },
+      "correct_answer_must": "Compute price difference from dataset (cheapest-to-cheapest and/or median-to-median) and state which is which; outlier caveat for iPhone 16 spread."
+    },
+    {
+      "id": "C04",
+      "category": "compare_products",
+      "difficulty": "medium",
+      "question": "PS5 اسلیم دیجیتال یا ایکس‌باکس سری X؛ کدوم ارزون‌تره و کدوم تو مغازه‌های بیشتری هست؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_fef87f08e57d174809f5dc93",
+          "product_6b6c2d4adff0a28917d7952e"
+        ],
+        "products": [
+          {
+            "product_id": "product_fef87f08e57d174809f5dc93",
+            "title": "کنسول بازی سونی PS5 Slim Digital",
+            "min_price": 151000000.0,
+            "median_price": 177000000.0,
+            "n_shops": 24,
+            "specs": {
+              "storage": "حافظه داخلی: ۱ ترابایت",
+              "weight": "وزن: 2.58 کیلوگرم"
+            }
+          },
+          {
+            "product_id": "product_6b6c2d4adff0a28917d7952e",
+            "title": "کنسول بازی مایکروسافت Xbox Series X | حافظه 1 ترابایت",
+            "min_price": 155000000.0,
+            "median_price": 195000000.0,
+            "n_shops": 8,
+            "specs": {
+              "storage": "حافظه داخلی: یک ترابایت حافظه SSD PCIe 4.0",
+              "weight": "وزن: 4.45kg"
+            }
+          }
+        ]
+      },
+      "correct_answer_must": "Compare min/median prices and n_shops from ground truth; note PS5 Digital has an extreme 1.65B outlier."
+    },
+    {
+      "id": "C05",
+      "category": "compare_products",
+      "difficulty": "medium",
+      "question": "تلویزیون سونی ۶۵ اینچ 65S30 رو با شیائومی A Pro ۶۵ اینچ مقایسه کن",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_331f30694cc0c5fed285a4c1",
+          "product_2b26b9cf3b3279ce39630a32"
+        ],
+        "products": [
+          {
+            "product_id": "product_331f30694cc0c5fed285a4c1",
+            "title": "تلویزیون سونی ۶۵ اینچ مدل 65S30 کیفیت تصویر ۴K LED",
+            "min_price": 239900000.0,
+            "median_price": 247000000.0,
+            "n_shops": 7,
+            "specs": {
+              "storage": "حافظه داخلی: 16گیگابایت",
+              "display_size": "اندازه صفحه نمایش: 65 اینچ"
+            }
+          },
+          {
+            "product_id": "product_2b26b9cf3b3279ce39630a32",
+            "title": "تلویزیون شیائومی مدل A Pro سایز ۶۵ اینچ",
+            "min_price": 133890000.0,
+            "median_price": 162000000.0,
+            "n_shops": 9,
+            "specs": {
+              "storage": "حافظه داخلی: 8 گیگابایت",
+              "display_size": "اندازه صفحه نمایش: 65 اینچ",
+              "refresh_rate": "حداکثر نرخ نوسازی (رفرش‌ریت) تصویر: 60 هرتز, 120 هرتز"
+            }
+          }
+        ]
+      },
+      "correct_answer_must": "Prices from dataset; specs only if present in product_specs (else say not available)."
+    },
+    {
+      "id": "F01",
+      "category": "freshness",
+      "difficulty": "easy",
+      "question": "قیمت S25 FE که می‌گی مال کِیه؟ به‌روزه؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_6c62d575e3d247f6f29e051a"
+        ],
+        "latest_price_change": "2026-10-12T20:34:38.567251+00:00",
+        "oldest_price_change": "2026-08-09T09:08:32.677195+00:00",
+        "n_offers": 34,
+        "n_updated_within_30d_of_ref": 33,
+        "cheapest_offer_date": "2026-10-12T15:45:04.601714+00:00",
+        "reference_date": "2026-10-22"
+      },
+      "correct_answer_must": "Must cite last_price_changed_at dates from the dataset (e.g. most recent ≈2026-10-12/13 UTC) and not claim real-time prices."
+    },
+    {
+      "id": "F02",
+      "category": "freshness",
+      "difficulty": "hard",
+      "question": "کنتاکتور اشنایدر LC1D09M7 ارزون‌ترین چنده؟ این قیمت جدیده یا قدیمی؟",
+      "ground_truth": {
+        "product": {
+          "product_id": "product_a338cc47f344fc7dd94aaf4a",
+          "persian_title": "کنتاکتور اشنایدر مدل LC1D09M7 ظرفیت ۹ آمپر",
+          "brand_name": null,
+          "category_name": "اتوماسیون صنعتی"
+        },
+        "cheapest": {
+          "shop_id": "shop_62044595c37388ca6ef4e93d",
+          "shop_name": "نوورا نیورا",
+          "price_toman": 500000.0,
+          "last_price_changed_at": "2023-05-11T16:41:46.724306+00:00",
+          "address": "لاله زار جنوبی، پاساژ بوشهری، طبقه همکف، پلاک29"
+        },
+        "top_cheapest": [
+          {
+            "shop_id": "shop_62044595c37388ca6ef4e93d",
+            "shop_name": "نوورا نیورا",
+            "price_toman": 500000.0,
+            "last_price_changed_at": "2023-05-11T16:41:46.724306+00:00"
+          },
+          {
+            "shop_id": "shop_b7ec058749514f768a4eacb6",
+            "shop_name": "مانیس نودیس",
+            "price_toman": 600000.0,
+            "last_price_changed_at": "2026-01-19T10:41:14.315773+00:00"
+          },
+          {
+            "shop_id": "shop_775a253dfd80e91c0d76192a",
+            "shop_name": "فریسا نییسا",
+            "price_toman": 830000.0,
+            "last_price_changed_at": "2023-10-21T16:28:48.052451+00:00"
+          }
+        ],
+        "n_shops_with_valid_price": 21,
+        "median_shop_price": 1820000.0,
+        "max_price": 86000000.0,
+        "cheapest_plausible_excluding_outliers": {
+          "shop_id": "shop_775a253dfd80e91c0d76192a",
+          "shop_name": "فریسا نییسا",
+          "price_toman": 830000.0,
+          "last_price_changed_at": "2023-10-21T16:28:48.052451+00:00"
+        },
+        "cheapest_days_old": 1259.3,
+        "cheapest_recent_offer_within_90d": {
+          "shop_id": "shop_d79d4fae1a3c6da6c463e436",
+          "shop_name": "ماهوان راموان",
+          "price_toman": 963000.0,
+          "last_price_changed_at": "2026-09-08T11:24:22.042134+00:00"
+        }
+      },
+      "correct_answer_must": "Cheapest offer (500,000) was last changed in May-2023 → must warn it is very stale (>3 years) and offer the cheapest recently-updated alternative."
+    },
+    {
+      "id": "F03",
+      "category": "freshness",
+      "difficulty": "hard",
+      "question": "از مغازه‌هایی که PS5 دیجیتال دارن، قیمت کدوما تو یه ماه اخیر آپدیت شده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_fef87f08e57d174809f5dc93"
+        ],
+        "reference_date": "2026-10-22",
+        "window_days": 30,
+        "shops_updated_within_30d": [
+          "shop_05a147ed165dfcfa39158014",
+          "shop_0855aaf14ffb471e3b579ce9",
+          "shop_08d32c01dba02ee9a114712c",
+          "shop_11e1ba2c98592b56c618d86f",
+          "shop_27e1705d85f29ea3939919c3",
+          "shop_28fea73ebb580e0f34224fe2",
+          "shop_2a14063c7af2ccb4a68f3b95",
+          "shop_3646403544371c1f8f53196c",
+          "shop_3adb27476d8271d3b759f7c6",
+          "shop_3bebdfd18ee826120174e53c",
+          "shop_44349d093cb6b63b97bb8472",
+          "shop_522d284edf3c3f2982f05c90",
+          "shop_62c4a8966c6b8f93d4e570ef",
+          "shop_7364d790158ef2b9ee58872a",
+          "shop_8a47ac065e18b1864e3351eb",
+          "shop_8c31ec4a675066514f6f3de7",
+          "shop_8e7be613071e46b3e8d0aa63",
+          "shop_b954ec50f0b975de809e0536",
+          "shop_e968a1a20bbb1040c5afed42",
+          "shop_ed68af3030975adb56a25721",
+          "shop_ee723ce001a9af354b116dfc",
+          "shop_f49075359bbeb6f60e0ebfea"
+        ],
+        "shops_older_than_30d": [
+          "shop_5236320fec88078e1d8e7022",
+          "shop_7e54ac21703af95563bfc62f"
+        ],
+        "offers": [
+          {
+            "shop_id": "shop_7364d790158ef2b9ee58872a",
+            "shop_name": "مانیسا پاکنوش",
+            "price_toman": 189550000.0,
+            "last_price_changed_at": "2026-10-12T18:39:35.331830+00:00",
+            "days_old": 9.2
+          },
+          {
+            "shop_id": "shop_28fea73ebb580e0f34224fe2",
+            "shop_name": "رامنوش نیانوش",
+            "price_toman": 177000000.0,
+            "last_price_changed_at": "2026-10-12T17:12:34.242549+00:00",
+            "days_old": 9.3
+          },
+          {
+            "shop_id": "shop_62c4a8966c6b8f93d4e570ef",
+            "shop_name": "مانینا آذرینا",
+            "price_toman": 173000000.0,
+            "last_price_changed_at": "2026-10-12T08:46:06.857272+00:00",
+            "days_old": 9.6
+          },
+          {
+            "shop_id": "shop_f49075359bbeb6f60e0ebfea",
+            "shop_name": "دیسیسا آویار",
+            "price_toman": 151000000.0,
+            "last_price_changed_at": "2026-10-11T08:45:35.841116+00:00",
+            "days_old": 10.6
+          },
+          {
+            "shop_id": "shop_2a14063c7af2ccb4a68f3b95",
+            "shop_name": "نیین ماهآرا",
+            "price_toman": 182000000.0,
+            "last_price_changed_at": "2026-10-11T08:26:07.730818+00:00",
+            "days_old": 10.6
+          },
+          {
+            "shop_id": "shop_2a14063c7af2ccb4a68f3b95",
+            "shop_name": "نیین ماهآرا",
+            "price_toman": 185000000.0,
+            "last_price_changed_at": "2026-10-11T08:25:44.007056+00:00",
+            "days_old": 10.6
+          },
+          {
+            "shop_id": "shop_2a14063c7af2ccb4a68f3b95",
+            "shop_name": "نیین ماهآرا",
+            "price_toman": 179900000.0,
+            "last_price_changed_at": "2026-10-11T08:25:32.646371+00:00",
+            "days_old": 10.6
+          },
+          {
+            "shop_id": "shop_e968a1a20bbb1040c5afed42",
+            "shop_name": "ویینا سرویس",
+            "price_toman": 176000000.0,
+            "last_price_changed_at": "2026-10-10T08:30:36.918421+00:00",
+            "days_old": 11.6
+          },
+          {
+            "shop_id": "shop_8e7be613071e46b3e8d0aa63",
+            "shop_name": "پاکوان سرویلا",
+            "price_toman": 179000000.0,
+            "last_price_changed_at": "2026-10-09T15:16:02.532068+00:00",
+            "days_old": 12.4
+          },
+          {
+            "shop_id": "shop_3bebdfd18ee826120174e53c",
+            "shop_name": "رویلا مانسا",
+            "price_toman": 195000000.0,
+            "last_price_changed_at": "2026-10-09T08:22:45.208658+00:00",
+            "days_old": 12.7
+          },
+          {
+            "shop_id": "shop_27e1705d85f29ea3939919c3",
+            "shop_name": "نیکیرا نیکدیس",
+            "price_toman": 185000000.0,
+            "last_price_changed_at": "2026-10-07T14:10:19.453691+00:00",
+            "days_old": 14.4
+          },
+          {
+            "shop_id": "shop_0855aaf14ffb471e3b579ce9",
+            "shop_name": "دیسانوش مهرین",
+            "price_toman": 173888800.0,
+            "last_price_changed_at": "2026-10-07T10:53:44.796515+00:00",
+            "days_old": 14.5
+          },
+          {
+            "shop_id": "shop_8a47ac065e18b1864e3351eb",
+            "shop_name": "سروآرا فروش",
+            "price_toman": 162950000.0,
+            "last_price_changed_at": "2026-10-06T15:24:27.340846+00:00",
+            "days_old": 15.4
+          },
+          {
+            "shop_id": "shop_522d284edf3c3f2982f05c90",
+            "shop_name": "سرویار نیکان",
+            "price_toman": 175000000.0,
+            "last_price_changed_at": "2026-10-06T11:06:26.892250+00:00",
+            "days_old": 15.5
+          },
+          {
+            "shop_id": "shop_ed68af3030975adb56a25721",
+            "shop_name": "مهریار آرنوش",
+            "price_toman": 160000000.0,
+            "last_price_changed_at": "2026-10-06T09:12:37.391982+00:00",
+            "days_old": 15.6
+          },
+          {
+            "shop_id": "shop_ee723ce001a9af354b116dfc",
+            "shop_name": "آران فریار",
+            "price_toman": 176000000.0,
+            "last_price_changed_at": "2026-10-06T07:47:19.696570+00:00",
+            "days_old": 15.7
+          },
+          {
+            "shop_id": "shop_3646403544371c1f8f53196c",
+            "shop_name": "نیسا آریرا",
+            "price_toman": 242295000.0,
+            "last_price_changed_at": "2026-10-05T19:20:50.402500+00:00",
+            "days_old": 16.2
+          },
+          {
+            "shop_id": "shop_11e1ba2c98592b56c618d86f",
+            "shop_name": "ویینا دیسوش",
+            "price_toman": 178000000.0,
+            "last_price_changed_at": "2026-10-04T14:40:08.773933+00:00",
+            "days_old": 17.4
+          },
+          {
+            "shop_id": "shop_8c31ec4a675066514f6f3de7",
+            "shop_name": "روآرا ماهیلا",
+            "price_toman": 194990000.0,
+            "last_price_changed_at": "2026-10-04T13:22:04.797373+00:00",
+            "days_old": 17.4
+          },
+          {
+            "shop_id": "shop_8c31ec4a675066514f6f3de7",
+            "shop_name": "روآرا ماهیلا",
+            "price_toman": 177500000.0,
+            "last_price_changed_at": "2026-10-04T13:22:04.790919+00:00",
+            "days_old": 17.4
+          },
+          {
+            "shop_id": "shop_11e1ba2c98592b56c618d86f",
+            "shop_name": "ویینا دیسوش",
+            "price_toman": 211000000.0,
+            "last_price_changed_at": "2026-10-03T19:32:46.258791+00:00",
+            "days_old": 18.2
+          },
+          {
+            "shop_id": "shop_11e1ba2c98592b56c618d86f",
+            "shop_name": "ویینا دیسوش",
+            "price_toman": 197000000.0,
+            "last_price_changed_at": "2026-10-03T19:30:59.497529+00:00",
+            "days_old": 18.2
+          },
+          {
+            "shop_id": "shop_08d32c01dba02ee9a114712c",
+            "shop_name": "روینا مهروان",
+            "price_toman": 175000000.0,
+            "last_price_changed_at": "2026-10-03T11:36:17.258937+00:00",
+            "days_old": 18.5
+          },
+          {
+            "shop_id": "shop_08d32c01dba02ee9a114712c",
+            "shop_name": "روینا مهروان",
+            "price_toman": 185000000.0,
+            "last_price_changed_at": "2026-10-03T11:07:43.652813+00:00",
+            "days_old": 18.5
+          },
+          {
+            "shop_id": "shop_44349d093cb6b63b97bb8472",
+            "shop_name": "سروورا ماهیلا",
+            "price_toman": 200000000.0,
+            "last_price_changed_at": "2026-10-02T10:41:30.618035+00:00",
+            "days_old": 19.6
+          },
+          {
+            "shop_id": "shop_08d32c01dba02ee9a114712c",
+            "shop_name": "روینا مهروان",
+            "price_toman": 185000000.0,
+            "last_price_changed_at": "2026-10-01T11:51:01.816967+00:00",
+            "days_old": 20.5
+          },
+          {
+            "shop_id": "shop_3adb27476d8271d3b759f7c6",
+            "shop_name": "آروش آرانوش",
+            "price_toman": 168000000.0,
+            "last_price_changed_at": "2026-09-29T15:01:00.623383+00:00",
+            "days_old": 22.4
+          },
+          {
+            "shop_id": "shop_b954ec50f0b975de809e0536",
+            "shop_name": "روان ویسا",
+            "price_toman": 1650000000.0,
+            "last_price_changed_at": "2026-09-23T16:01:59.664503+00:00",
+            "days_old": 28.3
+          },
+          {
+            "shop_id": "shop_05a147ed165dfcfa39158014",
+            "shop_name": "مانیار نیین",
+            "price_toman": 178000000.0,
+            "last_price_changed_at": "2026-09-22T01:54:56.813736+00:00",
+            "days_old": 29.9
+          },
+          {
+            "shop_id": "shop_7e54ac21703af95563bfc62f",
+            "shop_name": "فریلا رووان",
+            "price_toman": null,
+            "last_price_changed_at": "2026-09-12T09:07:22.901431+00:00",
+            "days_old": 39.6
+          },
+          {
+            "shop_id": "shop_5236320fec88078e1d8e7022",
+            "shop_name": "رویلا نیکیرا",
+            "price_toman": 153000000.0,
+            "last_price_changed_at": "2026-08-29T04:19:57.118905+00:00",
+            "days_old": 53.8
+          }
+        ]
+      },
+      "correct_answer_must": "Split shops by last_price_changed_at within 30 days of 2026-10-22; list counts/names consistent with ground truth."
+    },
+    {
+      "id": "F04",
+      "category": "freshness",
+      "difficulty": "medium",
+      "question": "کدوم مغازه قیمت دزدگیر سایلکس SG8 LITE رو از همه تازه‌تر آپدیت کرده؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_ea14709af5027eb47228dae3"
+        ],
+        "most_recent_offer": {
+          "shop_id": "shop_1575e6a6a64246ba5c0c9ca4",
+          "shop_name": "نوین فران",
+          "price_toman": 15450000.0,
+          "last_price_changed_at": "2026-10-12T21:55:32.043603+00:00",
+          "days_old": 9.1
+        },
+        "top3_most_recent": [
+          {
+            "shop_id": "shop_1575e6a6a64246ba5c0c9ca4",
+            "shop_name": "نوین فران",
+            "price_toman": 15450000.0,
+            "last_price_changed_at": "2026-10-12T21:55:32.043603+00:00",
+            "days_old": 9.1
+          },
+          {
+            "shop_id": "shop_be2e8b2649fac332dc911cc1",
+            "shop_name": "مانوان رامیلا",
+            "price_toman": 17000000.0,
+            "last_price_changed_at": "2026-10-12T16:21:05.806278+00:00",
+            "days_old": 9.3
+          },
+          {
+            "shop_id": "shop_3e5576c5821dd47dd71b8d83",
+            "shop_name": "نیکوش پاکسا",
+            "price_toman": 16000000.0,
+            "last_price_changed_at": "2026-10-11T22:25:04.940278+00:00",
+            "days_old": 10.1
+          }
+        ]
+      },
+      "correct_answer_must": "Name the shop with the most recent last_price_changed_at and the date/price."
+    },
+    {
+      "id": "P01",
+      "category": "payment_installment",
+      "difficulty": "hard",
+      "question": "می‌خوام آیفون ۱۶ ۱۲۸ نات اکتیو رو قسطی بخرم، کدوم مغازه‌ها شرایط اقساط دارن؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_76d08413c6fa1d8efc4cea19"
+        ],
+        "providers_considered": [
+          "اسنپ‌پی",
+          "ترب‌پی",
+          "دیجی پی",
+          "تارا",
+          "ازکی‌وام"
+        ],
+        "channel_filter": null,
+        "n_shops_carrying": 14,
+        "matching_shops": [
+          {
+            "shop_id": "shop_343a5f1dcbeb33366f3f7635",
+            "shop_name": "مهرین رویسا",
+            "price_toman": 200000000.0,
+            "payment_options": "اسنپ‌پی:in_person",
+            "installment_in_description": 1,
+            "matching_payment_options": [
+              "اسنپ‌پی:in_person"
+            ]
+          }
+        ],
+        "n_matching": 1
+      },
+      "correct_answer_must": "Installment evidence = shop BNPL payment option (اسنپ‌پی/ترب‌پی/دیجی‌پی/تارا/ازکی‌وام) OR offer description mentioning اقساط/قسط. Must list matching_shops and must not claim installments for other shops."
+    },
+    {
+      "id": "P02",
+      "category": "payment_installment",
+      "difficulty": "medium",
+      "question": "سامسونگ S25 FE رو با اسنپ‌پی کجا می‌شه خرید؟",
+      "ground_truth": {
+        "expected_product_ids": [
+          "product_6c62d575e3d247f6f29e051a"
+        ],
+        "providers_considered": [
+          "اسنپ‌پی"
+        ],
+        "channel_filter": null,
+        "n_shops_carrying": 34,
+        "matching_shops": [
+          {
+            "shop_id": "shop_3462dfb70b8c9ba9fced5f65",
+            "shop_name": "ماهآرا نونوش",
+            "price_toman": 223675000.0,
+            "payment_options": "اسنپ‌پی:unknown",
+            "installment_in_description": null,
+            "matching_payment_options": [
+              "اسنپ‌پی:unknown"
+            ]
+          }
+        ],
+        "n_matching": 1
+      },
+      "correct_answer_must": "Only shops carrying S25 FE whose payment_options include اسنپ‌پی; if none, say honestly none recorded."
+    },
+    {
+      "id": "P03",
+      "category": "payment_installment",
+      "difficulty": "easy",
+      "question": "فروشگاه «مهرین رویسا» اسنپ‌پی حضوری قبول می‌کنه؟",
+      "ground_truth": {
+        "shop_id": "shop_343a5f1dcbeb33366f3f7635",
+        "shop_name": "مهرین رویسا",
+        "payment_options": [
+          {
+            "provider_name": "اسنپ‌پی",
+            "channel": "in_person"
+          }
+        ],
+        "answer": "yes – اسنپ‌پی, channel in_person"
+      },
+      "correct_answer_must": "Answer yes, citing اسنپ‌پی in_person from the dataset."
+    },
+    {
+      "id": "P04",
+      "category": "payment_installment",
+      "difficulty": "hard",
+      "question": "تو پاساژ علاءالدین کدوم مغازه‌ها پرداخت اقساطی حضوری (مثل اسنپ‌پی یا دیجی‌پی) دارن؟",
+      "ground_truth": {
+        "mall_filter_regex_on_normalized_address": "(پاساژ|مجتمع|بازار موبایل|مریم)\\s*علا\\s*ء?\\s*الدین|(پاساژ|مجتمع)\\s*علالدین",
+        "matching_shops": [
+          {
+            "shop_id": "shop_03832fb8b03821313a1c6771",
+            "shop_name": "ویسا رویلا",
+            "address": "خیابان جمهوری اسلامی، نبش خیابان شیخ هادی، مجتمع علاالدین ۲، طبقه ۳، واحد ۳۲۷",
+            "in_person_providers": [
+              "تارا",
+              "اسنپ‌پی",
+              "دیجی پی",
+              "ترب‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_13336f1a0d2ec0b16bbd60aa",
+            "shop_name": "مهریسا نوین",
+            "address": "خیابان حافظ، پاساژ علاالدین، طبقه ۱-، پلاک ۳، واحد ۳",
+            "in_person_providers": [
+              "تارا",
+              "اسنپ‌پی",
+              "دیجی پی",
+              "ترب‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_469af92940219263c0df12b4",
+            "shop_name": "آذرینا نیکآرا",
+            "address": "خیابان جمهوری اسلامی، شیخ هادی، پاساژ علاءالدین ۲، طبقه ۲، پلاک ۲۱۳",
+            "in_person_providers": [
+              "دیجی پی",
+              "اسنپ‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_478c6c3890f5b35253a9a44f",
+            "shop_name": "نوسا دیسسا",
+            "address": "خیابان جمهوری اسلامی، نبش خیابان شیخ هادی، پاساژ علاءالدین ۲، طبقه ۵، واحد ۵۲۱",
+            "in_person_providers": [
+              "تارا",
+              "دیجی پی",
+              "اسنپ‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_60e835a590a4a652ce0ad6d9",
+            "shop_name": "آوان آران",
+            "address": "خیابان حافظ، بین خیابان جمهوری اسلامی و هاتف، پاساژ علاالدین۳، پلاک۴",
+            "in_person_providers": [
+              "ترب‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_7c0aefc65fe6a1a8d6b470ee",
+            "shop_name": "رامسا پاکین",
+            "address": "خیابان جمهوری اسلامی، تقاطع خیابان حافظ، پاساژ علاالدین، طبقه ۷، واحد ۷۰۷، پلاک ۱",
+            "in_person_providers": [
+              "دیجی پی"
+            ]
+          },
+          {
+            "shop_id": "shop_9cee4549095d471a897919a1",
+            "shop_name": "ویینا ماهآرا",
+            "address": "خیابان جمهوری اسلامی، خیابان شیخ هادی، پاساژ علاءالدین ۲، طبقه ۴، پلاک ۴۲۴",
+            "in_person_providers": [
+              "اسنپ‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_bbb4582a0de459596b6e98f2",
+            "shop_name": "آذرسا وینوش",
+            "address": "خیابان جمهوری اسلامی، نبش خیابان شیخ هادی، پاساژ علاالدین ۲، طبقه ۳، پلاک ۳۱۹",
+            "in_person_providers": [
+              "تارا",
+              "اسنپ‌پی",
+              "دیجی پی",
+              "ترب‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_de751453d030bf7838baedbe",
+            "shop_name": "آرنوش رامیرا",
+            "address": "جمهوری اسلامی، پاساژ علاءالدین بیوتی، طبقه ۱، پلاک ۱۱۱، واحد ۱",
+            "in_person_providers": [
+              "اسنپ‌پی"
+            ]
+          },
+          {
+            "shop_id": "shop_ecf4d2da925522d85803475d",
+            "shop_name": "نودیس آذریس",
+            "address": "خیابان جمهوری اسلامی، خیابان شهید هادی جوان دلاور، روبروی پاساژ علاءالدین، پاساژ خانه موبایل، طبقه ۱-، پلاک B۱۲",
+            "in_person_providers": [
+              "دیجی پی"
+            ]
+          },
+          {
+            "shop_id": "shop_ff011b15c2e96d06fc589756",
+            "shop_name": "سرونوش مهریلا",
+            "address": "جمهوری اسلامی، نبش خیابان شیخ هادی، پاساژ علاالدین، طبقه ۴، پلاک ۴۲۴، واحد ۴۲۴",
+            "in_person_providers": [
+              "اسنپ‌پی",
+              "ترب‌پی"
+            ]
+          }
+        ],
+        "n_matching": 11
+      },
+      "correct_answer_must": "List shops from matching_shops (in-person BNPL channel); must not include shops whose channel is \"unknown\" as confirmed in-person."
+    },
+    {
+      "id": "P05",
+      "category": "payment_installment",
+      "difficulty": "medium",
+      "question": "نزدیک تجریش مغازه‌ای هست که ترب‌پی داشته باشه؟",
+      "user_lat": 35.8044,
+      "user_lon": 51.4337,
+      "user_location_label": "میدان تجریش",
+      "ground_truth": {
+        "nearest_torobpay_shops": [
+          {
+            "shop_id": "shop_e23e3440b9102a40b194acfa",
+            "shop_name": "آذرانوش مهرین",
+            "location_label": "تجریش",
+            "distance_km": 0.215
+          },
+          {
+            "shop_id": "shop_4dc515bb1840fa97dc419c22",
+            "shop_name": "ویینا ماننوش",
+            "location_label": "تجریش",
+            "distance_km": 0.243
+          },
+          {
+            "shop_id": "shop_6e71db7983f65224dbd9b465",
+            "shop_name": "نوین وییسا",
+            "location_label": "تجریش",
+            "distance_km": 0.348
+          },
+          {
+            "shop_id": "shop_7ec56533300920b31b669f02",
+            "shop_name": "مهریار نییس",
+            "location_label": "تجریش",
+            "distance_km": 0.416
+          },
+          {
+            "shop_id": "shop_38520b9c11c51e5364dda24a",
+            "shop_name": "فرنوش روآرا",
+            "location_label": "تجریش",
+            "distance_km": 0.619
+          }
+        ],
+        "note": "any channel; channel shown in shop payment_options"
+      },
+      "correct_answer_must": "Name the nearest ترب‌پی shop(s) with distance; should mention whether channel is in_person or unknown."
+    },
+    {
+      "id": "T01",
+      "category": "store_contact",
+      "difficulty": "medium",
+      "question": "شماره تماس مغازه‌ای که A56 ۲۵۶ رو ارزون‌تر از همه می‌ده چیه؟",
+      "ground_truth": {
+        "resolved_shop": {
+          "shop_id": "shop_1ffc7576fed58fa57cd99a21",
+          "shop_name": "نیآرا آروان",
+          "price_toman": 116800000.0,
+          "last_price_changed_at": "2026-10-12T15:23:25.348968+00:00",
+          "address": "خیابان جمهوری اسلامی، نرسیده به خیابان حافظ، پاساژ بزرگمهر، طبقه همکف، پلاک ۱۸، واحد ۱۸"
+        },
+        "phone": "۰۹۳۵۳۰۹۸۲۲۸",
+        "phone_latin": "09353098228",
+        "address": "خیابان جمهوری اسلامی، نرسیده به خیابان حافظ، پاساژ بزرگمهر، طبقه همکف، پلاک ۱۸، واحد ۱۸",
+        "phone_is_synthetic_in_dataset": true
+      },
+      "correct_answer_must": "Two-hop: find cheapest shop then return its phone exactly as in dataset (Persian or Latin digits) + address. Must not invent a different number. (Phones in this dataset are synthetic; grader checks equality with dataset.)"
+    },
+    {
+      "id": "T02",
+      "category": "store_contact",
+      "difficulty": "easy",
+      "question": "آدرس و سایت «موبایل تخت جمشید» رو بده",
+      "ground_truth": {
+        "shop": {
+          "shop_id": "shop_51d0c1a6edf81ba759726bab",
+          "name": "موبایل تخت جمشید",
+          "address": "خیابان جمهوری، نرسیده به پل حافظ، نبش کوچه کلانتری، پاساژ خانه موبایل، طبقه چهارم، پلاک 412",
+          "website_url": "https://takhtjamshidmobile.com/",
+          "instagram": null,
+          "phone": "۰۲۱۷۶۵۵۷۶۲۴"
+        }
+      },
+      "correct_answer_must": "Return the dataset address and website_url (https://takhtjamshidmobile.com/); instagram is null → say not available."
+    },
+    {
+      "id": "T03",
+      "category": "store_contact",
+      "difficulty": "easy",
+      "question": "فروشگاه «فرورا رویس» جمعه‌ها بازه؟ پنجشنبه تا کی کار می‌کنه؟",
+      "ground_truth": {
+        "shop_id": "shop_3f93a30a9e66c6dece07cdff",
+        "weekly_hours": {
+          "fri": {
+            "shifts": [
+              {
+                "end_time": "00:00:00",
+                "start_time": "00:00:00"
+              }
+            ],
+            "status": "closed"
+          },
+          "mon": {
+            "shifts": [
+              {
+                "end_time": "19:00:00",
+                "start_time": "10:00:00"
+              }
+            ],
+            "status": "declared"
+          },
+          "sat": {
+            "shifts": [
+              {
+                "end_time": "00:00:00",
+                "start_time": "00:00:00"
+              }
+            ],
+            "status": "closed"
+          },
+          "sun": {
+            "shifts": [
+              {
+                "end_time": "19:00:00",
+                "start_time": "10:00:00"
+              }
+            ],
+            "status": "declared"
+          },
+          "thu": {
+            "shifts": [
+              {
+                "end_time": "14:00:00",
+                "start_time": "10:00:00"
+              }
+            ],
+            "status": "declared"
+          },
+          "tue": {
+            "shifts": [
+              {
+                "end_time": "19:00:00",
+                "start_time": "10:00:00"
+              }
+            ],
+            "status": "declared"
+          },
+          "wed": {
+            "shifts": [
+              {
+                "end_time": "19:00:00",
+                "start_time": "10:00:00"
+              }
+            ],
+            "status": "declared"
+          }
+        },
+        "answer": {
+          "fri": "closed",
+          "thu": {
+            "end_time": "14:00:00",
+            "start_time": "10:00:00"
+          }
+        }
+      },
+      "correct_answer_must": "Friday = closed; Thursday 10:00–14:00 (from weekly_hours)."
+    },
+    {
+      "id": "T04",
+      "category": "store_contact",
+      "difficulty": "medium",
+      "question": "ساعت کاری فروشگاه «دیسورا پاکیار» چیه؟",
+      "ground_truth": {
+        "shop_id": "shop_4934392f0e4fefe1526308c6",
+        "weekly_hours": {},
+        "expected_behavior": "say working hours are not recorded; may offer phone/address"
+      },
+      "correct_answer_must": "weekly_hours is empty for this shop → must say hours are not available in the data and not invent them."
+    },
+    {
+      "id": "U01",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "قیمت گلکسی S27 اولترا چنده؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "No such product exists in the dataset.",
+        "evidence": {
+          "phones_matching_s27": 0,
+          "note": "non-phone items with \"S27\" in title exist (monitors, projectors, generators) and must not be presented as a Galaxy S27"
+        }
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U02",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "تو اصفهان کجا PS5 می‌فروشن؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "All shops are in Tehran (lat 35.64–35.81, lon 51.31–51.51); no Isfahan shops.",
+        "evidence": {
+          "lat_range": [
+            35.64033031672763,
+            35.812628383945565,
+            51.30525648593903,
+            51.509290119585316
+          ]
+        }
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U03",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "فروشگاه مهرین رویسا چند تا آیفون ۱۶ تو انبارش موجود داره؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "No stock/quantity column in the dataset."
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U04",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "نظر خریدارها درباره ایرپاد پرو ۳ چیه؟ امتیازش چنده؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "No reviews/ratings in the dataset."
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U05",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "قیمت آیفون ۱۶ شش ماه پیش چقدر بود؟ نمودار قیمتش رو بده",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "Only the current price and its last_price_changed_at exist; no price history."
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U06",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "شیر پرچرب یه لیتری کجا ارزون‌تره؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "No groceries/dairy in the dataset.",
+        "evidence": {
+          "products_matching": 0
+        }
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U07",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "قیمت دلار امروز چنده؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "Out of scope (no FX data); assistant should decline."
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "U08",
+      "category": "unanswerable",
+      "difficulty": "medium",
+      "question": "کد تخفیف برای خرید S25 FE دارید؟",
+      "ground_truth": {
+        "expected_behavior": "refuse",
+        "reason": "No coupon/discount data in the dataset."
+      },
+      "correct_answer_must": "Honestly say the dataset does not contain this; no invented products/prices/stores. May offer a related in-dataset alternative clearly labelled."
+    },
+    {
+      "id": "A01",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "question": "قیمت سامسونگ چنده؟",
+      "ground_truth": {
+        "expected_behavior": "clarify",
+        "n_samsung_products": 3351,
+        "n_samsung_phones": 122
+      },
+      "correct_answer_must": "Ask which Samsung product/category (thousands of products); may suggest popular phones, but must not give a single price."
+    },
+    {
+      "id": "A02",
+      "category": "ambiguous",
+      "difficulty": "hard",
+      "question": "قیمت iPhone 15 Pro چنده؟",
+      "ground_truth": {
+        "expected_behavior": "clarify_or_list_variants",
+        "genuine_variants": [
+          {
+            "product_id": "product_0783ea6c2e0d5f9226589f16",
+            "persian_title": "گوشی اپل دو سیم (استوک) iPhone 15 Pro | حافظه 256 گیگابایت",
+            "brand_name": "اپل",
+            "min_price": 189000000.0,
+            "n_shops": 2
+          },
+          {
+            "product_id": "product_3e323e0a550bc056c36bdfec",
+            "persian_title": "گوشی اپل (استوک) iPhone 15 Pro | حافظه 512 گیگابایت",
+            "brand_name": "اپل",
+            "min_price": 189000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_74ebe14df6a357cf90c76ccc",
+            "persian_title": "گوشی اپل دو سیم iPhone 15 Pro (Active) | حافظه 256 گیگابایت",
+            "brand_name": "اپل",
+            "min_price": 210000000.0,
+            "n_shops": 1
+          },
+          {
+            "product_id": "product_4f85b8cfd171de23dc946bd9",
+            "persian_title": "گوشی اپل iPhone 15 Pro (Active) | حافظه 256 گیگابایت",
+            "brand_name": "اپل",
+            "min_price": 189000000.0,
+            "n_shops": 1
+          }
+        ],
+        "pro_max_variants_not_asked": [
+          "product_59a9b02fa0cfbb8fb10785d4",
+          "product_e4a89359d4a4a1056c2c9d6d"
+        ],
+        "knockoffs_to_exclude": [
+          "product_5bb6bac208f508f9f027b648",
+          "product_520b433b9ea89aca75edba8f",
+          "product_81d3c1c9a9cb32bf95406b8f",
+          "product_96db4968f64cc8eed1c01c18",
+          "product_6cb35c1d9dd52100ee90aa45"
+        ]
+      },
+      "correct_answer_must": "Several real variants (stock vs active, 256 vs 512). Correct: ask storage/condition or list variants with their prices (≈189M–210M). MUST NOT quote the ~18.9M \"طرح اپل\" knock-off or accessories (cases, LCD, battery) as the iPhone price."
+    },
+    {
+      "id": "A03",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "question": "نزدیک‌ترین مغازه کجاست؟",
+      "ground_truth": {
+        "expected_behavior": "clarify",
+        "missing": [
+          "product or category",
+          "user location"
+        ]
+      },
+      "correct_answer_must": "Ask what product and where the user is (or request location)."
+    },
+    {
+      "id": "A04",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "question": "یه گوشی خوب می‌خوام",
+      "ground_truth": {
+        "expected_behavior": "clarify",
+        "missing": [
+          "budget",
+          "brand/OS preference",
+          "priority (camera/battery)"
+        ],
+        "n_phone_products": 814
+      },
+      "correct_answer_must": "Ask budget/preferences; if suggesting, only real dataset phones with real prices."
+    },
+    {
+      "id": "A05",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "question": "کابل می‌خوام، چند؟",
+      "ground_truth": {
+        "expected_behavior": "clarify",
+        "top_categories_for_title_starting_with_کابل": [
+          {
+            "category_name": "سیم و کابل برق ساختمان",
+            "n": 3582
+          },
+          {
+            "category_name": "کابل شبکه",
+            "n": 468
+          },
+          {
+            "category_name": "کابلشو و سرسیم",
+            "n": 443
+          },
+          {
+            "category_name": "کابل و تبدیل Type C",
+            "n": 439
+          },
+          {
+            "category_name": "سایر کابل و تبدیل",
+            "n": 340
+          },
+          {
+            "category_name": "کابل و تبدیل Lightning",
+            "n": 319
+          }
+        ]
+      },
+      "correct_answer_must": "Ask which type: building electrical cable vs phone/USB/HDMI/network cable etc.; no single price."
+    },
+    {
+      "id": "A06",
+      "category": "ambiguous",
+      "difficulty": "medium",
+      "question": "شارژر اپل ۲۰ وات چنده؟",
+      "ground_truth": {
+        "expected_behavior": "clarify_or_list_variants",
+        "variants": [
+          {
+            "product_id": "product_df1dfb162403cf73df70fdf3",
+            "persian_title": "شارژر اپل توان 20 وات سه پین",
+            "brand_name": "اپل",
+            "min_price": 480000.0,
+            "n_shops": 59
+          },
+          {
+            "product_id": "product_99316b03484cd879f989633b",
+            "persian_title": "شارژر اپل توان 20 وات سه پین",
+            "brand_name": "اپل",
+            "min_price": 4079600.0,
+            "n_shops": 29
+          },
+          {
+            "product_id": "product_0b629bb58ec30d3344551d35",
+            "persian_title": "شارژر اپل توان 20 وات دو پین گرد",
+            "brand_name": "اپل",
+            "min_price": 3499000.0,
+            "n_shops": 7
+          },
+          {
+            "product_id": "product_9583e9b8ace4eb37786535a6",
+            "persian_title": "شارژر اپل توان 20 وات دو پین گرد",
+            "brand_name": "اپل",
+            "min_price": 1244800.0,
+            "n_shops": 4
+          },
+          {
+            "product_id": "product_d64097d889f6804711a305f9",
+            "persian_title": "شارژر اپل توان 20 وات دو پین تخت",
+            "brand_name": "اپل",
+            "min_price": 755000.0,
+            "n_shops": 3
+          },
+          {
+            "product_id": "product_c6eddf59dd8e605ecd43b428",
+            "persian_title": "شارژر اپل توان 20 وات سه پین همراه کابل تایپ سی به لایتنینگ",
+            "brand_name": "اپل",
+            "min_price": 3465000.0,
+            "n_shops": 3
+          },
+          {
+            "product_id": "product_771edca58d34ad90d7760ab8",
+            "persian_title": "شارژر اپل توان 20 وات سه پین همراه کابل تایپ سی به لایتنینگ",
+            "brand_name": "اپل",
+            "min_price": 4699580.0,
+            "n_shops": 2
+          },
+          {
+            "product_id": "product_696a50ee9682306192f9d619",
+            "persian_title": "شارژر اپل توان 20 وات دو پین تخت",
+            "brand_name": "اپل",
+            "min_price": 2595000.0,
+            "n_shops": 2
+          },
+          {
+            "product_id": "product_1f71303c104f4ce910ec9174",
+            "persian_title": "شارژر اپل توان 20 وات دو پین تخت همراه کابل",
+            "brand_name": "اپل",
+            "min_price": 5250000.0,
+            "n_shops": 2
+          }
+        ]
+      },
+      "correct_answer_must": "Variants differ by plug (سه پین / دو پین گرد / دو پین تخت) and bundled cable; ask or list with prices. Note two identical-title \"سه پین\" listings."
+    }
+  ]
+}

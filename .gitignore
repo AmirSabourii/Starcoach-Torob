@@ -18,7 +18,15 @@ data/
 *.db.building
 *.sqlite
 *.sqlite3
+*.sqlite.tmp
 *.partial
+
+# Embedding cache and recall LLM cache. Generated once; not source.
+*.npy
+emb_cache/
+llm_cache.json
+product_emb*
+eval/runs/
 
 .DS_Store
 .idea/

@@ -1,9 +1,0 @@
-CREATE INDEX idx_offers_product ON offers(product_id);
-CREATE INDEX idx_offers_shop ON offers(shop_id);
-CREATE INDEX idx_offers_price ON offers(price_toman);
-CREATE INDEX idx_products_brand ON products(brand_name_norm);
-CREATE INDEX idx_products_category ON products(category_name_norm);
-CREATE INDEX idx_shops_location ON shops(location_label);
-CREATE INDEX idx_shop_categories_name ON shop_categories(category_name);
-CREATE INDEX idx_shop_contacts_shop ON shop_contacts(shop_id);
-CREATE INDEX idx_shop_payment_shop ON shop_payment_options(shop_id);

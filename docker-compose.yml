@@ -4,11 +4,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_PATH: /data/starcoach.db
+      DATABASE_PATH: /data/torob.sqlite
+      DATA_DIR: /data
       BOXAPI_API_KEY: ${BOXAPI_API_KEY:-}
-      BOXAPI_BASE_URL: ${BOXAPI_BASE_URL:-}
-      BOXAPI_MODEL: ${BOXAPI_MODEL:-}
-      STALE_PRICE_DAYS: ${STALE_PRICE_DAYS:-30}
+      BOXAPI_BASE_URL: ${BOXAPI_BASE_URL:-https://ai.boxapi.ir/ai/v1}
+      BOXAPI_MODEL: ${BOXAPI_MODEL:-gpt-6-luna}
       CORS_ORIGINS: ${CORS_ORIGINS:-*}
     volumes:
       - ./data:/data

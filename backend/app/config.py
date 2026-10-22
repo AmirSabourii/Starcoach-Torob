@@ -18,11 +18,11 @@ class Settings(BaseSettings):
     )
 
     boxapi_api_key: str = ""
-    boxapi_base_url: str = ""
-    boxapi_model: str = ""
-    database_path: str = "./data/starcoach.db"
+    boxapi_base_url: str = "https://ai.boxapi.ir/ai/v1"
+    boxapi_model: str = "gpt-6-luna"
+    database_path: str = "./data/torob.sqlite"
+    data_dir: str = "./data"
     cors_origins: str = "*"
-    stale_price_days: int = 30
 
     def cors_list(self) -> list[str]:
         raw = self.cors_origins.strip()
@@ -32,7 +32,7 @@ class Settings(BaseSettings):
 
     @property
     def llm_configured(self) -> bool:
-        return bool(self.boxapi_api_key.strip() and self.boxapi_base_url.strip() and self.boxapi_model.strip())
+        return bool(self.boxapi_api_key.strip())
 
 
 @lru_cache(maxsize=1)

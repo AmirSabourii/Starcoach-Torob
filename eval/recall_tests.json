@@ -1,0 +1,287 @@
+{
+ "metric": "hit@k = any expected id in top-k; recall@k = |expected ∩ top-k| / min(|expected|, k)",
+ "tests": [
+  {
+   "id": "R01",
+   "query": "اپل ۱۷",
+   "difficulty_kind": "brand-word swap (اپل vs آیفون) + Persian digits",
+   "gt_sql_where": "p.category_name='گوشی موبایل' AND regexp('(آیفون|iphone|اپل) ?17($|[^0-9e])', p.title_norm) AND NOT regexp('pro|پرو|max|مکس|air|ایر|plus|پلاس', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_497ca33998585791fa1bd139",
+    "product_19a0d500b221bc9f03eba29c",
+    "product_b6f939a22a3879d9daa43014",
+    "product_21277cbda026b9b728cb468f",
+    "product_a8041cc2b44ec705174e77fa",
+    "product_898b5d7e4dcc619fd4b82eba",
+    "product_7643d8eaf9975f2ef9313785"
+   ],
+   "expected_titles": [
+    "گوشی آیفون 17 | حافظه 256 گیگابایت دو سیم‌کارت نات اکتیو",
+    "گوشی آیفون 17 | حافظه 256 گیگابایت نات اکتیو",
+    "گوشی آیفون 17 | حافظه 256 گیگابایت دو سیم‌کارت اکتیو",
+    "گوشی آیفون 17 | حافظه 256 گیگابایت نات اکتیو (بدون رجیستر)",
+    "گوشی آیفون 17 | حافظه 256 گیگابایت دو سیم‌کارت استوک",
+    "گوشی آیفون 17 | حافظه 256 گیگابایت دو سیم‌کارت نات اکتیو (بدون رجیستر)",
+    "گوشی موبایل اپل iPhone 17 CH ظرفیت 256 و رم 8 گیگابایت-بدون ریجستر"
+   ],
+   "primary_product_id": "product_497ca33998585791fa1bd139"
+  },
+  {
+   "id": "R02",
+   "query": "ایفون17پرومکس",
+   "difficulty_kind": "no spaces, missing آ, glued pro/max",
+   "gt_sql_where": "p.category_name='گوشی موبایل' AND regexp('(آیفون|iphone|اپل) ?17 ?(pro|پرو) ?(max|مکس)', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_99df22bb2f4d890446c13b92",
+    "product_2bfa9061ad5ef492ffc3a790",
+    "product_ba982e3072fd0c2e5d217100",
+    "product_24f783bde73a8e0b25e45d48",
+    "product_1f696610a09b362906add2f2",
+    "product_751adfe6da5a82030f878c3b",
+    "product_cbb3516aecf9e096a13bf7d4",
+    "product_07b251cc14914941d384881c",
+    "product_a4e5467e10887ca90314fd84",
+    "product_fa2e12dcfe261fe07ffc3b2f",
+    "product_6298200c76a7004b275d1d5d",
+    "product_11b7b5b161c38853e6e3aa8d",
+    "product_1067c0dfee538e5fab3921a8"
+   ],
+   "expected_titles": [
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت نات اکتیو",
+    "گوشی آیفون 17 پرو مکس | حافظه 512 گیگابایت نات اکتیو",
+    "گوشی آیفون 17 پرو مکس | حافظه 1 ترابایت نات اکتیو",
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت نات اکتیو (بدون رجیستر)",
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت دو سیم‌کارت نات اکتیو",
+    "گوشی آیفون 17 پرو مکس | حافظه 2 ترابایت نات اکتیو",
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت اکتیو",
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت استوک",
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت دو سیم‌کارت نات اکتیو (بدون رجیستر)",
+    "گوشی آیفون 17 پرو مکس | حافظه 512 گیگابایت نات اکتیو (بدون رجیستر)",
+    "گوشی آیفون 17 پرو مکس | حافظه 256 گیگابایت اکتیو (بدون رجیستر)",
+    "آیفون 17 پرو مکس 2 ترابایت رجیستر شده | iPhone 17 Pro Max 2TB Blue | کارکرده",
+    "آیفون 17 پرو مکس 512 گیگابایت رجیستر شده | iPhone 17 Pro Max 512GB ZA/A ( Not Active ) | کارکرده"
+   ],
+   "primary_product_id": "product_99df22bb2f4d890446c13b92"
+  },
+  {
+   "id": "R03",
+   "query": "گلکسی اس۲۵ اف ای",
+   "difficulty_kind": "Latin model letters spelled in Persian (اس=S, اف ای=FE)",
+   "gt_sql_where": "p.category_name='گوشی موبایل' AND p.title_norm LIKE '%s25 fe%' AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_6c62d575e3d247f6f29e051a",
+    "product_f07ef205504b7ab37b60b509"
+   ],
+   "expected_titles": [
+    "گوشی سامسونگ (ویتنام) S25 FE 5G | حافظه 256 رم 8 گیگابایت",
+    "گوشی سامسونگ (هند) S25 FE 5G | حافظه 256 رم 8 گیگابایت"
+   ],
+   "primary_product_id": "product_6c62d575e3d247f6f29e051a"
+  },
+  {
+   "id": "R04",
+   "query": "samsung a56",
+   "difficulty_kind": "English brand, Persian titles",
+   "gt_sql_where": "p.category_name='گوشی موبایل' AND regexp('(^|[^a-z0-9])a56($|[^0-9])', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_e743ce86bbc5c2a0c9bd16f4",
+    "product_e993c53035fe745dee632ed0",
+    "product_66b0024b3c9eac1deaed376a",
+    "product_fea567b8609e0d6a4f59c8b4"
+   ],
+   "expected_titles": [
+    "گوشی سامسونگ A56 5G | حافظه 256 رم 8 گیگابایت",
+    "گوشی سامسونگ A56 5G | حافظه 128 رم 8 گیگابایت",
+    "گوشی سامسونگ (ویتنام) A56 5G | حافظه 256 رم 12 گیگابایت",
+    "گوشی سامسونگ (استوک) A56 5G | حافظه 256 رم 12 گیگابایت"
+   ],
+   "primary_product_id": "product_e743ce86bbc5c2a0c9bd16f4"
+  },
+  {
+   "id": "R05",
+   "query": "شیامی ردمی نوت15",
+   "difficulty_kind": "misspelled brand (شیامی) + glued digit",
+   "gt_sql_where": "p.category_name='گوشی موبایل' AND regexp('redmi note 15($| [^p])', p.title_norm) AND p.title_norm NOT LIKE '%pro%' AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_519f1ee3c5057b0b1f98d9d4"
+   ],
+   "expected_titles": [
+    "گوشی شیائومی Redmi Note 15 | حافظه 256 رم 8 گیگابایت"
+   ],
+   "primary_product_id": "product_519f1ee3c5057b0b1f98d9d4"
+  },
+  {
+   "id": "R06",
+   "query": "پلی استیشن۵ اسلیم",
+   "difficulty_kind": "Persian transliteration of PlayStation 5 Slim",
+   "gt_sql_where": "p.category_name LIKE 'کنسول بازی%' AND regexp('(ps5|playstation 5).*slim', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_fef87f08e57d174809f5dc93",
+    "product_d979f62ee7d610cd5a71b9f0",
+    "product_361bbe4bcf29bd946f76c6b0",
+    "product_f83180cb35df50ae45154581",
+    "product_06a63875aa4bfc1de4460e75",
+    "product_2a8ccf853b06e22fbb0090c5",
+    "product_6c512e3a939e9dc479e2ace9",
+    "product_63c6d1f03b61d02e282f478d",
+    "product_b8acbead0215eb7edef5b017",
+    "product_d0d050ebe6dd9d38d2dbdb7f",
+    "product_a59ad22aad328b246f6f1908",
+    "product_9f7a8e0cb7eec734e28962d3",
+    "product_9876f540a1df6cb0f051e986",
+    "product_7fd053400a1c0b8b667c1b28",
+    "product_650a517954a0971ff32281a7",
+    "product_4e91699fdaafa8e4c7085182",
+    "product_135980a8a058d3be554a8fca"
+   ],
+   "expected_titles": [
+    "کنسول بازی سونی PS5 Slim Digital",
+    "کنسول بازی سونی استاندارد PS5 Slim",
+    "کنسول بازی سونی استاندارد PS5 Slim + یک دسته اضافه",
+    "کنسول بازی سونی استاندارد PS5 Slim Ghost of Yotei | حافظه 1 ترابایت",
+    "کنسول بازی سونی استاندارد PS5 Slim + یک دسته اضافه + پایه شارژر",
+    "کنسول بازی سونی PlayStation 5 Slim Digital + یک دسته اضافه + پایه شارژر",
+    "کنسول بازی سونی PS5 Slim Digital 30th Anniversary | حافظه 1 ترابایت",
+    "کنسول بازی سونی PS5 Slim Digital + یک دسته اضافه",
+    "کنسول بازی سونی استوک PS5 Slim Digital",
+    "کنسول بازی سونی استوک استاندارد PS5 Slim",
+    "کنسول بازی سونی استوک استاندارد PS5 Slim + یک دسته اضافه",
+    "کنسول بازی سونی استاندارد PS5 Slim + دسته اضافه + هدست VR2",
+    "کنسول بازی سونی استاندارد PS5 Slim + یک دسته اضافه + هدست + پایه شارژر",
+    "کنسول بازی سونی PS5 Slim Digital + هدست VR2",
+    "ps5 slim digitalfat",
+    "PlayStation 5 Slim Digital Marvel's Wolverine Battle Yellow Limited Edition",
+    "ps5 slim Drive CFI-2016"
+   ],
+   "primary_product_id": "product_fef87f08e57d174809f5dc93"
+  },
+  {
+   "id": "R07",
+   "query": "ایر پادز پرو3",
+   "difficulty_kind": "split/misspelt AirPods + glued digit",
+   "gt_sql_where": "p.category_name='هدفون، هدست و هندزفری' AND regexp('(ایرپاد|airpods?) ?(پرو|pro) ?3', p.title_norm) AND NOT regexp('استوک|a300', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_13dcd3e74bde3139871f4b7f",
+    "product_e4516e047e6d6a15b53ae808",
+    "product_69cc302e901a893b801182b0",
+    "product_d4f1cc871b474540f7e1d8fc",
+    "product_da58f641241a69b6014e20c1"
+   ],
+   "expected_titles": [
+    "هدفون بی سیم اپل مدل ایرپاد پرو 3",
+    "هدفون بی سیم اپل مدل ایرپاد پرو 3",
+    "ایرپاد پرو 3 اصلی اپل Airpod Pro 3 Original Apple",
+    "ایرپاد پرو 3 اپل",
+    "هدفون بلوتوثی اپل مدل AirPods Pro 3"
+   ],
+   "primary_product_id": "product_13dcd3e74bde3139871f4b7f"
+  },
+  {
+   "id": "R08",
+   "query": "هارمن کاردون اورا استودیو ۵",
+   "difficulty_kind": "misspelt brand + Persian transliteration of model",
+   "gt_sql_where": "regexp('aura studio 5', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_241eb5d0978b4382eddeeddf"
+   ],
+   "expected_titles": [
+    "اسپیکر بلوتوثی هارمن کاردن مدل Aura Studio 5"
+   ],
+   "primary_product_id": "product_241eb5d0978b4382eddeeddf"
+  },
+  {
+   "id": "R09",
+   "query": "جی‌بی‌ال فلیپ٧",
+   "difficulty_kind": "ZWNJ inside brand + Arabic-Indic digit + transliterated model",
+   "gt_sql_where": "p.category_name='اسپیکر و سیستم صوتی' AND regexp('flip ?7', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_0e5683d9b93c66f2e38a1c0e",
+    "product_016fffcbf5ffc1b11b11ffcf",
+    "product_3c0f07f76d4dc7539750408d",
+    "product_f7bf4da0798e94eace50109d"
+   ],
+   "expected_titles": [
+    "اسپیکر بلوتوثی قابل حمل جی بی ال مدل  Flip 7",
+    "اسپیکر بلوتوثی قابل حمل جی بی ال مدل  Flip 7",
+    "اسپیکر بلوتوثی قابل حمل جی بی ال مدل FLIP7",
+    "اسپیکر جی‌بی‌ال فلیپ ۷ (JBL Flip 7) - نسخه اصلی"
+   ],
+   "primary_product_id": "product_0e5683d9b93c66f2e38a1c0e"
+  },
+  {
+   "id": "R10",
+   "query": "مکبوک ایر ام5",
+   "difficulty_kind": "glued مک‌بوک + M5 spelled ام",
+   "gt_sql_where": "p.category_name='لپ تاپ و نوت بوک' AND regexp('(مک ?بوک|macbook) ?(ایر|air)', p.title_norm) AND p.title_norm LIKE '%m5%' AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_ea8d911e247b93eee6d4334c",
+    "product_38a6a90b7a47a846e6a890d2",
+    "product_376ee35da291d727838dfebd",
+    "product_f5a6be513d9198c003959908",
+    "product_a3c8bc5f326bd76697c905ff",
+    "product_62f96e2aa8aad169cd4c020d",
+    "product_590a72c8f3bc142774268535",
+    "product_2aaa7a3cf8291b93074f95f8"
+   ],
+   "expected_titles": [
+    "لپ تاپ  مک بوک ایر  | 24GB RAM | 1TB SSD | M5 | 15.3 inch",
+    "لپ تاپ  مک بوک ایر | 16GB RAM | 1TB SSD | M5 | 15.3 inch",
+    "لپ تاپ  مک بوک ایر | 24GB RAM | 1TB SSD | M5 | 13 inch",
+    "لپ تاپ  مک بوک ایر  | 16GB RAM | 512GB SSD | M5 | 13.6 inch",
+    "لپ تاپ  مک بوک ایر | 16GB RAM | 1TB SSD | M5 | 13 inch",
+    "لپ تاپ  مک بوک ایر  | 16GB RAM | 512GB SSD | M5 | 15.3 inch",
+    "مک بوک ایر 15 اینچ اسکای بلو MDVT4 (M5/16/1TB) 2026",
+    "مک‌بوک ایر 13 اینچ 2026 حافظه 1 ترابایت رم 24 گیگابایت | Macbook Air M5 13\"/24/1TB MDHG4 Midnight | کارکرده"
+   ],
+   "primary_product_id": "product_ea8d911e247b93eee6d4334c"
+  },
+  {
+   "id": "R11",
+   "query": "ايفون ١٦",
+   "difficulty_kind": "Arabic ي + Arabic-Indic digits, missing آ",
+   "gt_sql_where": "p.category_name='گوشی موبایل' AND regexp('(آیفون|iphone|اپل) ?16($|[^0-9e])', p.title_norm) AND NOT regexp('pro|پرو|max|مکس|plus|پلاس', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_76d08413c6fa1d8efc4cea19",
+    "product_f5413a535d7b884048a48562",
+    "product_eb1adc56f0d70b140b6b0377",
+    "product_69e173be296b94e877e714b6",
+    "product_9a878951e7876547946fa055",
+    "product_66c6cdd7a23ba54ceaec8ae0",
+    "product_40ad60b735ff5b9f11201e27"
+   ],
+   "expected_titles": [
+    "گوشی آیفون 16 | حافظه 128 گیگابایت دو سیم‌کارت نات اکتیو",
+    "گوشی آیفون 16 | حافظه 128 گیگابایت دو سیم‌کارت اکتیو",
+    "گوشی آیفون 16 | حافظه 128 گیگابایت دو سیم‌کارت استوک",
+    "گوشی آیفون 16 | حافظه 128 گیگابایت اکتیو",
+    "گوشی مدل IPHONE 16 Normal CH/A 128G active-ریجستر شرکتی",
+    "گوشی موبایل اپل iPhone 16 CH ظرفیت 128 و رم 8 گیگابایت-بدون ریجستر",
+    "گوشی موبایل مدل Iphone 16 Normal 128G CH/A-active-ریجستری شرکتی"
+   ],
+   "primary_product_id": "product_76d08413c6fa1d8efc4cea19"
+  },
+  {
+   "id": "R12",
+   "query": "اکس باکس سری اس",
+   "difficulty_kind": "Persian transliteration of Xbox Series S",
+   "gt_sql_where": "p.category_name LIKE 'کنسول%' AND regexp('xbox series s($|[^a-z])', p.title_norm) AND NOT regexp('طرح|چپ|راست|left|right|کیف|کاور|(^| )قاب( |$)|کابل|بند |گلس|محافظ', p.title_norm)",
+   "expected_product_ids": [
+    "product_1810be1d3dd6fbd02d38b4c0",
+    "product_d4a9f3be42f74fe82fc85923",
+    "product_43eea2d3afbd00100ccd3096",
+    "product_fc5808115d4858b96decfa23",
+    "product_d055c99d288747d4e6ef4078",
+    "product_223a19f9b1c722458bbde9d8"
+   ],
+   "expected_titles": [
+    "کنسول بازی مایکروسافت Xbox Series S | حافظه 512 گیگابایت",
+    "کنسول بازی مایکروسافت Xbox Series S Carbon Black | حافظه 1 ترابایت",
+    "کنسول بازی مایکروسافت Xbox Series S | حافظه 1 ترابایت",
+    "کنسول بازی مایکروسافت Xbox Series S | حافظه 512 گیگابایت + دسته اضافه",
+    "کنسول بازی مایکروسافت (پیش فروش) Xbox Series S | حافظه 512 گیگابایت",
+    "کنسول بازی مایکروسافت استوک Xbox Series S | حافظه 512 گیگابایت"
+   ],
+   "primary_product_id": "product_1810be1d3dd6fbd02d38b4c0"
+  }
+ ]
+}

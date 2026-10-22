@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Download the Starcoach Torob CSV zip and build the local SQLite database.
+"""Download the Starcoach Torob CSV zip and build the SQLite database.
 
-Safe to re-run. Writes a temporary database and replaces the target only after
-the load finishes. Does not commit the zip or the CSVs; keep them out of git.
+The schema and normalisation match backend/app/engine/build_eval_db.py.
+Safe to re-run: the builder writes a temp file and replaces the target only
+after the load finishes. The zip, the CSVs and the sqlite file stay out of git.
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import shutil
 import sys
@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from backend.app.ingest import build_database  # noqa: E402
+from backend.app.engine.build_eval_db import build  # noqa: E402
 
 DEFAULT_URL = "https://startech.s3.ir-central1.arvanstorage.ir/starcoach-dataset-v16-cap300-csv.zip"
 CSV_NAMES = ("shops.csv", "products.csv", "offers.csv")
@@ -29,7 +29,7 @@ CSV_NAMES = ("shops.csv", "products.csv", "offers.csv")
 def download_zip(url: str, dest: Path) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
     partial = dest.with_suffix(dest.suffix + ".partial")
-    request = urllib.request.Request(url, headers={"User-Agent": "starcoach-torob/0.1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "starcoach-torob/0.2"})
     print(f"downloading {url}", flush=True)
     with urllib.request.urlopen(request, timeout=300) as response, partial.open("wb") as handle:
         shutil.copyfileobj(response, handle, length=1024 * 256)
@@ -56,15 +56,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Download the Torob CSV bundle and build SQLite.")
     parser.add_argument("--url", default=os.environ.get("DATASET_URL", DEFAULT_URL))
     parser.add_argument("--data-dir", default=os.environ.get("DATA_DIR", str(ROOT / "data")))
-    parser.add_argument(
-        "--db",
-        default=os.environ.get("DATABASE_PATH", str(ROOT / "data" / "starcoach.db")),
-    )
-    parser.add_argument(
-        "--skip-download",
-        action="store_true",
-        help="Use CSVs already extracted under the data directory.",
-    )
+    parser.add_argument("--db", default=os.environ.get("DATABASE_PATH", str(ROOT / "data" / "torob.sqlite")))
+    parser.add_argument("--skip-download", action="store_true", help="Use CSVs already extracted under the data directory.")
     args = parser.parse_args(argv)
 
     data_dir = Path(args.data_dir)
@@ -77,9 +70,9 @@ def main(argv: list[str] | None = None) -> int:
         print("CSVs are missing. Run without --skip-download.", file=sys.stderr)
         return 1
 
-    summary = build_database(csv_dir, Path(args.db), source_url=args.url)
-    print(json.dumps(summary, ensure_ascii=False, indent=2))
-    print("پایگاه داده ساخته شد.")
+    os.environ["DATABASE_PATH"] = str(Path(args.db))
+    os.environ["DATA_DIR"] = str(data_dir)
+    build(str(csv_dir), str(Path(args.db)))
     return 0
 
 

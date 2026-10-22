@@ -1,170 +1,152 @@
-# استارکوچ
+# استارکوچ — دستیار خرید حضوری ترب
 
-دستیار خرید **حضوری** روی خروجی ترب. کاربر کالا را جست‌وجو می‌کند، کارت محصول را می‌بیند، و فروشگاه‌های اطراف را با فاصله و تازگی قیمت مقایسه می‌کند. رابط فارسی، راست‌به‌چپ و موبایل‌اول است.
+Persian, RTL, mobile-first shopping assistant over the Torob Starcoach dataset. The assistant answers only from tool results: products, in-person shops in Tehran, price, distance, freshness, warranty and recorded payment options.
 
-مدل زبانی حق ندارد محصول، قیمت یا فروشگاه بسازد. اگر کلید مدل تنظیم شده باشد، فقط ابزار را انتخاب می‌کند. جمله‌ای که کاربر می‌بیند از خروجی همان ابزارها ساخته می‌شود.
+The agent, the eight tools and the recall layer are the validated off-repo implementation, packaged under `backend/app/engine/`. The UI is the `src-v2` design (Vazirmatn, cards, step trail), wired to this API.
 
-## داده
+## Evaluation
 
-سه فایل CSV از بستهٔ Starcoach v16 (حدود ۲۲۵٬۹۰۳ محصول، ۳۳۱٬۵۰۶ پیشنهاد، ۶٬۴۷۶ فروشگاه):
+Full write-up: [`eval/FINAL_REPORT.md`](eval/FINAL_REPORT.md). Same harness and datasets live in `eval/` (`eval_set.json` 60 questions, `recall_tests.json`, `discovery_tests.json`).
 
-| فایل | کلید | اتصال |
-| --- | --- | --- |
-| `shops.csv` | `shop_id` | — |
-| `products.csv` | `product_id` | — |
-| `offers.csv` | `offer_id` | `shop_id` → فروشگاه، `product_id` → محصول |
+| Check | Result |
+| --- | --- |
+| 60 grounded scenarios, cleanest full run (run2, lexical) | **98.3%** |
+| Same 60 with the recall layer, full run3 | **93.3%** (95.0% after rescoring) |
+| Honest refusals (stock, reviews, price history, and the other unanswerable items) | **8/8** |
+| Recall@5 on deliberately badly written queries | **0.97** (hit@5 1.00; lexical baseline was 0.48) |
+| Discovery / browse scenarios | **15/15** |
 
-ستون دیگری به اسکیما اضافه نشده است. فیلدهای `*_norm`، تصویر اصلی، ستون‌های گارانتی و جدول‌های دسته/تماس/پرداخت از همین ستون‌ها استخراج می‌شوند.
+The “100%” figure in the report is not a clean full run. It swaps four items from small re-runs into run3. The cleanest full-run numbers are run2 at 98.3% and run3 at 93.3% (95% rescored).
 
-قیمت‌های کمتر از ۱۰۰۰ یا بیشتر از `1e11` تومان خالی می‌شوند. شماره‌های تماس این مجموعه **ساختگی (FAKE)** هستند و هیچ تماسی گرفته نمی‌شود.
+Re-run (needs `BOXAPI_API_KEY`, the built database, and for the embedding row the `.npy` cache):
 
-خودِ داده در گیت نیست. نشانی دانلود فقط در اسکریپت و همین فایل آمده است:
+```bash
+python scripts/build_db.py
+python eval/run_eval.py --tag run1
+python eval/recall_eval.py
+python eval/run_discovery.py --tag d1
+```
+
+Reports already in the repo: `eval/eval_report.md`, `eval/recall_results.json`, `eval/discovery_report.md`, `eval/data_findings.md`. Saved model transcripts are not committed.
+
+## Model
+
+| | |
+| --- | --- |
+| Chat model | `gpt-6-luna` (`BOXAPI_MODEL`) |
+| Base URL | `https://ai.boxapi.ir/ai/v1` (`BOXAPI_BASE_URL`) |
+| Key | `BOXAPI_API_KEY` at deploy time. Never committed. |
+| Completion cap | `max_completion_tokens` (this model rejects `max_tokens`) |
+| Tool calling | `reasoning_effort="none"` on `/v1/chat/completions` |
+| Embeddings | `text-embedding-3-small`, 256-d, optional cache |
+
+Recall is **on** by default (`TOROB_RECALL=1`): alias / synonym dictionary, digit and ZWNJ and ك/ي normalisation, LLM query expansion, embedding fallback, match-grader. `TOROB_RECALL=0` is the lexical baseline. Without the embedding file the embedding step returns nothing. Without an API key the expander and grader fail closed; catalogue HTTP search then stays on the lexical tool so the UI still shows rows. `/chat` itself does not answer until the key is set, and it does not invent products.
+
+Price staleness inside the tools is **90 days** from the reference date 2026-10-22.
+
+## Tools
+
+| Tool | Role |
+| --- | --- |
+| `search_products` | Normalised FTS over title, brand, model, category, plus the recall layer. |
+| `compare_products` | Specs and price range for 2–4 ids. |
+| `find_stores_for_product` | Shops, haversine distance, last price change, stale flag. |
+| `compare_stores` | Those shops side by side. |
+| `check_store_freshness` | Days since `last_price_changed_at`. |
+| `contact_store` | Address, hours, payment. Phone numbers are **FAKE**. No dial action. |
+| `search_stores` | By area label, category sold, or installment provider, with counts. |
+| `browse_catalog` | Whole category: brands, counts, price ranges, a short sorted list. Drops knock-offs, accessories, used items and basic phones; flags clones. |
+
+Not in the data, and not shown as if they were: stock counts, user reviews, price history.
+
+## Data
+
+Download only (never commit the zip, the CSVs, the sqlite file, or embeddings):
 
 `https://startech.s3.ir-central1.arvanstorage.ir/starcoach-dataset-v16-cap300-csv.zip`
 
-## معماری
+Joins: `offers.shop_id` → `shops.shop_id`, `offers.product_id` → `products.product_id`.
 
-```mermaid
-flowchart LR
-  UI["رابط فارسی"] --> API["FastAPI"]
-  API --> Tools["ابزارهای فقط‌خواندنی"]
-  API --> Agent["ارکستریتور"]
-  Agent --> LLM["مدل سازگار با OpenAI"]
-  Agent --> Tools
-  Tools --> DB[("SQLite + FTS5")]
-  Script["scripts/build_db.py"] --> DB
-```
+`scripts/build_db.py` calls `build_eval_db.build`: `norm()` (Arabic yeh/kaf, ZWNJ, digits), FTS5 on normalised title + brand + model + category, parsed `product_specs`, prices outside `[1000, 1e11]` stored as NULL with `price_status`, plus `shop_categories`, `shop_hours`, `shop_payment_options`. Rebuilds are idempotent (temp file, then replace).
 
-- `scripts/build_db.py` فایل زیپ را می‌گیرد، سه CSV را استخراج می‌کند، متن فارسی را یکدست می‌کند و SQLite می‌سازد.
-- `backend/app/db` اتصال فقط‌خواندنی.
-- `backend/app/tools` شش ابزار.
-- `backend/app/agent` انتخاب ابزار و ساخت پاسخ از نتیجه.
-- `backend/app/api` مسیرهای کارت‌ها و `/chat`.
-- `frontend` جست‌وجو، کارت، فروشگاه، مقایسه و یک ورودی گفتگو.
+## Run locally
 
-جست‌وجوی فعلی FTS5 با توکنایزر `unicode61` است و اگر نتیجه کم باشد `trigram` هم صدا زده می‌شود. مسیر بعدی Postgres است: `pg_trgm` به‌جای تریگرم، `pgvector` برای عنوان فارسی به‌همراه برند و مشخصات کلیدی، و `geography` به‌جای هاورساین در پایتون.
-
-## ابزارها
-
-| ابزار | وضعیت |
-| --- | --- |
-| `search_products` | کار می‌کند. فیلتر برند، دسته و قیمت. |
-| `find_stores_for_product` | کار می‌کند. فاصله، مرتب‌سازی، کهنه‌بودن قیمت. |
-| `compare_products` | خواندن مشخصات و بازهٔ قیمت. هم‌معنی‌سازی کلیدها و امتیاز تفاوت مانده. |
-| `compare_stores` | قیمت، فاصله، تازگی و پرداخت. رتبهٔ وزنی مانده. |
-| `check_store_freshness` | سن قیمت از `last_price_changed_at`. آستانهٔ جدا برای هر دسته مانده. |
-| `contact_store` | فقط نمایش تماس برای بررسی انسان. شماره‌ها ساختگی‌اند. صف تأیید انسان مانده و شماره‌گیر وصل نمی‌شود. |
-
-آستانهٔ کهنه‌بودن با `STALE_PRICE_DAYS` است و پیش‌فرض ۳۰ روز است.
-
-## راه‌اندازی محلی
-
-Python 3.12 لازم است.
+Python 3.12.
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
+# optional: put BOXAPI_API_KEY in .env — do not commit .env
+
 python scripts/build_db.py
-uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000
+# CSVs already extracted:
+# python scripts/build_db.py --skip-download
+
+# once, only if you want the embedding fallback (calls the API, writes gitignored files):
+# python scripts/embed_products.py
+
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
 ```
 
-بعد مرورگر را روی `http://127.0.0.1:8000` باز کنید.
+Open `http://127.0.0.1:8000`.
 
-اگر CSVها از قبل در `data/csv/` باشند:
+- The composer posts to `POST /chat` and renders the model’s answer plus the tool steps (understand → search → distance filter → rank) using the counts in the tool JSON.
+- Product cards show the last price change and a stale warning. Store lists are sorted by distance.
+- Compare, installment, guided questions and the no-result state are the same screen.
+- If the key is missing, `/chat` returns 503 and the suggestion chips still render catalogue cards from the tools, labelled as not from the model.
+- Design frames, unchanged, are under `/screens/` (for example `/screens/overview.html`).
+- `GET /health` returns 200 even before the database exists, so a deploy can boot first and load data after.
+
+Checks that do not call the model:
 
 ```bash
-python scripts/build_db.py --skip-download
+python3 -m unittest discover -s tests -v
 ```
 
-مسیر خروجی را می‌توان عوض کرد:
+## Deploy on Liara
+
+The app is one Docker service (API + UI) on port 8000. `liara.json` uses the Docker platform and a `/health` check. The image does not contain the dataset.
 
 ```bash
-python scripts/build_db.py --data-dir ./data --db ./data/starcoach.db
+# from the repo root, with the Liara CLI logged in
+liara deploy --app starcoach-torob --platform docker --port 8000
 ```
 
-اجرای دوباره پایگاه را از نو می‌سازد و فقط بعد از `quick_check` جایگزین می‌کند.
+Attach a disk mounted at `/data` (create the disk in Liara first; an unknown disk name fails the deploy). Then set:
 
-تست‌ها با یک CSV کوچک، بدون دانلود داده:
+```text
+DATABASE_PATH=/data/torob.sqlite
+DATA_DIR=/data
+BOXAPI_API_KEY=...          # secret, not in git
+BOXAPI_BASE_URL=https://ai.boxapi.ir/ai/v1
+BOXAPI_MODEL=gpt-6-luna
+```
+
+On the disk, once:
 
 ```bash
-python -m unittest discover -s tests -v
+python scripts/build_db.py
+python scripts/embed_products.py   # optional
 ```
 
-## متغیرهای محیطی
+`docker compose up --build` is the same layout locally (`./data` → `/data`).
 
-نمونه در `.env.example` است. مقدار واقعی را commit نکنید.
+## Layout
 
-| نام | نقش |
-| --- | --- |
-| `BOXAPI_API_KEY` | کلید مدل. اگر خالی باشد گفتگو به جست‌وجوی مستقیم برمی‌گردد. |
-| `BOXAPI_BASE_URL` | پایهٔ سازگار با OpenAI، معمولاً با پسوند `/v1`. |
-| `BOXAPI_MODEL` | نام مدل. |
-| `DATABASE_PATH` | فایل SQLite. |
-| `CORS_ORIGINS` | مبدأهای مجاز، یا `*`. |
-| `STALE_PRICE_DAYS` | سن کهنه‌بودن قیمت. |
-| `DATASET_URL` | فقط برای اسکریپت دانلود. |
-| `DATA_DIR` | پوشهٔ ZIP و CSV. |
-
-درخواست مدل به `{BOXAPI_BASE_URL}/chat/completions` می‌رود و ابزارها با tool calling فرستاده می‌شوند.
-
-## استقرار در لیارا
-
-استقرار پیشنهادی یک برنامهٔ داکر است که API و رابط را با هم سرو می‌کند. از ریشهٔ مخزن:
-
-1. در پنل لیارا یک برنامهٔ Docker بسازید. شناسه را در `liara.json` در فیلد `app` بگذارید.
-2. متغیرها را در پنل تنظیم کنید، نه در فایل: `BOXAPI_API_KEY`، `BOXAPI_BASE_URL`، `BOXAPI_MODEL`، `DATABASE_PATH=/data/starcoach.db`، `STALE_PRICE_DAYS=30`.
-3. `liara deploy` را از ریشه اجرا کنید. پورت برنامه ۸۰۰۰ است و بررسی سلامت به `/health` می‌زند. این مسیر حتی بدون پایگاه هم ۲۰۰ برمی‌گرداند تا استقرار قبل از ساخت داده شکست نخورد.
-4. یک دیسک بسازید. CSVها حدود ۲۸۵ مگابایت‌اند و SQLite به‌همراه FTS بزرگ‌تر می‌شود؛ برای شروع ۲ گیگابایت منطقی است. بعد از ساخت دیسک این بلوک را به `liara.json` اضافه کنید و دوباره مستقر کنید. نام دیسک باید همان نام پنل باشد:
-
-```json
-"disks": [
-  { "name": "starcoach-data", "mountTo": "/data" }
-]
+```text
+backend/app/engine/     validated tools, agent, recall, build_eval_db, gt_lib, embed_products
+backend/app/api/        /chat, /health, catalogue and store routes
+backend/app/main.py     serves the API and frontend/
+frontend/               live RTL UI, Vazirmatn, assets
+frontend/screens/       design pages from the UX pack
+design/research.md      UX rationale
+eval/                   harness, datasets, FINAL_REPORT.md
+scripts/build_db.py     download zip → sqlite
+scripts/embed_products.py
 ```
 
-5. در پوستهٔ برنامه پایگاه را روی دیسک بسازید:
+## Tests in this repo
 
-```bash
-python scripts/build_db.py --data-dir /data --db /data/starcoach.db
-```
-
-داده داخل ایمیج نیست. دیسک موقت لیارا با هر استقرار پاک می‌شود؛ بدون دیسک، پایگاه را بعد از هر deploy از دست می‌دهید.
-
-### فقط API با پلتفرم پایتون
-
-اگر داکر نخواهید، از ریشه با پلتفرم `python` مستقر کنید و دستور اجرا را بگذارید:
-
-```json
-{
-  "platform": "python",
-  "port": 8000,
-  "python": { "version": "3.12" },
-  "args": ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-}
-```
-
-### رابط جدا
-
-`frontend/liara.json` برای پلتفرم `static` است. قبل از استقرار، در `frontend/js/config.js` مقدار `window.STARCOACH_API_BASE` را برابر آدرس API بگذارید و `CORS_ORIGINS` را به مبدأ سایت محدود کنید. مسیر پیش‌فرض همان مبدأ است و برای داکر نیازی به تغییر ندارد.
-
-`docker-compose.yml` برای اجرای محلی همین تصویر است. پوشهٔ `./data` روی `/data` سوار می‌شود.
-
-## چه چیزهایی مانده
-
-- امبدینگ چندزبانه و جست‌وجوی ترکیبی با `pgvector`
-- انتقال فاصله به `geography` در Postgres
-- هم‌تراز کردن کلیدهای هم‌معنی در مقایسهٔ مشخصات
-- رتبهٔ وزنی فروشگاه (قیمت، فاصله، تازگی، پرداخت اقساطی)
-- آستانهٔ کهنه‌بودن جدا برای هر دسته
-- صف بررسی انسانی برای تماس؛ بدون شماره‌گیر
-- نشان‌دادن نثر مدل فقط وقتی همهٔ عددهایش در خروجی ابزار باشند
-
-## English
-
-Starcoach is an in-person shopping assistant over a Torob CSV export. A download script builds a local SQLite database with FTS5 (`unicode61` plus trigram). FastAPI exposes search, nearby stores, comparison, price freshness, and a simulated contact lookup. The phone numbers in the dataset are fake; contact is human-in-the-loop and never dials.
-
-The chat route can call an OpenAI-compatible model (`BOXAPI_API_KEY`, `BOXAPI_BASE_URL`, `BOXAPI_MODEL`). The sentence returned to the UI is composed from tool payloads. Without a key, chat falls back to `search_products` and says so. The primary UI is cards, filters, and store lists, not a bare chat box.
-
-Do not commit `data/`, CSV, ZIP, or SQLite files. See `.env.example` and the Liara section above for deploy. Root `liara.json` plus `Dockerfile` is the intended single app. Build the database onto a mounted disk at `/data` after deploy.
+`tests/test_wiring.py` builds a tiny CSV with the real builder and checks normalisation, dirty prices, FTS (including Arabic kaf), distance order, the 90-day stale flag, browse filters, installment counts, the fake-phone warning, `/health` without a database, static files, and that the chat call uses `max_completion_tokens` and `reasoning_effort='none'`. It does not call BoxAPI.
