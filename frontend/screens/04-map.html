@@ -1,0 +1,120 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><style>
+@font-face { font-family: 'Vazirmatn'; src: url('/fonts/Vazirmatn-var.woff2') format('woff2'); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 390px; height: 844px; overflow: hidden; }
+body { font-family: 'Vazirmatn', sans-serif; direction: rtl; color: #1A1F36; font-size: 14px; line-height: 1.75; -webkit-font-smoothing: antialiased;
+  background:
+   radial-gradient(260px 220px at 82% 30%, rgba(255,218,228,.55), transparent 70%),
+   radial-gradient(280px 260px at 12% 42%, rgba(214,222,255,.55), transparent 70%),
+   radial-gradient(300px 260px at 75% 88%, rgba(234,224,255,.45), transparent 70%),
+   radial-gradient(240px 200px at 10% 8%, rgba(225,236,255,.5), transparent 70%),
+   #FCFCFE; }
+.app { position: relative; width: 390px; height: 844px; display:flex; flex-direction:column; }
+.status { height: 50px; display:flex; align-items:center; justify-content:space-between; padding: 8px 28px 0 30px; font-weight: 700; font-size: 15.5px; flex-shrink:0; direction:ltr; }
+.status .sys { display:flex; gap:6px; align-items:center; }
+.bat { width: 25px; height: 12px; border: 1.4px solid #1A1F36; border-radius: 4px; padding: 1.5px; opacity:.9 } .bat i { display:block; height:100%; width:80%; background:#1A1F36; border-radius:1.5px; }
+.bars { display:flex; gap:2px; align-items:flex-end; height: 11px; } .bars i { width:3px; background:#1A1F36; border-radius:1px; display:block; }
+.top { height: 62px; position: relative; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.top .logo { position:absolute; left: 20px; top: 13px; width: 34px; height: 34px; }
+.top .rbtn { position:absolute; right: 20px; top: 12px; }
+.seg { display:flex; background: rgba(238,239,245,.85); border-radius: 22px; padding: 4px; width: 168px; height: 42px; box-shadow: inset 0 0 0 1px rgba(225,227,236,.7); }
+.seg span { flex:1; display:flex; align-items:center; justify-content:center; border-radius: 18px; font-size: 14.5px; color:#9A9DAC; font-weight: 500; }
+.seg span.on { background: linear-gradient(180deg,#FFFFFF, #FFF5F6); color:#1A1F36; font-weight: 800; box-shadow: 0 4px 14px rgba(232,120,140,.14), 0 1px 2px rgba(30,30,60,.06); }
+.scroll { flex:1; overflow:hidden; padding: 6px 18px 0; position:relative; }
+.fade { position:absolute; left:0; right:0; bottom:0; height: 36px; background: linear-gradient(rgba(252,252,254,0), rgba(252,252,254,.95)); }
+.composer { flex-shrink:0; padding: 8px 16px 30px; }
+.glass { background: rgba(255,255,255,.78); backdrop-filter: blur(14px); border: 1px solid rgba(228,230,240,.9); box-shadow: 0 12px 34px rgba(110,110,170,.12), 0 1px 2px rgba(30,30,60,.04); }
+.cbox { height: 58px; border-radius: 29px; display:flex; align-items:center; padding: 0 20px 0 9px; gap: 10px; }
+.cbox .ph { flex:1; color:#A6A9B7; font-size: 14px; }
+.round { width: 42px; height: 42px; border-radius: 50%; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 12px rgba(40,40,90,.08); color:#1A1F36; flex-shrink:0; }
+.homebar { position:absolute; bottom: 8px; left:50%; transform:translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background:#1A1F36; }
+.urow { display:flex; gap: 10px; align-items:flex-start; margin: 4px 0 16px; }
+.uav { width: 36px; height: 36px; border-radius: 50%; background: #E9ECF8; color:#5E6683; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.ububble { background: #EDF0FD; border-radius: 22px; padding: 11px 16px; font-size: 14.5px; line-height: 1.95; max-width: 78%; color:#1A1F36; }
+.arow { display:flex; gap: 10px; align-items:flex-start; justify-content:flex-end; margin-bottom: 14px; }
+.acol { display:flex; flex-direction:column; align-items:flex-start; max-width: 80%; }
+.abubble { background: #F4F5F8; border-radius: 22px; padding: 11px 16px; font-size: 14.5px; line-height: 1.95; color:#1A1F36; }
+.aav { width: 44px; height: 44px; border-radius: 50%; flex-shrink:0; position:relative; margin-top: 2px; }
+.aav::before { content:''; position:absolute; inset:-8px; border-radius:50%; background: radial-gradient(circle, rgba(255,200,215,.6), transparent 70%); }
+.aav img { position:relative; width:44px; height:44px; border-radius:50%; box-shadow: 0 4px 12px rgba(150,120,160,.18); background:#fff; }
+.pill { display:inline-flex; align-items:center; gap: 6px; border-radius: 16px; padding: 4px 8px 4px 12px; font-size: 12px; color:#5B6072; margin-bottom: 8px; background: rgba(255,255,255,.85); border:1px solid #ECEDF3; box-shadow: 0 2px 8px rgba(60,60,110,.05); }
+.pill .ok { width: 17px; height: 17px; border-radius: 50%; background:#E6F6EC; color:#24985A; display:flex; align-items:center; justify-content:center; }
+.pill .chev { color:#A0A3B1; display:flex; }
+.card { background:#fff; border-radius: 26px; box-shadow: 0 10px 34px rgba(40,44,90,.07), 0 1px 3px rgba(40,44,90,.03); border: 1px solid rgba(236,237,243,.8); }
+.pcard { display:flex; gap: 12px; padding: 14px 14px 10px 14px; margin-bottom: 14px; }
+.pcard .col { flex:1; min-width:0; }
+.ph { }
+.tile { width: 112px; height: 134px; border-radius: 20px; background:#F4F5F7; flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; align-self:flex-start; }
+.tile img { width:100%; height:100%; object-fit: cover; }
+.hrow { display:flex; gap: 8px; align-items:flex-start; }
+.ttl { font-size: 14.5px; font-weight: 800; line-height: 1.6; color:#1A1F36; }
+.mdl { font-size: 15px; font-weight: 700; line-height: 1.5; color:#1A1F36; letter-spacing: .1px; }
+.heart { width: 34px; height: 34px; border-radius: 50%; background:#FFF0F2; color:#E8475B; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-right:auto; }
+.prange { font-size: 12.5px; color:#4E5368; margin-top: 7px; font-weight: 500; }
+.prange b { font-weight: 700; color:#1A1F36; font-size: 13px; }
+.fresh { font-size: 10.5px; color:#A3A6B4; display:flex; align-items:center; gap: 4px; margin-top: 1px; }
+.rows { margin-top: 6px; }
+.row { display:flex; align-items:center; gap: 8px; height: 33px; border-top: 1px solid #F0F1F5; font-size: 12.5px; color:#5B6072; }
+.row .t { flex:1; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+.row .ic { color:#7C8194; display:flex; }
+.row .chev { color:#B3B6C3; display:flex; }
+.chips { display:flex; gap: 8px; flex-wrap: wrap; }
+.chip { background: rgba(255,255,255,.9); border: 1px solid #E8E9F0; border-radius: 999px; padding: 6px 14px; font-size: 13px; color:#3B4055; display:inline-flex; align-items:center; gap: 6px; white-space:nowrap; box-shadow: 0 2px 8px rgba(60,60,110,.04); }
+.chip.on { background: linear-gradient(180deg,#FFFFFF,#FFF2F4); border-color: #F7CDD4; color: #C93A50; font-weight: 700; }
+.badge { display:inline-flex; align-items:center; gap: 4px; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 10px; white-space:nowrap; }
+.b-green { background:#EAF7EF; color:#1F8A50; } .b-pink { background:#FFF0F2; color:#C93A50; } .b-lav { background:#EFF0FD; color:#4B54A8; } .b-gray { background:#F3F4F7; color:#5B6072; } .b-amber { background:#FFF5E5; color:#A2620B; }
+.btn { height: 40px; border-radius: 20px; display:flex; align-items:center; justify-content:center; gap: 6px; font-size: 13px; font-weight: 700; }
+.btn-navy { background: #1A1F36; color:#fff; box-shadow: 0 6px 16px rgba(26,31,54,.22); }
+.btn-soft { background:#F4F5F8; color:#1A1F36; }
+.sec { font-size: 12.5px; color:#8C90A0; font-weight: 600; margin: 2px 4px 10px; }
+.muted { color:#8C90A0; }
+</style></head><body><div class="app"><div style="position:absolute;inset:0"><svg width="390" height="844" viewBox="0 0 390 844" style="position:absolute;inset:0">
+<rect width="390" height="844" fill="#F4F3F8"/>
+<g fill="#ECEAF3"><rect x="14" y="120" width="120" height="90" rx="10"/><rect x="150" y="110" width="96" height="70" rx="10"/><rect x="262" y="96" width="120" height="110" rx="10"/><rect x="20" y="236" width="90" height="120" rx="10"/><rect x="128" y="210" width="130" height="96" rx="10"/><rect x="278" y="226" width="104" height="80" rx="10"/><rect x="30" y="380" width="110" height="90" rx="10"/><rect x="160" y="330" width="90" height="110" rx="10"/><rect x="270" y="330" width="110" height="100" rx="10"/><rect x="10" y="500" width="130" height="90" rx="10"/><rect x="170" y="470" width="100" height="80" rx="10"/><rect x="290" y="460" width="90" height="90" rx="10"/></g>
+<path d="M-10 300 C 120 280, 260 330, 400 300" stroke="#DCE6FB" stroke-width="20" fill="none"/>
+<path d="M-10 300 C 120 280, 260 330, 400 300" stroke="#CFDDFB" stroke-width="2" fill="none" opacity=".6"/>
+<g stroke="#FFFFFF" stroke-width="12" fill="none" stroke-linecap="round"><path d="M0 220 L390 196"/><path d="M0 460 L390 440"/><path d="M142 60 L160 640"/><path d="M262 60 L276 640"/><path d="M0 610 L390 590"/></g>
+<rect x="290" y="236" width="80" height="60" rx="14" fill="#E3F1E6"/><rect x="24" y="390" width="96" height="62" rx="16" fill="#E3F1E6"/>
+<text x="200" y="190" font-family="Vazirmatn" font-size="10" fill="#B6B9C8" text-anchor="middle">بزرگراه مدرس</text>
+<text x="72" y="425" font-family="Vazirmatn" font-size="10" fill="#9DC0A6" text-anchor="middle">پارک ملت</text>
+<path d="M190 392 C 205 360, 235 335, 266 318" stroke="#E8475B" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" fill="none"/>
+<circle cx="188" cy="398" r="26" fill="#6E8BFF" opacity=".14"/><circle cx="188" cy="398" r="8.5" fill="#5B79F5" stroke="#fff" stroke-width="3.5"/>
+</svg>
+<div style="position:absolute;left:268px;top:318px;transform:translate(-50%,-100%)"><div style="position:absolute;bottom:54px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff;border-radius:14px;padding:4px 10px;font-size:12px;font-weight:700;box-shadow:0 6px 18px rgba(40,40,90,.14);color:#1A1F36">پارسیان · ۱٫۲ کیلومتر</div>
+<svg width="44" height="52.8" viewBox="0 0 40 48"><defs><linearGradient id="pp268" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A8C"/><stop offset="1" stop-color="#E23E55"/></linearGradient></defs>
+<ellipse cx="20" cy="46" rx="7" ry="2" fill="#000" opacity=".15"/><path d="M20 45C9 33 4 27 4 18a16 16 0 0 1 32 0c0 9-5 15-16 27z" fill="url(#pp268)"/><circle cx="20" cy="18" r="9" fill="#fff"/>
+<g transform="translate(13.5,11.5) scale(.54)" stroke="#E23E55" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5l1.5-5h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12v8h13v-8M10 20v-4.5h4V20"/></g></svg></div><div style="position:absolute;left:72px;top:300px;transform:translate(-50%,-100%)">
+<svg width="34" height="40.8" viewBox="0 0 40 48"><defs><linearGradient id="pp72" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A8C"/><stop offset="1" stop-color="#E23E55"/></linearGradient></defs>
+<ellipse cx="20" cy="46" rx="7" ry="2" fill="#000" opacity=".15"/><path d="M20 45C9 33 4 27 4 18a16 16 0 0 1 32 0c0 9-5 15-16 27z" fill="url(#pp72)"/><circle cx="20" cy="18" r="9" fill="#fff"/>
+<g transform="translate(13.5,11.5) scale(.54)" stroke="#E23E55" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5l1.5-5h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12v8h13v-8M10 20v-4.5h4V20"/></g></svg></div><div style="position:absolute;left:340px;top:410px;transform:translate(-50%,-100%)">
+<svg width="34" height="40.8" viewBox="0 0 40 48"><defs><linearGradient id="pp340" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A8C"/><stop offset="1" stop-color="#E23E55"/></linearGradient></defs>
+<ellipse cx="20" cy="46" rx="7" ry="2" fill="#000" opacity=".15"/><path d="M20 45C9 33 4 27 4 18a16 16 0 0 1 32 0c0 9-5 15-16 27z" fill="url(#pp340)"/><circle cx="20" cy="18" r="9" fill="#fff"/>
+<g transform="translate(13.5,11.5) scale(.54)" stroke="#E23E55" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5l1.5-5h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12v8h13v-8M10 20v-4.5h4V20"/></g></svg></div><div style="position:absolute;left:96px;top:428px;transform:translate(-50%,-100%)">
+<svg width="34" height="40.8" viewBox="0 0 40 48"><defs><linearGradient id="pp96" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A8C"/><stop offset="1" stop-color="#E23E55"/></linearGradient></defs>
+<ellipse cx="20" cy="46" rx="7" ry="2" fill="#000" opacity=".15"/><path d="M20 45C9 33 4 27 4 18a16 16 0 0 1 32 0c0 9-5 15-16 27z" fill="url(#pp96)"/><circle cx="20" cy="18" r="9" fill="#fff"/>
+<g transform="translate(13.5,11.5) scale(.54)" stroke="#E23E55" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5l1.5-5h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12v8h13v-8M10 20v-4.5h4V20"/></g></svg></div>
+<div style="position:absolute;left:188px;top:412px;transform:translateX(-50%);font-size:11px;font-weight:700;color:#4B5DD0;background:rgba(255,255,255,.9);padding:1px 8px;border-radius:10px">شما</div>
+</div>
+<div style="position:relative;z-index:2"><div class="status"><span>۹:۴۱</span><div class="sys"><div class="bars"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:11px"></i></div>
+<svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.5l2.2-2.6a3.4 3.4 0 0 0-4.4 0zM3.4 6.6a7 7 0 0 1 9.2 0l1.4-1.6a9.2 9.2 0 0 0-12 0zM.6 3.4a11.3 11.3 0 0 1 14.8 0" fill="#1A1F36" stroke="#1A1F36" stroke-width=".4"/></svg><div class="bat"><i></i></div></div></div><div class="top"><img class="logo" src="/assets/logo.png"><div class="seg"><span class="">چت</span><span class="on">نقشه</span></div></div></div><div style="position:absolute;top:118px;left:16px;right:16px">
+<div class="glass" style="height:50px;border-radius:25px;display:flex;align-items:center;gap:10px;padding:0 16px;font-size:14px;color:#1A1F36"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:#8C90A0"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/></svg><span style="flex:1">لپ‌تاپ · نزدیک ونک</span><span class="muted" style="font-size:12px">۸ نتیجه</span></div>
+<div class="chips" style="margin-top:10px;flex-wrap:nowrap"><span class="chip on"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg> الان باز</span><span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h10.5v9H3zM13.5 10h4l3 3v2.5h-7"/><circle cx="7" cy="17" r="1.8"/><circle cx="17" cy="17" r="1.8"/></svg> ارسال سریع</span><span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg> قسطی</span></div></div><div style="position:absolute;left:0;right:0;bottom:0;height:400px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-radius:30px 30px 0 0;box-shadow:0 -10px 40px rgba(40,44,90,.12);padding:10px 16px 0">
+<div style="width:40px;height:5px;border-radius:3px;background:#DCDDE5;margin:0 auto 12px"></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px;padding:0 4px"><div><div style="font-size:17px;font-weight:900">۸ فروشگاه لپ‌تاپ نزدیک تو</div><div class="muted" style="font-size:12px">مرتب‌شده بر اساس فاصله از ونک</div></div><span class="chip" style="padding:4px 10px;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg> فیلتر</span></div>
+<div class="card" style="padding:14px;border-radius:24px;margin-bottom:12px;box-shadow:0 6px 22px rgba(40,44,90,.06)">
+<div style="display:flex;gap:12px;align-items:center">
+ <div style="width:48px;height:48px;border-radius:16px;background:#FFF1F3;color:#E23E55;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5l1.5-5h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12v8h13v-8M10 20v-4.5h4V20"/></svg></div>
+ <div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px;font-weight:800">فروشگاه لپ‌تاپ پارسیان</b><span style="font-size:13px;font-weight:800;color:#1A1F36">۱٫۲ کیلومتر</span></div>
+ <div class="muted" style="font-size:12px">ملاصدرا، نبش شیخ بهایی</div></div></div>
+<div style="display:flex;gap:6px;margin:11px 0 8px;flex-wrap:wrap"><span class="badge b-green"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg> باز است تا ۲۱:۰۰</span><span class="badge b-pink"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h10.5v9H3zM13.5 10h4l3 3v2.5h-7"/><circle cx="7" cy="17" r="1.8"/><circle cx="17" cy="17" r="1.8"/></svg> ارسال سریع</span><span class="badge b-lav"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg> قسطی</span></div>
+<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#5B6072;margin-bottom:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="color:#7C8194"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg> پرداخت: کارت‌خوان، آنلاین، اقساطی</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:8px"><div class="btn btn-navy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 17-7.5-4-7.5 4z"/></svg> مسیریابی</div><div class="btn btn-soft"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5s-1.1 5.9-3.6 8.5c-2.5-2.6-3.6-5.4-3.6-8.5s1.1-5.9 3.6-8.5z"/></svg> وب‌سایت</div><div class="btn btn-soft"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.6" cy="7.4" r=".7" fill="currentColor"/></svg> اینستاگرام</div></div></div>
+<div class="card" style="padding:14px;border-radius:24px;margin-bottom:12px;box-shadow:0 6px 22px rgba(40,44,90,.06)">
+<div style="display:flex;gap:12px;align-items:center">
+ <div style="width:48px;height:48px;border-radius:16px;background:#FFF1F3;color:#E23E55;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5l1.5-5h13L20 9.5M4 9.5h16M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M5.5 12v8h13v-8M10 20v-4.5h4V20"/></svg></div>
+ <div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px;font-weight:800">رایان‌سیستم ونک</b><span style="font-size:13px;font-weight:800;color:#1A1F36">۲٫۴ کیلومتر</span></div>
+ <div class="muted" style="font-size:12px">ونک، خیابان گاندی، مجتمع نگین</div></div></div>
+<div style="display:flex;gap:6px;margin:11px 0 8px;flex-wrap:wrap"><span class="badge b-green"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg> باز است تا ۲۰:۳۰</span></div>
+<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#5B6072;margin-bottom:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="color:#7C8194"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg> پرداخت: کارت‌خوان، آنلاین</div>
+<div style="display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:8px"><div class="btn btn-navy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 17-7.5-4-7.5 4z"/></svg> مسیریابی</div><div class="btn btn-soft"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5s-1.1 5.9-3.6 8.5c-2.5-2.6-3.6-5.4-3.6-8.5s1.1-5.9 3.6-8.5z"/></svg> وب‌سایت</div><div class="btn btn-soft"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.6" cy="7.4" r=".7" fill="currentColor"/></svg> اینستاگرام</div></div></div>
+</div><div class="homebar"></div></div></body></html>

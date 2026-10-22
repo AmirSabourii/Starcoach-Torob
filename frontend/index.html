@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>دستیار خرید حضوری ترب</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="top">
+      <img class="logo" src="/assets/logo.png" alt="ترب">
+      <div class="seg" role="tablist">
+        <button type="button" class="on" data-tab="chat">چت</button>
+        <button type="button" data-tab="map">نزدیک</button>
+      </div>
+      <button type="button" class="rbtn" id="area-btn" aria-label="انتخاب محله">فردوسی</button>
+    </header>
+
+    <main class="scroll" id="scroll"></main>
+
+    <form class="composer" id="composer">
+      <div class="cbox glass">
+        <input id="q" name="q" autocomplete="off" placeholder="هر سؤالی دربارهٔ خرید داری بپرس…">
+        <button class="round" type="submit" aria-label="ارسال">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

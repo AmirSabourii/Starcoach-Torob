@@ -1,0 +1,94 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><style>
+@font-face { font-family: 'Vazirmatn'; src: url('/fonts/Vazirmatn-var.woff2') format('woff2'); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 390px; height: 844px; overflow: hidden; }
+body { font-family: 'Vazirmatn', sans-serif; direction: rtl; color: #1A1F36; font-size: 14px; line-height: 1.75; -webkit-font-smoothing: antialiased;
+  background:
+   radial-gradient(260px 220px at 82% 30%, rgba(255,218,228,.55), transparent 70%),
+   radial-gradient(280px 260px at 12% 42%, rgba(214,222,255,.55), transparent 70%),
+   radial-gradient(300px 260px at 75% 88%, rgba(234,224,255,.45), transparent 70%),
+   radial-gradient(240px 200px at 10% 8%, rgba(225,236,255,.5), transparent 70%),
+   #FCFCFE; }
+.app { position: relative; width: 390px; height: 844px; display:flex; flex-direction:column; }
+.status { height: 50px; display:flex; align-items:center; justify-content:space-between; padding: 8px 28px 0 30px; font-weight: 700; font-size: 15.5px; flex-shrink:0; direction:ltr; }
+.status .sys { display:flex; gap:6px; align-items:center; }
+.bat { width: 25px; height: 12px; border: 1.4px solid #1A1F36; border-radius: 4px; padding: 1.5px; opacity:.9 } .bat i { display:block; height:100%; width:80%; background:#1A1F36; border-radius:1.5px; }
+.bars { display:flex; gap:2px; align-items:flex-end; height: 11px; } .bars i { width:3px; background:#1A1F36; border-radius:1px; display:block; }
+.top { height: 62px; position: relative; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.top .logo { position:absolute; left: 20px; top: 13px; width: 34px; height: 34px; }
+.top .rbtn { position:absolute; right: 20px; top: 12px; }
+.seg { display:flex; background: rgba(238,239,245,.85); border-radius: 22px; padding: 4px; width: 168px; height: 42px; box-shadow: inset 0 0 0 1px rgba(225,227,236,.7); }
+.seg span { flex:1; display:flex; align-items:center; justify-content:center; border-radius: 18px; font-size: 14.5px; color:#9A9DAC; font-weight: 500; }
+.seg span.on { background: linear-gradient(180deg,#FFFFFF, #FFF5F6); color:#1A1F36; font-weight: 800; box-shadow: 0 4px 14px rgba(232,120,140,.14), 0 1px 2px rgba(30,30,60,.06); }
+.scroll { flex:1; overflow:hidden; padding: 6px 18px 0; position:relative; }
+.fade { position:absolute; left:0; right:0; bottom:0; height: 36px; background: linear-gradient(rgba(252,252,254,0), rgba(252,252,254,.95)); }
+.composer { flex-shrink:0; padding: 8px 16px 30px; }
+.glass { background: rgba(255,255,255,.78); backdrop-filter: blur(14px); border: 1px solid rgba(228,230,240,.9); box-shadow: 0 12px 34px rgba(110,110,170,.12), 0 1px 2px rgba(30,30,60,.04); }
+.cbox { height: 58px; border-radius: 29px; display:flex; align-items:center; padding: 0 20px 0 9px; gap: 10px; }
+.cbox .ph { flex:1; color:#A6A9B7; font-size: 14px; }
+.round { width: 42px; height: 42px; border-radius: 50%; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 12px rgba(40,40,90,.08); color:#1A1F36; flex-shrink:0; }
+.homebar { position:absolute; bottom: 8px; left:50%; transform:translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background:#1A1F36; }
+.urow { display:flex; gap: 10px; align-items:flex-start; margin: 4px 0 16px; }
+.uav { width: 36px; height: 36px; border-radius: 50%; background: #E9ECF8; color:#5E6683; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.ububble { background: #EDF0FD; border-radius: 22px; padding: 11px 16px; font-size: 14.5px; line-height: 1.95; max-width: 78%; color:#1A1F36; }
+.arow { display:flex; gap: 10px; align-items:flex-start; justify-content:flex-end; margin-bottom: 14px; }
+.acol { display:flex; flex-direction:column; align-items:flex-start; max-width: 80%; }
+.abubble { background: #F4F5F8; border-radius: 22px; padding: 11px 16px; font-size: 14.5px; line-height: 1.95; color:#1A1F36; }
+.aav { width: 44px; height: 44px; border-radius: 50%; flex-shrink:0; position:relative; margin-top: 2px; }
+.aav::before { content:''; position:absolute; inset:-8px; border-radius:50%; background: radial-gradient(circle, rgba(255,200,215,.6), transparent 70%); }
+.aav img { position:relative; width:44px; height:44px; border-radius:50%; box-shadow: 0 4px 12px rgba(150,120,160,.18); background:#fff; }
+.pill { display:inline-flex; align-items:center; gap: 6px; border-radius: 16px; padding: 4px 8px 4px 12px; font-size: 12px; color:#5B6072; margin-bottom: 8px; background: rgba(255,255,255,.85); border:1px solid #ECEDF3; box-shadow: 0 2px 8px rgba(60,60,110,.05); }
+.pill .ok { width: 17px; height: 17px; border-radius: 50%; background:#E6F6EC; color:#24985A; display:flex; align-items:center; justify-content:center; }
+.pill .chev { color:#A0A3B1; display:flex; }
+.card { background:#fff; border-radius: 26px; box-shadow: 0 10px 34px rgba(40,44,90,.07), 0 1px 3px rgba(40,44,90,.03); border: 1px solid rgba(236,237,243,.8); }
+.pcard { display:flex; gap: 12px; padding: 14px 14px 10px 14px; margin-bottom: 14px; }
+.pcard .col { flex:1; min-width:0; }
+.ph { }
+.tile { width: 112px; height: 134px; border-radius: 20px; background:#F4F5F7; flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; align-self:flex-start; }
+.tile img { width:100%; height:100%; object-fit: cover; }
+.hrow { display:flex; gap: 8px; align-items:flex-start; }
+.ttl { font-size: 14.5px; font-weight: 800; line-height: 1.6; color:#1A1F36; }
+.mdl { font-size: 15px; font-weight: 700; line-height: 1.5; color:#1A1F36; letter-spacing: .1px; }
+.heart { width: 34px; height: 34px; border-radius: 50%; background:#FFF0F2; color:#E8475B; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-right:auto; }
+.prange { font-size: 12.5px; color:#4E5368; margin-top: 7px; font-weight: 500; }
+.prange b { font-weight: 700; color:#1A1F36; font-size: 13px; }
+.fresh { font-size: 10.5px; color:#A3A6B4; display:flex; align-items:center; gap: 4px; margin-top: 1px; }
+.rows { margin-top: 6px; }
+.row { display:flex; align-items:center; gap: 8px; height: 33px; border-top: 1px solid #F0F1F5; font-size: 12.5px; color:#5B6072; }
+.row .t { flex:1; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+.row .ic { color:#7C8194; display:flex; }
+.row .chev { color:#B3B6C3; display:flex; }
+.chips { display:flex; gap: 8px; flex-wrap: wrap; }
+.chip { background: rgba(255,255,255,.9); border: 1px solid #E8E9F0; border-radius: 999px; padding: 6px 14px; font-size: 13px; color:#3B4055; display:inline-flex; align-items:center; gap: 6px; white-space:nowrap; box-shadow: 0 2px 8px rgba(60,60,110,.04); }
+.chip.on { background: linear-gradient(180deg,#FFFFFF,#FFF2F4); border-color: #F7CDD4; color: #C93A50; font-weight: 700; }
+.badge { display:inline-flex; align-items:center; gap: 4px; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 10px; white-space:nowrap; }
+.b-green { background:#EAF7EF; color:#1F8A50; } .b-pink { background:#FFF0F2; color:#C93A50; } .b-lav { background:#EFF0FD; color:#4B54A8; } .b-gray { background:#F3F4F7; color:#5B6072; } .b-amber { background:#FFF5E5; color:#A2620B; }
+.btn { height: 40px; border-radius: 20px; display:flex; align-items:center; justify-content:center; gap: 6px; font-size: 13px; font-weight: 700; }
+.btn-navy { background: #1A1F36; color:#fff; box-shadow: 0 6px 16px rgba(26,31,54,.22); }
+.btn-soft { background:#F4F5F8; color:#1A1F36; }
+.sec { font-size: 12.5px; color:#8C90A0; font-weight: 600; margin: 2px 4px 10px; }
+.muted { color:#8C90A0; }
+</style></head><body><div class="app"><div class="status"><span>۹:۴۱</span><div class="sys"><div class="bars"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:11px"></i></div>
+<svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.5l2.2-2.6a3.4 3.4 0 0 0-4.4 0zM3.4 6.6a7 7 0 0 1 9.2 0l1.4-1.6a9.2 9.2 0 0 0-12 0zM.6 3.4a11.3 11.3 0 0 1 14.8 0" fill="#1A1F36" stroke="#1A1F36" stroke-width=".4"/></svg><div class="bat"><i></i></div></div></div><div class="top"><img class="logo" src="/assets/logo.png"><div class="seg"><span class="on">چت</span><span class="">نقشه</span></div></div>
+<div class="scroll">
+<div class="urow"><div class="uav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.8" fill="currentColor" stroke="none"/><path d="M4.8 19.5c1.2-3.6 4-5.3 7.2-5.3s6 1.7 7.2 5.3z" fill="currentColor" stroke="none"/></svg></div><div class="ububble">آیفون ۱۵ زیر ۱۰ میلیون نزدیک تجریش می‌خوام.</div></div>
+<div class="arow"><div class="acol"><div class="pill"><span class="ok" style="background:#FFF4E2;color:#B06A0C"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 15.5H3z"/><path d="M12 10v4.5M12 17v.3"/></svg></span>۳ مرحله · نتیجه‌ای نبود<span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5l5.5 5.5 5.5-5.5"/></svg></span></div><div class="abubble">با این شرایط چیزی پیدا نکردم. کمترین قیمت آیفون ۱۵ تو تهران <b>۴۸٬۹۰۰٬۰۰۰ تومان</b>ـه.</div></div><div class="aav" style="margin-top:40px"><img src="/assets/mascot_avatar.png"></div></div>
+<div style="display:flex;gap:8px;align-items:flex-start;background:rgba(239,240,253,.7);border-radius:18px;padding:10px 14px;font-size:12px;color:#4B54A8;line-height:1.85;margin-bottom:14px">
+<span style="flex-shrink:0;margin-top:3px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8v.3"/></svg></span><span>ترب اطلاعات موجودی انبار رو نداره؛ حدس نمی‌زنم و فقط پیشنهادهای ثبت‌شده رو نشونت می‌دم.</span></div>
+<div class="sec">گزینه‌های نزدیک به خواسته‌ات، زیر ۱۰ میلیون</div>
+<div class="card" style="display:flex;gap:12px;align-items:center;padding:10px 12px 10px 14px;border-radius:22px;margin-bottom:10px">
+<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:800">گوشی سامسونگ گلکسی A25</div>
+<div style="font-size:12.5px;color:#4E5368;margin-top:1px">از <b style="color:#1A1F36">۹٬۷۰۰٬۰۰۰</b> تومان</div>
+<div style="display:flex;justify-content:space-between;align-items:center"><span class="fresh"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg> آخرین تغییر قیمت: ۲ روز پیش</span><span style="font-size:11.5px;color:#7C8194;display:flex;align-items:center;gap:3px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> تجریش، ۰٫۸ کیلومتر</span></div></div>
+<div style="width:64px;height:70px;border-radius:16px;background:#F4F5F8;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="28" height="53.199999999999996" viewBox="0 0 46 88"><defs><linearGradient id="pgE6EAF7" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#E6EAF7"/><stop offset="1" stop-color="#B7C0DC"/></linearGradient></defs>
+<ellipse cx="23" cy="85" rx="16" ry="2.5" fill="#000" opacity=".08"/><rect x="3" y="2" width="40" height="80" rx="8" fill="url(#pgE6EAF7)" stroke="#A9B0C2" stroke-width=".8"/>
+<rect x="8" y="7" width="13" height="22" rx="5" fill="#fff" opacity=".55"/><circle cx="14.5" cy="13" r="3.3" fill="#3A3F52"/><circle cx="14.5" cy="22.5" r="3.3" fill="#3A3F52"/></svg></div></div>
+<div class="card" style="display:flex;gap:12px;align-items:center;padding:10px 12px 10px 14px;border-radius:22px;margin-bottom:10px">
+<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:800">گوشی شیائومی ردمی نوت ۱۳</div>
+<div style="font-size:12.5px;color:#4E5368;margin-top:1px">از <b style="color:#1A1F36">۹٬۲۰۰٬۰۰۰</b> تومان</div>
+<div style="display:flex;justify-content:space-between;align-items:center"><span class="fresh"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg> آخرین تغییر قیمت: امروز</span><span style="font-size:11.5px;color:#7C8194;display:flex;align-items:center;gap:3px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg> تجریش، ۱٫۴ کیلومتر</span></div></div>
+<div style="width:64px;height:70px;border-radius:16px;background:#F4F5F8;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="28" height="53.199999999999996" viewBox="0 0 46 88"><defs><linearGradient id="pgEAE6F7" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#EAE6F7"/><stop offset="1" stop-color="#C3B7DE"/></linearGradient></defs>
+<ellipse cx="23" cy="85" rx="16" ry="2.5" fill="#000" opacity=".08"/><rect x="3" y="2" width="40" height="80" rx="8" fill="url(#pgEAE6F7)" stroke="#A9B0C2" stroke-width=".8"/>
+<rect x="8" y="7" width="13" height="22" rx="5" fill="#fff" opacity=".55"/><circle cx="14.5" cy="13" r="3.3" fill="#3A3F52"/><circle cx="14.5" cy="22.5" r="3.3" fill="#3A3F52"/></svg></div></div>
+<div class="chips" style="margin-top:4px"><span class="chip">بودجه رو بیشتر کن</span><span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg> آیفون ۱۵ قسطی</span><span class="chip">کل تهران رو بگرد</span></div>
+<div class="fade"></div></div><div class="composer"><div class="cbox glass"><div class="ph">هر سؤالی دربارهٔ خرید داری بپرس…</div><div class="round"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div></div></div><div class="homebar"></div></div></body></html>
