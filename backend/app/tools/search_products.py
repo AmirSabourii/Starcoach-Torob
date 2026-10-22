@@ -9,7 +9,7 @@ from __future__ import annotations
 import sqlite3
 
 from backend.app.db.connection import read_connection
-from backend.app.textnorm import tokenize
+from backend.app.textnorm import normalize_fa, tokenize
 from backend.app.tools.common import (
     coerce_filters,
     filter_clauses,
@@ -64,6 +64,7 @@ def search_products(query: str = "", filters: dict | None = None, **extra) -> di
                 products = _run_fts(conn, "products_trgm", trigram_query, parsed, limit, seen, products)
                 if len(products) > before:
                     mode = "mixed" if before else "trigram"
+        products = _prefer_leading_token(products, tokens)
         return _payload(query, parsed, mode, products, None if products else "محصولی پیدا نشد.")
 
 
@@ -81,6 +82,23 @@ def get_product(product_id: str) -> dict | None:
     if row is None:
         return None
     return product_detail(row)
+
+
+def _prefer_leading_token(products: list[dict], tokens: list[str]) -> list[dict]:
+    """Keep BM25 order, but prefer titles that lead with the query.
+
+    TODO: replace this nudge with a hybrid pgvector score.
+    """
+    if not tokens:
+        return products
+    head = tokens[0]
+    phrase = " ".join(tokens)
+
+    def rank(item: dict) -> tuple[int, int]:
+        title = normalize_fa(item.get("persian_title")) or ""
+        return (0 if title.startswith(head) else 1, 0 if phrase in title else 1)
+
+    return sorted(products, key=rank)
 
 
 def _payload(query: str, filters: dict, mode: str, products: list[dict], message: str | None) -> dict:

@@ -284,7 +284,9 @@ async function openProduct(productId) {
 
 function renderProduct(product) {
   const images = (product.image_urls || []).map(safeUrl).filter(Boolean).slice(0, 4);
-  const hero = images[0] ? `<img class="hero-img" alt="" src="${esc(images[0])}" />` : `<div class="thumb hero-img"><span>بدون تصویر</span></div>`;
+  const hero = images[0]
+    ? `<div class="hero-frame">${imgTag(images[0])}</div>`
+    : `<div class="hero-frame"><span>بدون تصویر</span></div>`;
   document.getElementById("product").innerHTML = `
     ${hero}
     <div class="product-head" style="margin-top:12px">
@@ -363,12 +365,16 @@ function renderStore(store) {
 }
 
 function renderOffer(offer) {
-  const badge = !offer.last_price_changed_at
-    ? `<span class="badge warn">تاریخ نامشخص</span>`
-    : offer.is_stale
-      ? `<span class="badge stale">قیمت کهنه</span>`
-      : `<span class="badge fresh">قیمت تازه</span>`;
+  const invalidPrice = offer.price_toman == null;
+  const badge = invalidPrice
+    ? `<span class="badge warn">قیمت نامعتبر</span>`
+    : !offer.last_price_changed_at
+      ? `<span class="badge warn">تاریخ نامشخص</span>`
+      : offer.is_stale
+        ? `<span class="badge stale">قیمت کهنه</span>`
+        : `<span class="badge fresh">قیمت تازه</span>`;
   const warranty = warrantyText(offer.warranty);
+  const freshness = invalidPrice ? "" : `<span class="muted">${esc(offer.freshness_label_fa || "")}</span>`;
   return `<div class="offer">
     <strong>${formatToman(offer.price_toman)}</strong>
     <p class="muted">${esc(offer.seller_title || "")}</p>
@@ -376,7 +382,7 @@ function renderOffer(offer) {
     ${warranty ? `<p class="muted">گارانتی: ${esc(warranty)}</p>` : ""}
     <div class="offer-actions" data-fresh>
       ${badge}
-      <span class="muted">${esc(offer.freshness_label_fa || "")}</span>
+      ${freshness}
       <button type="button" data-action="freshness" data-offer-id="${esc(offer.offer_id)}">تازگی قیمت</button>
     </div>
   </div>`;
@@ -432,7 +438,7 @@ async function openContact(shopId) {
   modal.hidden = false;
   try {
     const data = await apiGet("/api/shops/" + encodeURIComponent(shopId) + "/contact");
-    const contacts = (data.contacts || []).map((item) => `<li>${esc(item.channel || "تماس")}: ${esc(item.display_number || "—")}</li>`).join("");
+    const contacts = (data.contacts || []).map((item) => `<li>${esc(channelLabel(item.channel))}: ${esc(item.display_number || "—")}</li>`).join("");
     document.getElementById("modal-body").innerHTML = `
       <p class="warning">${esc(data.disclaimer_fa || "")}</p>
       <h3>${esc(data.name || "")}</h3>
@@ -549,7 +555,16 @@ function updateCompareTab() {
 function thumb(url) {
   const safe = safeUrl(url);
   if (!safe) return `<div class="thumb"><span>بدون تصویر</span></div>`;
-  return `<div class="thumb"><img alt="" src="${esc(safe)}" /></div>`;
+  return `<div class="thumb">${imgTag(safe)}</div>`;
+}
+
+function imgTag(url) {
+  return `<img alt="" src="${esc(url)}" onerror="var span=document.createElement('span'); span.textContent='بدون تصویر'; this.replaceWith(span);" />`;
+}
+
+function channelLabel(channel) {
+  const labels = { phone: "تلفن", mobile: "موبایل", email: "ایمیل" };
+  return labels[channel] || channel || "تماس";
 }
 
 function geoLink(store) {
@@ -565,7 +580,7 @@ function formatHours(hours) {
     if (day.status === "closed") return `${label}: تعطیل`;
     const shifts = (day.shifts || []).filter((shift) => shift.start_time && !(String(shift.start_time).startsWith("00:00") && String(shift.end_time || "").startsWith("00:00")));
     if (!shifts.length || day.status === "unsupported") return `${label}: نامشخص`;
-    const text = shifts.map((shift) => `${String(shift.start_time).slice(0, 5)}–${String(shift.end_time).slice(0, 5)}`).join("، ");
+    const text = shifts.map((shift) => `${faDigits(String(shift.start_time).slice(0, 5))}–${faDigits(String(shift.end_time).slice(0, 5))}`).join("، ");
     return `${label}: ${text}`;
   }).filter(Boolean);
   return lines.length ? `<ul class="specs">${lines.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>` : "";
@@ -578,6 +593,10 @@ function warrantyText(warranty) {
   if (warranty.period_months) bits.push(formatNumber(warranty.period_months) + " ماه");
   if (warranty.description) bits.push(warranty.description);
   return bits.join(" · ");
+}
+
+function faDigits(value) {
+  return String(value ?? "").replace(/\d/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[Number(digit)]);
 }
 
 function formatNumber(value) {
