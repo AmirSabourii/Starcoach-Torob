@@ -1,0 +1,9 @@
+# versions mirror the working dev venv (Python 3.13)
+fastapi==0.161.1
+starlette==1.9.0
+uvicorn==0.54.0
+pydantic==2.14.1
+python-multipart==0.0.32
+numpy==2.5.4
+openai==3.37.0
+pillow==13.0.0

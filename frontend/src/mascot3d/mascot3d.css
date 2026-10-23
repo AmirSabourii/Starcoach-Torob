@@ -1,0 +1,31 @@
+/* ===== 3D layered mascot (see engine.ts) =====
+   Canvas: every layer is an 800×800 image; ring centre ≈ (50%, 49.8%), ring radius ≈ 32%, feet bottom ≈ 96%. */
+.m3d {
+  /* fills its positioned parent (.mascot3d-box in styles.css sets size / placement) */
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.m3d.is-ready { opacity: 1; }
+.m3d-ch { position: absolute; inset: 0; transform-origin: 50% 96%; }
+.m3d-poses { position: absolute; inset: 0; }
+.m3d-pose { position: absolute; inset: 0; opacity: 0; }
+.m3d-pose.is-on { opacity: 1; }
+.m3d-pose img, .m3d-leaves { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+.m3d-leaves img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.m3d-prop { opacity: 0; }
+.m3d-shadow {
+  position: absolute; left: 50%; top: 95.6%;
+  width: 56%; height: 8%; margin-left: -28%; margin-top: -4%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(70, 64, 130, 0.32), rgba(80, 76, 145, 0.13) 58%, rgba(80, 76, 145, 0) 100%);
+}
+.m3d-confetti { position: absolute; inset: 0; overflow: visible; }
+.m3d-confetti span { position: absolute; left: 0; top: 0; border-radius: 50%; }
+/* tap target = the ring body only */
+.m3d-hit {
+  position: absolute; left: 20%; top: 20%; width: 60%; height: 60%;
+  border-radius: 50%; pointer-events: auto; z-index: 3; outline: none;
+}
+.m3d-hit:focus-visible { box-shadow: 0 0 0 3px rgba(107, 175, 141, 0.45); }
+@media (prefers-reduced-motion: reduce) { .m3d { transition: none; } }
