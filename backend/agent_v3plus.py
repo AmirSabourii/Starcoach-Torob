@@ -1150,10 +1150,23 @@ def _call(msgs, forced, el, log_usage, narrow=False):
     c = B._usage_cost(u); log_usage['cost'] += c; COST['llm'] += c; log_usage['api_calls'] += 1
     return resp.choices[0].message
 
+# «ساعت» followed by a clock time is a time, not the product word (late-night «شارژر ساعت ۲۳:۳۰» ≠ smartwatch charger)
+_D = '[0-9۰-۹٠-٩]'
+_NUMW = 'یک|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده|یازده|دوازده'
+_PART = r'(?:\s*(?:شب|صبح|عصر|ظهر|بعد\s*از\s*ظهر|بعدازظهر|بامداد))'
+_CLOCK_RX = re.compile(r'(?:سر\s+)?ساعت\s*((?:%s{1,2}(?:\s*[:٫.:]\s*%s{2})?(?!\s*%s)(?!\s*(?:ATM|atm|ای\s*تی|متر|بار|میل|گیگ|اینچ|عدد|تا\b)))%s?|(?:%s)(?:\s*و\s*نیم)?%s)' % (_D, _D, _D, _PART, _NUMW, _PART))
+def clock_preparse(text):
+    """'ساعت ۲۳:۳۰' → 'زمان ۲۳:۳۰' (deterministic; 'ساعت هوشمند' / 'ساعت کاسیو' untouched)"""
+    if not isinstance(text, str) or 'ساعت' not in text:
+        return text
+    return _CLOCK_RX.sub(lambda m: 'زمان ' + m.group(1).strip(), text)
+
 def run_agent_v3plus(messages_or_question, session_mission=None, user_lat=None, user_lon=None, allow_project=True, single_tool_round=False):
     _RUN.allow_project = allow_project
     _RUN.single_tool_round = single_tool_round   # late-night/urgent turns: no 2nd search round (server adds the open-shop step)
     hist = [{'role': 'user', 'content': messages_or_question}] if isinstance(messages_or_question, str) else list(messages_or_question)
+    if hist and hist[-1].get('role') == 'user' and isinstance(hist[-1].get('content'), str):
+        hist[-1] = dict(hist[-1], content=clock_preparse(hist[-1]['content']))
     user_text = next((m['content'] for m in reversed(hist) if m.get('role') == 'user'), '')
     _PCACHE.clear()
     _RUN.fp, _RUN.pk, _RUN.facts = [], [], {}

@@ -15,6 +15,17 @@ type Screen = { k: 'home' } | { k: 'chat' } | { k: 'cat'; key: string; label: st
 type Overlay = { k: 'product'; id: string; tab?: 'summary' | 'sellers' } | { k: 'shop'; id: string; pid?: string | null; alt?: boolean } | { k: 'area' }
 
 const FALLBACK_AREA: Area = { key: 'ونک', label: 'ونک', lat: 35.757, lon: 51.41 }
+/** photo -> JPEG data URL, longest side ≤ 1024px (keeps the vision call small) */
+function shrink(url: string): Promise<string> {
+  return new Promise((ok, bad) => {
+    const im = new Image(); im.crossOrigin = 'anonymous'
+    im.onload = () => { const k = Math.min(1, 1024 / Math.max(im.width, im.height)); const c = document.createElement('canvas')
+      c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d')!.drawImage(im, 0, 0, c.width, c.height)
+      try { ok(c.toDataURL('image/jpeg', 0.85)) } catch (e) { bad(e) } }
+    im.onerror = () => bad(new Error('image'))
+    im.src = url
+  })
+}
 let MID = 1
 
 export default function App() {
@@ -58,8 +69,32 @@ export default function App() {
   const top = stack[stack.length - 1]
 
   const send = useCallback(async (text: string, att?: Attachment | null, answers?: { id: string; title: string; answer: string }[], extra?: Record<string, unknown>) => {
-    if (!text.trim() || busy) return
+    if ((!text.trim() && !att) || busy) return
     const id = MID++
+    const lastPid = (() => {     // product of the latest answer (for «پیش از خرید» asked in words)
+      for (let k = msgs.length - 1; k >= 0; k--) { const x: any = msgs[k]; if (x.role !== 'bot') continue
+        const c = x.cards?.[0]?.product_id || (x.r?.blocks || []).find((b: any) => b.type === 'product_cards')?.items?.[0]?.product_id; if (c) return c as string }
+      return null
+    })()
+    const bbAsk = !att && lastPid && /چی\s*بپرسم|چقدر\s*بخرم|پیش\s*از\s*خرید|قبل\s*از\s*خرید|قیمت\s*منصفانه|قیمت\s*منطقی|سوال.*فروشنده/.test(text)
+    if (att || bbAsk) {          // photo of a label/box -> /api/instore/identify; «پیش از خرید» in words -> local block ($0)
+      setMsgs((m) => [...m, { id: MID++, role: 'user', text, att: att || null }, { id, role: 'bot', pending: true }])
+      if (bbAsk) {
+        const only = /چی\s*بپرسم|سوال/.test(text) && !/قیمت|چقدر/.test(text) ? 'questions' : /قیمت|چقدر/.test(text) && !/بپرسم|سوال/.test(text) ? 'fair' : undefined
+        setMsgs((m) => m.map((x) => (x.id === id ? { id, role: 'bot', r: { ok: true, text: '', blocks: [{ type: 'before_buy', product_id: lastPid, only }] } } : x)))
+        return
+      }
+      setBusy(true)
+      try {
+        const image = await shrink(att!.url)
+        const r = await api<R>('/api/instore/identify', { body: { image, text, sid: SID }, timeout: 60000 })
+        setMsgs((m) => m.map((x) => (x.id === id ? { id, role: 'bot', r } : x)))
+        setDoneTick((t) => t + 1)
+      } catch (e) {
+        setMsgs((m) => m.map((x) => (x.id === id ? { id, role: 'bot', error: errText(e) } : x)))
+      } finally { setBusy(false) }
+      return
+    }
     setMsgs((m) => [...m, { id: MID++, role: 'user', text, att: att || null }, { id, role: 'bot', pending: true }])
     setBusy(true)
     const msg = extra && extra.project ? `دربارهٔ همین فهرست «خرید یکجا» که الان جلومه (از قبل آماده شده، دوباره سؤال نپرس): ${text}` : text
@@ -101,7 +136,7 @@ export default function App() {
     } catch (e) {
       setMsgs((m) => m.map((x) => (x.id === id ? { id, role: 'bot', error: errText(e), retry: text } : x)))
     } finally { setBusy(false) }
-  }, [busy, area.key])
+  }, [busy, area.key, msgs])
 
   const ask = (q: string, att?: Attachment | null) => {
     if (top.k !== 'chat') push({ k: 'chat' })

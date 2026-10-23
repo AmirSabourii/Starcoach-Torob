@@ -232,6 +232,7 @@ export function MallGuideStory({ guide, sbar = false, onClose, onAsk, onContact,
       </div>
 
       <div className={'mg-frame ' + (dir > 0 ? 'fwd' : 'back')} key={idx}>
+        <div className="mg-scroll">
         <div className={'mg-art' + (st.kind === 'shop' ? ' short' : '') + (st.photo ? ' photo' : '')}>
           {st.photo ? <>
             <img className="mg-photo" src={st.photo.url} alt={guide.mall || ''} />
@@ -258,6 +259,7 @@ export function MallGuideStory({ guide, sbar = false, onClose, onAsk, onContact,
             </p>) : null}
           {facts.length ? <p className="mg-facts"><bdi>{facts.map((f) => factText(f.text)).join(' · ')}</bdi><SrcLink s={facts[0].source!} /></p> : null}
           {src ? <p className="mg-facts"><SrcLink s={src} /></p> : null}
+        </div>
         </div>
 
         {st.kind === 'arrive' && st.links ? (

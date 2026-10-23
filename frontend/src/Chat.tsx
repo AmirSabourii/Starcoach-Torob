@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { BeforeBuy } from './instore/InStore'
 import { api, CID, errText } from './api'
 import { clean, fa, faNum, short, splitTitle, stripParen, toman, UNKNOWN } from './fmt'
 import { BackIcon, Heart, Pin, Store, UserIcon, ChevLeft, Close, PencilIcon } from './icons'
@@ -55,6 +56,7 @@ function Blocks({ r, onOpen, onShop, onSave, saved, cards, showSellers }: { show
   return (
     <>
       {(r.blocks || []).map((b, i) => {
+        if (b.type === 'before_buy') return <div className="blk" key={i}><BeforeBuy pid={b.product_id} defaultOpen only={b.only} /></div>
         if (b.type === 'late_night') return <div className="blk" key={i}><LateNight b={b} onShop={onShop} /></div>
         if (b.type === 'product_cards') return <div className="blk" key={i}>{b.items.map((p: any) => <ProductCard key={p.product_id} p={p} info={cards[p.product_id]} onOpen={onOpen} onSave={onSave} saved={!!saved[p.product_id]} />)}</div>
         if (b.type === 'sellers' || b.type === 'verify') {
@@ -178,6 +180,7 @@ export function ChatScreen({ msgs, busy, mascot, onSend, onBack, onOpen, onShop,
   const [hooked, setHooked] = useState<Record<number, boolean>>({})
   const [cards, setCards] = useState<Record<string, CardInfo>>({})
   const asked = useRef<Set<string>>(new Set())
+  const [bbOpen, setBbOpen] = useState<Record<number, boolean>>({})
   useEffect(() => {
     const need = new Set<string>()
     msgs.forEach((m) => {
@@ -224,7 +227,7 @@ export function ChatScreen({ msgs, busy, mascot, onSend, onBack, onOpen, onShop,
   }
   const submit = () => {
     const t = value.trim()
-    if (!t) { if (att) toast('یه توضیح کوتاه هم بنویس تا دنبالش بگردم'); return }
+    if (!t && !att) return
     onSend(t, att); setValue(''); setAtt(null)
   }
   const lastBot = [...msgs].reverse().find((m) => m.role === 'bot' && m.r) as Extract<Msg, { role: 'bot' }> | undefined
@@ -274,6 +277,12 @@ export function ChatScreen({ msgs, busy, mascot, onSend, onBack, onOpen, onShop,
                   const sb = (m.r.blocks || []).find((b: any) => b.type === 'sellers' && b.items?.length)
                   const pid = sb?.items?.find((o: any) => o.product_id)?.product_id
                   return sb && pid && !hasCards && !askedSellers(m.id) ? <button className="act-chip" onClick={() => onOpen(pid, 'sellers')}><Store /> فروشنده‌ها<span className="chev-c"><ChevLeft size={8} /></span></button> : null
+                })()}
+                {(() => {   // one quiet «پیش از خرید» chip under the cards; opens the same block inline (no auto-open)
+                  const pid0 = (m.r.blocks || []).find((b: any) => b.type === 'product_cards')?.items?.[0]?.product_id
+                  if (!pid0 || (m.r.blocks || []).some((b: any) => b.type === 'before_buy')) return null
+                  return bbOpen[m.id] ? <div className="blk"><BeforeBuy pid={pid0} defaultOpen /></div>
+                    : <button className="act-chip" onClick={() => setBbOpen((x) => ({ ...x, [m.id]: true }))}>پیش از خرید<span className="chev-c"><ChevLeft size={8} /></span></button>
                 })()}
                 {m.r.alternatives?.items?.length ? <div className="chat-alt"><AltBox r={m.r.alternatives} onShop={(sid, pid) => onShop(sid, pid)} /></div> : null}
                 {m.r.project_result?.plans?.length ? <PlanUpdateCard pr={m.r.project_result} onOpen={onProject} /> : null}

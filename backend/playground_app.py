@@ -304,7 +304,7 @@ def _late(s, msg, r, out, dbg):
     pids = [it.get('product_id') for b in out['blocks'] if b.get('type') == 'product_cards' for it in (b.get('items') or [])]
     cats = None
     if not pids:
-        try: cats = P._infer_categories(msg)
+        try: cats = P._infer_categories(P.clock_preparse(msg))
         except Exception: cats = None
     res = LN.build(pids, msg, now, pt, HOME._PRETTY.get(area, area) if hasattr(HOME, '_PRETTY') else area, llm_flag=r.get('urgent_now'), categories=cats)
     dbg['late_night'] = {'now': now.strftime('%a %H:%M'), 'override': ovr, 'fired': bool(res), 'ms': int((time.time() - t_) * 1000), 'llm_flag': r.get('urgent_now'),
@@ -596,6 +596,9 @@ app.include_router(TRYON.router)
 import playground_mallguide as MALLGUIDE  # «راهنمای رسیدن داخل پاساژ»: /api/shop/{sid}/mallguide (+ /facts)
 MALLGUIDE.init(auth=_auth, add_spend=_add_spend, can_spend=lambda need: _cap_ok(need), client_fn=A.client)
 app.include_router(MALLGUIDE.router)
+import playground_instore as INSTORE  # خرید حضوری: before_buy / mallmates / alts_here / match ($0, DB) + identify (vision, spend-capped)
+INSTORE.init(auth=_auth, add_spend=_add_spend, can_spend=lambda need: _cap_ok(need), client_fn=A.client, session_fn=lambda sid: ' | '.join(u for u, _a in (SESS.get((sid, 'v3plus')) or {}).get('mem', {}).get('turns', [])[-4:]), hydrate_fn=lambda pids: P.B.hydrate([{'type': 'product_cards', 'items': [{'product_id': x} for x in pids]}], set(pids))[0])
+app.include_router(INSTORE.router)
 
 @app.get('/')
 def root():

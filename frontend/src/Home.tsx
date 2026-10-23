@@ -5,6 +5,7 @@ import { useMascot } from './useMascot'
 import { Chevron, ChevLeft, Pin, Plus, Spark } from './icons'
 import { Composer, MascotAvatar, ProductTile, type Attachment, type GridProduct } from './ui'
 import { LiveMap } from './LiveMap'
+import { GoingEntry, SavedButton } from './instore/Going'
 import { StatusBar } from './StatusBar'
 import phone from './assets/thumbs/phone.png'
 import headphones from './assets/thumbs/headphones.png'
@@ -70,6 +71,7 @@ export function Home({ tab, setTab, onAsk, onAskShop, onTile, onDeals, onOpen, o
           <button className="avatar" onClick={() => scroller.current?.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="بالای صفحه">
             <MascotAvatar state={mascot.state} size={40} />
           </button>
+          <SavedButton onOpen={onOpen} />
           <button className="ask" onClick={() => onAsk('')}>
             <span className="plus" role="button" aria-label="افزودن عکس" onClick={(e) => { e.stopPropagation(); hdrFile.current?.click() }}><Plus size={11} /></span>
             <span className="ph">از دستیار ترب بپرس...</span>
@@ -85,11 +87,15 @@ export function Home({ tab, setTab, onAsk, onAskShop, onTile, onDeals, onOpen, o
 
       <div className="home-scroll" ref={scroller}>
         <div className="sb-space">{sbar ? <StatusBar /> : null}</div>
+        <div className="seg-row">
+          <span className="seg-saved"><SavedButton onOpen={onOpen} /></span>
         <div className="segmented" role="tablist" data-active={tab}>
           <span className="seg-pill" aria-hidden />
           <button role="tab" aria-selected={tab === 'chat'} className="seg-btn" onClick={() => setTab('chat')}>چت</button>
           <button role="tab" aria-selected={tab === 'map'} className="seg-btn" onClick={() => setTab('map')}>نقشه</button>
         </div>
+        </div>
+        {tab === 'chat' ? <GoingEntry sbar={sbar} onShop={onShop} /> : null}
 
         {tab === 'map' ? (
           <LiveMap area={area} areaLabel={areaLabel} onShop={onShop} onArea={onArea} onAsk={(q) => onAsk(q)} onAskShop={(sid, name) => (onAskShop ? onAskShop(sid, name) : onAsk(`دربارهٔ «${name}» بگو`))} />

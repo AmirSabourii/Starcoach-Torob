@@ -8,6 +8,7 @@ import { CatTile } from './catIcon'
 import { LeafletPins } from './MapView'
 import { StatusBar } from './StatusBar'
 import { TryOnEntry } from './tryon/TryOn'
+import { BeforeBuy, SellersFair } from './instore/InStore'
 
 export type Seller = {
   offer_id: string; shop_id: string; shop_name: string; shop_area: string; place: string; place_is_bazaar: boolean
@@ -164,6 +165,7 @@ export function ProductPage({ pid, tab0 = 'summary', area, areaLabel, sbar, onCl
             ) : d?.specs?.[0]?.items?.length ? (
               <div className="pp-specs">{d.specs[0].items.slice(0, 5).map((it, j) => <div key={j}><span>{it.key}</span><b>{it.value}</b></div>)}</div>
             ) : null}
+            <BeforeBuy pid={pid} />
             <div style={{ height: 24 }} />
           </div>
         </div>
@@ -179,6 +181,7 @@ export function ProductPage({ pid, tab0 = 'summary', area, areaLabel, sbar, onCl
             {chip(!!flt.warr, 'با گارانتی', () => setFlt((f) => ({ ...f, warr: !f.warr })), s.counts.warranty)}
           </div>
           <div className="pp-scroll" ref={scroll}>
+            <SellersFair pid={pid} />
             <div className="s-count">{fa(list.length)} فروشنده{lp.length ? <> <i>•</i> {milRange(Math.min(...lp), Math.max(...lp))}</> : null}{sort === 'near' ? <> <i>•</i> نزدیک به {areaLabel}</> : null}</div>
             {list.map((x) => <SellerCard key={x.offer_id} s={x} near={sort === 'near'} onOpen={() => onShop(x.shop_id, pid, x.open_state === 'closed_now' || x.open_state === 'closed_today')} />)}
             {!list.length ? <div className="empty small">با این فیلترها فروشنده‌ای نیست.</div> : null}

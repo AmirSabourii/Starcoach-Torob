@@ -1,5 +1,7 @@
 // Shop sheet (design 5/6), contact sheet (number as TEXT + copy, no tel:), and the «ترب چی رو پیگیری کنه؟» UI mock (design 7).
 import { MallGuide } from './mallguide/MallGuide'
+import { ShopInStore } from './instore/InStore'
+import { GoingSheet, GoingStory, clearDest, useDest } from './instore/Going'
 import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import { api, errText, SID } from './api'
@@ -183,6 +185,9 @@ export function ShopSheet({ sid, pid, sbar, onClose, onProduct, toast, onShop, a
 }) {
   const [altOn, setAltOn] = useState(!!alt)
   const [routePick, setRoutePick] = useState(false)
+  const [going, setGoing] = useState(false)
+  const [goSheet, setGoSheet] = useState(false)
+  const dest = useDest()
   const [s, setS] = useState<ShopR | null>(null)
   const [err, setErr] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
@@ -261,17 +266,18 @@ export function ShopSheet({ sid, pid, sbar, onClose, onProduct, toast, onShop, a
                 onContact={() => setSub('contact')}
                 onAsk={() => scroller.current?.scrollTo({ top: scroller.current.scrollHeight, behavior: 'smooth' })} />
               <div className="cs-actions">
-                {routes ? <button className="cs-primary" onClick={() => setRoutePick((x) => !x)} aria-expanded={routePick}><NavIcon size={18} /> مسیریابی</button>
+                {dest?.shop_id === s.shop_id ? <><button className="cs-primary go-on" onClick={() => setGoSheet(true)}>✓ مقصد فعلیته</button><button className="go-cancel" onClick={clearDest}>لغو</button></>
+                  : routes ? <button className="cs-primary" onClick={() => setGoSheet(true)} aria-expanded={routePick}><NavIcon size={18} /> می‌رم اینجا</button>
                   : <button className="cs-primary" disabled>موقعیت ثبت نشده</button>}
                 {routePick && routes ? <div className="cs-route"><a href={routes.neshan} target="_blank" rel="noreferrer">نشان</a><span>·</span><a href={routes.google} target="_blank" rel="noreferrer">گوگل‌مپ</a></div> : null}
                 <div className="cs-sec-acts">
                   <button onClick={() => setSub('contact')}><PhoneIcon size={15} /> تماس</button>
                   <button onClick={() => setSub('follow')}><MascotAvatar state="idle" size={20} /> ترب برام زنگ بزنه</button>
-                  {o && pid ? <button onClick={() => setAltOn((x) => !x)} aria-pressed={altOn}><AltIcon /> جایگزین</button> : null}
+                  {pid ? <button onClick={() => setAltOn((x) => !x)} aria-pressed={altOn}><AltIcon /> جایگزین</button> : null}
                 </div>
               </div>
+              <ShopInStore sid={s.shop_id} pid={pid} has={!!o} showAlts={altOn} preferFallback={!!(closed && o)} fallback={o && pid ? <AltList sid={s.shop_id} pid={pid} onShop={onShop} /> : undefined} shopName={s.name} toast={toast} onShop={onShop} onProduct={onProduct} />
               {closed && o && pid && !altOn ? <button className="cs-closed-link" onClick={() => setAltOn(true)}>الان بسته‌ست · جایگزین‌های باز نزدیک ←</button> : null}
-              {altOn && o && pid ? <AltList sid={s.shop_id} pid={pid} onShop={onShop} /> : null}
               {o ? (
                 <>
                   <div className="cs-sec top">این محصول اینجا</div>
@@ -339,6 +345,8 @@ export function ShopSheet({ sid, pid, sbar, onClose, onProduct, toast, onShop, a
             </div>
           </div>
         ) : null}
+        {s && goSheet ? <GoingSheet sid={s.shop_id} pid={pid} name={s.name} route={routes?.neshan || routes?.google || null} toast={toast} onClose={() => setGoSheet(false)} onGuide={() => setGoing(true)} /> : null}
+        {s && going ? <GoingStory sid={s.shop_id} pid={pid} sbar={sbar} onClose={() => setGoing(false)} onNotMall={() => setRoutePick(true)} onContact={() => setSub('contact')} /> : null}
         {s && sub === 'contact' ? <ContactSheet s={s} onClose={() => setSub(null)} toast={toast} /> : null}
         {s && sub === 'follow' ? <FollowSheet onClose={() => setSub(null)} onAlt={o && pid ? () => setAltOn(true) : undefined} /> : null}
       </div>

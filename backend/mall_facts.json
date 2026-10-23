@@ -1,0 +1,383 @@
+{
+ "alaedin": {
+  "name": "پاساژ علاءالدین",
+  "aliases": [
+   "علاءالدین",
+   "علاالدین",
+   "علائدین",
+   "علاالدین ۲",
+   "علاءالدین ۲"
+  ],
+  "shop_count_in_db": 594,
+  "metro": [
+   {
+    "text": "نزدیک‌ترین ایستگاه مترو به علاءالدین، ایستگاه سعدی روی خط یک است؛ فاصله‌اش کوتاه است.",
+    "source_url": "https://datismart.ir/read/how-to-go-aladdin-mall-with-metro"
+   },
+   {
+    "text": "ایستگاه حسن‌آباد هم نزدیک است، ولی مسیرش نسبتاً طولانی و سربالایی است و باید پیاده بروید.",
+    "source_url": "https://datismart.ir/read/how-to-go-aladdin-mall-with-metro"
+   },
+   {
+    "text": "اتوبوس‌های بی‌آرتی خط پارک‌وی به پایانه معین در خیابان جمهوری نزدیک پاساژ ایستگاه دارند.",
+    "source_url": "https://tehranmoble.ir/blog/aladdin-mobile-market/"
+   }
+  ],
+  "parking": [
+   {
+    "text": "پارکینگ خود پاساژ ظرفیت کمی دارد و نمی‌شود رویش حساب کرد؛ گفته شده مالک می‌خواهد آن را به مغازه تبدیل کند.",
+    "source_url": "https://tehranmoble.ir/blog/aladdin-mobile-market/"
+   },
+   {
+    "text": "پاساژ در محدوده طرح ترافیک است و ساعت‌های طرح نمی‌شود با خودرو شخصی رفت؛ مترو بهتر است.",
+    "source_url": "https://tehranmoble.ir/blog/aladdin-mobile-market/"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "علاءالدین ۱ در خیابان جمهوری، نبش حافظ است؛ علاءالدین ۲ نبش شیخ هادی و علاءالدین ۳ در خیابان حافظ، جنب بیمارستان نجمیه.",
+    "source_url": "https://alaedingroup.ir/alaedin-commercial-complexes/"
+   }
+  ],
+  "tips": [
+   {
+    "text": "صبح‌ها و ظهرهای وسط هفته خلوت‌تر است و راحت‌تر می‌شود مغازه‌ها را گشت.",
+    "source_url": "https://tehranmoble.ir/blog/aladdin-mobile-market/"
+   },
+   {
+    "text": "گفته شده قیمت گوشی در طبقات پایین به‌خاطر اجاره بالاتر، کمی گران‌تر از طبقات دیگر است.",
+    "source_url": "https://khonehsabz.com/mag/aladdin-passage-tehran/"
+   },
+   {
+    "text": "پاساژ سرویس بهداشتی، آسانسور، خودپرداز و کافی‌شاپ دارد.",
+    "source_url": "https://khonehsabz.com/mag/aladdin-passage-tehran/"
+   }
+  ],
+  "hours_note": {
+   "text": "ساعت رسمی مجتمع‌های علاءالدین ۹ صبح تا ۹ شب است؛ جمعه‌ها و تعطیلات معمولاً کوتاه‌تر (حدود ۱۱ تا ۴) باز است.",
+   "source_url": "https://alaedingroup.ir/alaedin-commercial-complexes/"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "charsou": {
+  "name": "مجتمع تجاری چارسو",
+  "aliases": [
+   "چارسو",
+   "چهارسو"
+  ],
+  "shop_count_in_db": 201,
+  "metro": [
+   {
+    "text": "ایستگاه مترو سعدی (خط یک) و تئاتر شهر (خط چهار) تقریباً به یک اندازه به چارسو نزدیک‌اند.",
+    "source_url": "https://www.alibaba.ir/mag/tehran/tehran-ci/about-charsou-mall/"
+   },
+   {
+    "text": "از سعدی می‌توانید سوار اتوبوس‌های خط جمهوری–بهارستان شوید و سر تقاطع حافظ پیاده شوید.",
+    "source_url": "https://ctmehr.com/News/Index/2183"
+   },
+   {
+    "text": "از تئاتر شهر حدود ده دقیقه پیاده تا تقاطع جمهوری راه است و از آنجا هم حدود ده دقیقه تا بازار.",
+    "source_url": "https://www.epersianhotel.com/mag/tehran/%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%DA%86%D8%A7%D8%B1%D8%B3%D9%88-%D8%AA%D9%87%D8%B1%D8%A7%D9%86"
+   }
+  ],
+  "parking": [
+   {
+    "text": "چارسو پارکینگ بزرگ اختصاصی چهار طبقه با ظرفیت حدود هزار خودرو دارد.",
+    "source_url": "https://www.alibaba.ir/mag/tehran/tehran-ci/about-charsou-mall/"
+   },
+   {
+    "text": "پارکینگ هر روز از ۸ صبح تا ۱۱ شب باز است؛ ورودی‌اش از خیابان جمهوری و خروجی‌اش از خیابان حافظ است.",
+    "source_url": "https://exa.ai/library/place/cwmwnpm1q7n"
+   },
+   {
+    "text": "کنار آسانسورهای پارکینگ دستگاه پرداخت هست و بعد از پرداخت حدود یک ربع برای خروج وقت دارید؛ آخر هفته‌ها گاهی جا پیدا نمی‌شود.",
+    "source_url": "https://exa.ai/library/place/cwmwnpm1q7n"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "چارسو در ضلع جنوب‌شرقی تقاطع خیابان جمهوری و حافظ قرار دارد.",
+    "source_url": "https://ctmehr.com/News/Index/2183"
+   }
+  ],
+  "tips": [
+   {
+    "text": "طبقه اول صوتی و تصویری است، طبقه دوم تا پنجم موبایل و لوازم جانبی، طبقه ششم فودکورت و طبقه هفتم سینما.",
+    "source_url": "https://letsgotrip.ir/charsoo/"
+   },
+   {
+    "text": "پردیس سینمایی چارسو هر روز از ۲ بعدازظهر تا نیمه‌شب کار می‌کند.",
+    "source_url": "https://www.alibaba.ir/mag/tehran/tehran-ci/about-charsou-mall/"
+   }
+  ],
+  "hours_note": {
+   "text": "بازار چارسو هر روز از ۱۰ صبح تا ۱۱ شب باز است و جمعه‌ها از ۱۰ صبح تا ۹ شب.",
+   "source_url": "https://www.alibaba.ir/mag/tehran/tehran-ci/about-charsou-mall/"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "boushehri": {
+  "name": "پاساژ بوشهری",
+  "aliases": [
+   "بوشهری"
+  ],
+  "shop_count_in_db": 357,
+  "metro": [
+   {
+    "text": "نزدیک‌ترین ایستگاه مترو به پاساژ بوشهری، ایستگاه سعدی است و با چند دقیقه پیاده‌روی می‌رسید.",
+    "source_url": "https://avval.ir/profile/73360/%D9%BE%D8%A7%D8%B3%D8%A7%DA%98-%D8%A8%D9%88%D8%B4%D9%87%D8%B1%DB%8C"
+   }
+  ],
+  "parking": [],
+  "entrances": [
+   {
+    "text": "پاساژ در لاله‌زار جنوبی، بعد از کوچه بوشهری، کنار بانک ملت است.",
+    "source_url": "https://avval.ir/profile/73360/%D9%BE%D8%A7%D8%B3%D8%A7%DA%98-%D8%A8%D9%88%D8%B4%D9%87%D8%B1%DB%8C"
+   }
+  ],
+  "tips": [
+   {
+    "text": "نزدیک‌ترین ایستگاه اتوبوس، ایستگاه سکنگر است که خیلی نزدیک پاساژ است.",
+    "source_url": "https://avval.ir/profile/73360/%D9%BE%D8%A7%D8%B3%D8%A7%DA%98-%D8%A8%D9%88%D8%B4%D9%87%D8%B1%DB%8C"
+   }
+  ],
+  "hours_note": {
+   "text": "شنبه تا پنجشنبه حدود ۸ صبح تا ۷ شب باز است و جمعه‌ها تعطیل است.",
+   "source_url": "https://balad.ir/p/%D9%85%D8%AC%D8%AA%D9%85%D8%B9-%D8%AA%D8%AC%D8%A7%D8%B1%DB%8C-%D8%A8%D9%88%D8%B4%D9%87%D8%B1%DB%8C-tehran-nei-ferdowsi_shopping-mall-5XUierssj153Hv"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "etehadiyeh": {
+  "name": "پاساژ اتحادیه",
+  "aliases": [
+   "اتحادیه"
+  ],
+  "shop_count_in_db": 97,
+  "metro": [],
+  "parking": [],
+  "entrances": [
+   {
+    "text": "در خیابان لاله‌زار، کوچه اتحادیه است (طبقه زیرهمکف، پلاک ۱۴).",
+    "source_url": "https://balad.ir/p/%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D8%A8%D8%B2%D8%B1%DA%AF-%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF%DB%8C%D9%87-tehran-nei-ferdowsi_shopping-mall-2TioC2bUzzvc24"
+   }
+  ],
+  "tips": [],
+  "hours_note": {
+   "text": "طبق صفحه بلد «بازار بزرگ اتحادیه»، شنبه تا پنجشنبه حدوداً از صبح تا ۹ شب باز است و جمعه‌ها تعطیل است.",
+   "source_url": "https://balad.ir/p/%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D8%A8%D8%B2%D8%B1%DA%AF-%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF%DB%8C%D9%87-tehran-nei-ferdowsi_shopping-mall-2TioC2bUzzvc24"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "tejarat_jahani": {
+  "name": "مرکز تجارت جهانی فردوسی",
+  "aliases": [
+   "تجارت جهانی"
+  ],
+  "shop_count_in_db": 143,
+  "metro": [
+   {
+    "text": "ایستگاه مترو فردوسی (خط چهار) کمتر از پنج دقیقه پیاده تا مرکز فاصله دارد.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%85%d8%b1%da%a9%d8%b2-%d8%aa%d8%ac%d8%a7%d8%b1%d8%aa-%d8%ac%d9%87%d8%a7%d9%86%db%8c-%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/"
+   },
+   {
+    "text": "ایستگاه دروازه دولت (خط یک) هم حدود پنج دقیقه پیاده‌روی فاصله دارد.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%85%d8%b1%da%a9%d8%b2-%d8%aa%d8%ac%d8%a7%d8%b1%d8%aa-%d8%ac%d9%87%d8%a7%d9%86%db%8c-%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/"
+   }
+  ],
+  "parking": [
+   {
+    "text": "مرکز تجارت جهانی پارکینگ اختصاصی دارد و پارکینگ عمومی هم نزدیکش هست.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%85%d8%b1%da%a9%d8%b2-%d8%aa%d8%ac%d8%a7%d8%b1%d8%aa-%d8%ac%d9%87%d8%a7%d9%86%db%8c-%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "در خیابان فردوسی، نرسیده به میدان فردوسی قرار دارد.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%85%d8%b1%da%a9%d8%b2-%d8%aa%d8%ac%d8%a7%d8%b1%d8%aa-%d8%ac%d9%87%d8%a7%d9%86%db%8c-%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/"
+   }
+  ],
+  "tips": [
+   {
+    "text": "در محدوده طرح ترافیک است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%85%d8%b1%da%a9%d8%b2-%d8%aa%d8%ac%d8%a7%d8%b1%d8%aa-%d8%ac%d9%87%d8%a7%d9%86%db%8c-%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/"
+   },
+   {
+    "text": "بیشتر صرافی است ولی موبایل، پوشاک، صنایع دستی و فودکورت هم دارد؛ پلیس امنیت هم در طول روز آنجاست.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%85%d8%b1%da%a9%d8%b2-%d8%aa%d8%ac%d8%a7%d8%b1%d8%aa-%d8%ac%d9%87%d8%a7%d9%86%db%8c-%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/"
+   }
+  ],
+  "hours_note": null,
+  "checked_at": "2026-10-23"
+ },
+ "amjad": {
+  "name": "پاساژ امجد",
+  "aliases": [
+   "امجد"
+  ],
+  "shop_count_in_db": 107,
+  "metro": [
+   {
+    "text": "ایستگاه‌های فردوسی (خط چهار) و حسن‌آباد (خط دو) هر کدام حدود ده دقیقه پیاده تا پاساژ فاصله دارند.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%d8%a7%d9%85%d8%ac%d8%af-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "parking": [
+   {
+    "text": "پارکینگ عمومی چارسو نزدیک پاساژ امجد است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%d8%a7%d9%85%d8%ac%d8%af-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "پاساژ امجد در خیابان جمهوری، بعد از پل حافظ است؛ خیابان سی‌تیر در شرق و حافظ در غرب آن است.",
+    "source_url": "https://pamjad.ir/about"
+   }
+  ],
+  "tips": [
+   {
+    "text": "حدود ۱۷۰ مغازه دارد و بورس قطعات الکترونیک است.",
+    "source_url": "https://pamjad.ir/about"
+   },
+   {
+    "text": "در محدوده طرح ترافیک است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%d8%a7%d9%85%d8%ac%d8%af-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "hours_note": {
+   "text": "از ۹ صبح تا ۷ عصر باز است؛ پنجشنبه‌ها تا ۲ بعدازظهر.",
+   "source_url": "https://pamjad.ir/about"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "kian": {
+  "name": "پاساژ کیان",
+  "aliases": [
+   "کیان"
+  ],
+  "shop_count_in_db": 81,
+  "metro": [
+   {
+    "text": "ایستگاه مترو ملت (خط دو) کمتر از پنج دقیقه پیاده تا پاساژ فاصله دارد.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%da%a9%db%8c%d8%a7%d9%86-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d9%85%d9%84%d8%aa/"
+   },
+   {
+    "text": "ایستگاه سعدی (خط یک) هم حدود پنج دقیقه پیاده‌روی است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%da%a9%db%8c%d8%a7%d9%86-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d9%85%d9%84%d8%aa/"
+   }
+  ],
+  "parking": [
+   {
+    "text": "پارکینگ عمومی نزدیک پاساژ هست.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%da%a9%db%8c%d8%a7%d9%86-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d9%85%d9%84%d8%aa/"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "پاساژ در خیابان امیرکبیر، خیابان ملت، بالاتر از سه‌راهی اکباتان، داخل کوچه کاوه است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%da%a9%db%8c%d8%a7%d9%86-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d9%85%d9%84%d8%aa/"
+   }
+  ],
+  "tips": [
+   {
+    "text": "بورس لوازم یدکی خودروهای ایرانی و خارجی در بازار چراغ‌برق است و در طرح ترافیک قرار دارد.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%da%a9%db%8c%d8%a7%d9%86-%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d9%85%d9%84%d8%aa/"
+   }
+  ],
+  "hours_note": null,
+  "checked_at": "2026-10-23"
+ },
+ "iran_mobile": {
+  "name": "بازار موبایل ایران",
+  "aliases": [
+   "بازار موبایل ایران"
+  ],
+  "shop_count_in_db": 72,
+  "metro": [
+   {
+    "text": "نزدیک‌ترین ایستگاه، حسن‌آباد روی خط دو است و حدود هفت دقیقه پیاده تا بازار راه است.",
+    "source_url": "https://www.kojaro.com/attraction/9220-%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/"
+   }
+  ],
+  "parking": [
+   {
+    "text": "مجموعه پارکینگ بزرگ خودش را دارد (چند طبقه پارکینگ)؛ برای پارک از همان استفاده کنید.",
+    "source_url": "https://www.kojaro.com/attraction/9220-%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "شعبه یک در خیابان حافظ، پایین‌تر از جمهوری، بین کوچه غزالی و کوچه اقتدار است.",
+    "source_url": "https://www.kojaro.com/attraction/9220-%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/"
+   }
+  ],
+  "tips": [
+   {
+    "text": "طبقه‌ها بر اساس نوع کالا و خدمات تفکیک شده‌اند؛ رستوران، کافی‌شاپ و پله‌برقی هم دارد.",
+    "source_url": "https://www.kojaro.com/attraction/9220-%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/"
+   },
+   {
+    "text": "شنبه و دوشنبه از ظهر تا عصر شلوغ‌ترین زمان است؛ صبح زود و جمعه‌ها خلوت‌تر است.",
+    "source_url": "https://exa.ai/library/place/5p06hchr0ys"
+   }
+  ],
+  "hours_note": {
+   "text": "روزهای عادی ۹ صبح تا ۹ شب و روزهای تعطیل ۹ تا ۴ بعدازظهر باز است.",
+   "source_url": "https://www.kojaro.com/attraction/9220-%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "naderi": {
+  "name": "پاساژ نادری",
+  "aliases": [
+   "نادری"
+  ],
+  "shop_count_in_db": 55,
+  "metro": [],
+  "parking": [],
+  "entrances": [
+   {
+    "text": "در خیابان جمهوری، کنارگذر حافظ است.",
+    "source_url": "https://balad.ir/p/%D9%85%D8%AC%D8%AA%D9%85%D8%B9-%D8%AA%D8%AC%D8%A7%D8%B1%DB%8C-%D9%86%D8%A7%D8%AF%D8%B1%DB%8C-tehran-nei-ferdowsi_commercial-complex-PQy2QqO6ojW09M"
+   }
+  ],
+  "tips": [],
+  "hours_note": {
+   "text": "شنبه تا چهارشنبه ۱۰ صبح تا ۸ شب، پنجشنبه تا ۵ عصر باز است و جمعه‌ها تعطیل است.",
+   "source_url": "https://balad.ir/p/%D9%85%D8%AC%D8%AA%D9%85%D8%B9-%D8%AA%D8%AC%D8%A7%D8%B1%DB%8C-%D9%86%D8%A7%D8%AF%D8%B1%DB%8C-tehran-nei-ferdowsi_commercial-complex-PQy2QqO6ojW09M"
+  },
+  "checked_at": "2026-10-23"
+ },
+ "yegane": {
+  "name": "پاساژ یگانه",
+  "aliases": [
+   "یگانه"
+  ],
+  "shop_count_in_db": 55,
+  "metro": [
+   {
+    "text": "ایستگاه مترو چهارراه ولیعصر (خط سه و چهار) کمتر از ده دقیقه پیاده تا پاساژ فاصله دارد.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%db%8c%da%af%d8%a7%d9%86%d9%87-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "parking": [
+   {
+    "text": "پارکینگ عمومی نزدیک پاساژ هست.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%db%8c%da%af%d8%a7%d9%86%d9%87-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "entrances": [
+   {
+    "text": "در خیابان جمهوری، روبروی ساختمان آلومینیوم است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%db%8c%da%af%d8%a7%d9%86%d9%87-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "tips": [
+   {
+    "text": "بیشتر موبایل، لوازم جانبی و دوربین مداربسته دارد؛ در محدوده طرح ترافیک است.",
+    "source_url": "https://tehranica.info/shopping-center/%d9%be%d8%a7%d8%b3%d8%a7%da%98-%db%8c%da%af%d8%a7%d9%86%d9%87-%d8%ac%d9%85%d9%87%d9%88%d8%b1%db%8c/"
+   }
+  ],
+  "hours_note": null,
+  "checked_at": "2026-10-23"
+ }
+}

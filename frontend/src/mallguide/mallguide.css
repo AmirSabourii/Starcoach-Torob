@@ -151,3 +151,17 @@ body > .mg-story { position: fixed; }
 
 /* isolate from global button rules in styles.css */
 .mg-story button, .mg-story a, button.mg-entry { margin: 0; }
+
+/* layout fix: step content scrolls in its own area; the action buttons are a real footer (never overlap the text) */
+.mg-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; display: flex; flex-direction: column;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); -webkit-overflow-scrolling: touch; }
+.mg-scroll .mg-art { flex: 0 1 400px; min-height: 200px; }
+.mg-scroll .mg-art.short { flex-basis: 380px; }
+.mg-btns { position: static; flex: none; margin: 0 20px; padding: 12px 0 calc(20px + env(safe-area-inset-bottom, 0px)); background: #fff; }
+.mg-scroll:has(+ .mg-btns) { padding-bottom: 8px; }
+@media (max-height: 720px) {
+  .mg-art { margin-top: 18px; }
+  .mg-text { padding-top: 18px; }
+  .mg-art.short + .mg-text { padding-top: 16px; }
+  .mg-btn { height: 46px; }
+}
