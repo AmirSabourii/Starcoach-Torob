@@ -1,0 +1,2250 @@
+{
+ "built_at": "2026-10-23T14:00:42+0330",
+ "method": "Tehran bazaars (\"بورس\") from the DB: for each category group, cluster the locations of shops that have offers in that\ngroup (weighted by offers), take concentration hubs, and name a hub ONLY with evidence: the most-mentioned candidate\nplace in the hub shops' own addresses (>=20% of hub shops) AND the candidate's coordinates within 1 km of the hub centre.\nOutput: bazaars.json. No LLM.",
+ "candidates": {
+  "لاله زار": {
+   "lat": 35.6908,
+   "lon": 51.42287,
+   "source": "median of 1546 shop addresses mentioning it",
+   "aliases": [
+    "لاله زار",
+    "لاله‌زار",
+    "لالهزار"
+   ]
+  },
+  "علاءالدین": {
+   "lat": 35.69497,
+   "lon": 51.41133,
+   "source": "median of 549 shop addresses mentioning it",
+   "aliases": [
+    "علاءالدین",
+    "علالدین",
+    "علاالدین"
+   ]
+  },
+  "چارسو": {
+   "lat": 35.69484,
+   "lon": 51.41229,
+   "source": "median of 171 shop addresses mentioning it",
+   "aliases": [
+    "چارسو"
+   ]
+  },
+  "جمهوری": {
+   "lat": 35.6949,
+   "lon": 51.41152,
+   "source": "median of 2420 shop addresses mentioning it",
+   "aliases": [
+    "جمهوری"
+   ]
+  },
+  "حافظ": {
+   "lat": 35.69486,
+   "lon": 51.41147,
+   "source": "median of 1085 shop addresses mentioning it",
+   "aliases": [
+    "حافظ"
+   ]
+  },
+  "منوچهری": {
+   "lat": 35.69753,
+   "lon": 51.42356,
+   "source": "median of 285 shop addresses mentioning it",
+   "aliases": [
+    "منوچهری"
+   ]
+  },
+  "سعدی": {
+   "lat": 35.69046,
+   "lon": 51.42433,
+   "source": "median of 961 shop addresses mentioning it",
+   "aliases": [
+    "سعدی"
+   ]
+  },
+  "امیرکبیر": {
+   "lat": 35.68986,
+   "lon": 51.42587,
+   "source": "median of 17 shop addresses mentioning it",
+   "aliases": [
+    "امیرکبیر"
+   ]
+  },
+  "استانبول": {
+   "lat": 35.69472,
+   "lon": 51.42075,
+   "source": "median of 42 shop addresses mentioning it",
+   "aliases": [
+    "استانبول"
+   ]
+  },
+  "مخبرالدوله": {
+   "lat": 35.69275,
+   "lon": 51.42458,
+   "source": "median of 23 shop addresses mentioning it",
+   "aliases": [
+    "مخبرالدوله"
+   ]
+  },
+  "بازار بزرگ": {
+   "lat": 35.68809,
+   "lon": 51.42127,
+   "source": "median of 14 shop addresses mentioning it",
+   "aliases": [
+    "بازار بزرگ"
+   ]
+  },
+  "ارگ": {
+   "lat": 35.69637,
+   "lon": 51.41054,
+   "source": "median of 18 shop addresses mentioning it",
+   "aliases": [
+    "ارگ"
+   ]
+  },
+  "فردوسی": {
+   "lat": 35.69471,
+   "lon": 51.42037,
+   "source": "median of 555 shop addresses mentioning it",
+   "aliases": [
+    "فردوسی"
+   ]
+  },
+  "بهارستان": {
+   "lat": 35.692,
+   "lon": 51.432,
+   "source": "agents area table (approx. centre)",
+   "aliases": [
+    "بهارستان"
+   ]
+  },
+  "پایتخت": {
+   "lat": 35.723,
+   "lon": 51.393,
+   "source": "agents area table (approx. centre)",
+   "aliases": [
+    "پایتخت"
+   ]
+  },
+  "شوش": {
+   "lat": 35.66,
+   "lon": 51.43,
+   "source": "agents area table (approx. centre)",
+   "aliases": [
+    "شوش"
+   ]
+  },
+  "ولیعصر": {
+   "lat": 35.69475,
+   "lon": 51.40446,
+   "source": "median of 279 shop addresses mentioning it",
+   "aliases": [
+    "ولیعصر"
+   ]
+  },
+  "تجریش": {
+   "lat": 35.80589,
+   "lon": 51.43016,
+   "source": "median of 49 shop addresses mentioning it",
+   "aliases": [
+    "تجریش"
+   ]
+  },
+  "شیخ هادی": {
+   "lat": 35.69513,
+   "lon": 51.40695,
+   "source": "median of 366 shop addresses mentioning it",
+   "aliases": [
+    "شیخ هادی"
+   ]
+  },
+  "باغ فیض": {
+   "lat": 35.74,
+   "lon": 51.316,
+   "source": "agents area table (approx. centre)",
+   "aliases": [
+    "باغ فیض"
+   ]
+  },
+  "آسمان": {
+   "lat": 35.77954,
+   "lon": 51.35654,
+   "source": "median of 24 shop addresses mentioning it",
+   "aliases": [
+    "آسمان"
+   ]
+  }
+ },
+ "groups": [
+  {
+   "group": "برق ساختمان و روشنایی",
+   "category_pattern": "سیم و کابل برق|کلید و پریز|کلید و فیوز|فیوز|چراغ|لامپ|روشنایی|پروژکتور|ریسه|لوستر|کنتاکتور|رله|تابلو و جعبه برق|کابلشو|داکت|سیم سیار|کلید اتوماتیک|کلید حرارتی|ترمینال|لوله و خرطومی برق|آباژور",
+   "n_categories": 90,
+   "shops_total": 1400,
+   "offers_total": 54051,
+   "hubs": [
+    {
+     "hub_name": "لاله زار",
+     "display_name": "لاله زار (سعدی)",
+     "also_mentioned": [
+      "سعدی"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "برق/روشنایی",
+     "center": {
+      "lat": 35.68975,
+      "lon": 51.42276
+     },
+     "radius_km": 0.7,
+     "shop_count": 1045,
+     "offer_count": 48933,
+     "share_of_group_offers": 0.905,
+     "share_of_group_shops": 0.746,
+     "top_address_mentions": [
+      [
+       "لاله زار",
+       513
+      ],
+      [
+       "جمهوری",
+       157
+      ],
+      [
+       "سعدی",
+       147
+      ],
+      [
+       "فردوسی",
+       98
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       662
+      ],
+      [
+       "بهارستان",
+       97
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_d36c24f7d46a2155e3856538",
+      "shop_5eb9c2a6ac13d8ba02aff3cf",
+      "shop_eba2156af4ee1cdeff3462b3",
+      "shop_535f3955bf760ee07f51336e",
+      "shop_2503559fed10f53714d17e54",
+      "shop_ef50f393d69068bd86d8f5f9",
+      "shop_77c2e2ba662a85a8807453b3",
+      "shop_cfb235df3c5e0fe20bbd2dc7"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_d36c24f7d46a2155e3856538",
+       "name": "مانیسا پاکیس",
+       "n_offers_in_group": 305
+      },
+      {
+       "shop_id": "shop_5eb9c2a6ac13d8ba02aff3cf",
+       "name": "ماهیار روسا",
+       "n_offers_in_group": 301
+      },
+      {
+       "shop_id": "shop_eba2156af4ee1cdeff3462b3",
+       "name": "رامدیس نییلا",
+       "n_offers_in_group": 295
+      },
+      {
+       "shop_id": "shop_535f3955bf760ee07f51336e",
+       "name": "آرآرا نیکینا",
+       "n_offers_in_group": 294
+      },
+      {
+       "shop_id": "shop_2503559fed10f53714d17e54",
+       "name": "نوانوش نییرا",
+       "n_offers_in_group": 291
+      }
+     ],
+     "evidence": "513 of 759 hub shops mention «لاله زار» in their address; candidate centre 0.12 km from hub centre (median of 1546 shop addresses mentioning it)",
+     "merged_subhubs": 2
+    }
+   ]
+  },
+  {
+   "group": "دوربین مداربسته و امنیتی",
+   "category_pattern": "دوربین مدار بسته|نظارتی|دزدگیر|آیفون صوتی|دوربین امنیتی",
+   "n_categories": 15,
+   "shops_total": 371,
+   "offers_total": 11824,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین)",
+     "also_mentioned": [
+      "علاءالدین"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69535,
+      "lon": 51.40906
+     },
+     "radius_km": 0.7,
+     "shop_count": 248,
+     "offer_count": 9242,
+     "share_of_group_offers": 0.782,
+     "share_of_group_shops": 0.668,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       239
+      ],
+      [
+       "شیخ هادی",
+       106
+      ],
+      [
+       "علاءالدین",
+       89
+      ],
+      [
+       "حافظ",
+       71
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       179
+      ],
+      [
+       "فردوسی",
+       67
+      ],
+      [
+       "ولیعصر",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_246fd10ccd184b381684e2e6",
+      "shop_7e32b10c690697c472d1d6ba",
+      "shop_0dabd07f0933e0079467f662",
+      "shop_352f9eab0c49c6eea50b4018",
+      "shop_36971178653f32340daf8654",
+      "shop_5046b414024a99515832ad7b",
+      "shop_f3fb1f2e6a9ee5aa36690caa",
+      "shop_b4530c87c9e2ca2cc717eada"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_246fd10ccd184b381684e2e6",
+       "name": "فروان فریسا",
+       "n_offers_in_group": 363
+      },
+      {
+       "shop_id": "shop_7e32b10c690697c472d1d6ba",
+       "name": "رامسا آذریسا",
+       "n_offers_in_group": 318
+      },
+      {
+       "shop_id": "shop_0dabd07f0933e0079467f662",
+       "name": "نیوان رووان",
+       "n_offers_in_group": 280
+      },
+      {
+       "shop_id": "shop_352f9eab0c49c6eea50b4018",
+       "name": "نوینا نیکیس",
+       "n_offers_in_group": 254
+      },
+      {
+       "shop_id": "shop_36971178653f32340daf8654",
+       "name": "نیانوش سروین",
+       "n_offers_in_group": 246
+      }
+     ],
+     "evidence": "239 of 248 hub shops mention «جمهوری» in their address; candidate centre 0.23 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "لاله زار",
+     "display_name": "لاله زار",
+     "also_mentioned": [],
+     "named_by": "address_mentions+distance",
+     "known_for": "برق/روشنایی",
+     "center": {
+      "lat": 35.68852,
+      "lon": 51.422
+     },
+     "radius_km": 0.7,
+     "shop_count": 66,
+     "offer_count": 1168,
+     "share_of_group_offers": 0.099,
+     "share_of_group_shops": 0.178,
+     "top_address_mentions": [
+      [
+       "لاله زار",
+       44
+      ],
+      [
+       "فردوسی",
+       20
+      ],
+      [
+       "جمهوری",
+       7
+      ],
+      [
+       "سعدی",
+       3
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       65
+      ],
+      [
+       "بهارستان",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_3ac8b04074ba3aa2d52e26a7",
+      "shop_b220f3e9f81f4f1870123158",
+      "shop_511eb0e593d443a2bbf32532",
+      "shop_68f9e488315783533db1b8d3",
+      "shop_76895f52fc8ad881fef12d59",
+      "shop_97b30ac8e6bbc4b58db657f3",
+      "shop_751a5a503c911c1d1b91d0ca",
+      "shop_f86550f8f5f11a17525273f4"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_3ac8b04074ba3aa2d52e26a7",
+       "name": "آذرین وینوش",
+       "n_offers_in_group": 193
+      },
+      {
+       "shop_id": "shop_b220f3e9f81f4f1870123158",
+       "name": "آوینا پاکانوش",
+       "n_offers_in_group": 187
+      },
+      {
+       "shop_id": "shop_511eb0e593d443a2bbf32532",
+       "name": "نیورا نیکیلا",
+       "n_offers_in_group": 116
+      },
+      {
+       "shop_id": "shop_68f9e488315783533db1b8d3",
+       "name": "رامیلا روان",
+       "n_offers_in_group": 94
+      },
+      {
+       "shop_id": "shop_76895f52fc8ad881fef12d59",
+       "name": "رودیس آذرورا",
+       "n_offers_in_group": 75
+      }
+     ],
+     "evidence": "44 of 66 hub shops mention «لاله زار» in their address; candidate centre 0.27 km from hub centre (median of 1546 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "فردوسی",
+     "display_name": "فردوسی (منوچهری)",
+     "also_mentioned": [
+      "منوچهری"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": null,
+     "center": {
+      "lat": 35.70009,
+      "lon": 51.42068
+     },
+     "radius_km": 0.7,
+     "shop_count": 43,
+     "offer_count": 1148,
+     "share_of_group_offers": 0.097,
+     "share_of_group_shops": 0.116,
+     "top_address_mentions": [
+      [
+       "لاله زار",
+       19
+      ],
+      [
+       "فردوسی",
+       19
+      ],
+      [
+       "منوچهری",
+       9
+      ],
+      [
+       "سعدی",
+       4
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       42
+      ],
+      [
+       "ایرانشهر",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_26ab7ff7b4a276aee953849f",
+      "shop_d66b2f789d2e189eebb3a59f",
+      "shop_9e9600c564fc5094305ad297",
+      "shop_ba30e26f592c0e02cbc006f6",
+      "shop_d534343f7fccc852eda22228",
+      "shop_1511aeff9f4cd7004aaf3986",
+      "shop_e1367a3202fcb289a140482d",
+      "shop_cc829c950c6ecd0865996b39"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_26ab7ff7b4a276aee953849f",
+       "name": "سرووان نیدیس",
+       "n_offers_in_group": 195
+      },
+      {
+       "shop_id": "shop_d66b2f789d2e189eebb3a59f",
+       "name": "نیکین ماهیلا",
+       "n_offers_in_group": 158
+      },
+      {
+       "shop_id": "shop_9e9600c564fc5094305ad297",
+       "name": "مهردیس سرووش",
+       "n_offers_in_group": 136
+      },
+      {
+       "shop_id": "shop_ba30e26f592c0e02cbc006f6",
+       "name": "سرویار آریرا",
+       "n_offers_in_group": 117
+      },
+      {
+       "shop_id": "shop_d534343f7fccc852eda22228",
+       "name": "روین فریسا",
+       "n_offers_in_group": 72
+      }
+     ],
+     "evidence": "19 of 43 hub shops mention «فردوسی» in their address; candidate centre 0.60 km from hub centre (median of 555 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "موبایل و لوازم جانبی",
+   "category_pattern": "گوشی موبایل|کیف و کاور گوشی|محافظ صفحه نمایش گوشی|شارژر گوشی|پاوربانک|باتری گوشی|تاچ و ال سی دی|قاب، شاسی و درب گوشی|فلت و برد گوشی|پایه نگهدارنده گوشی|کابل و تبدیل",
+   "n_categories": 24,
+   "shops_total": 669,
+   "offers_total": 18900,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین و چارسو)",
+     "also_mentioned": [
+      "علاءالدین",
+      "چارسو"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.6941,
+      "lon": 51.41075
+     },
+     "radius_km": 0.7,
+     "shop_count": 485,
+     "offer_count": 15429,
+     "share_of_group_offers": 0.816,
+     "share_of_group_shops": 0.725,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       402
+      ],
+      [
+       "حافظ",
+       302
+      ],
+      [
+       "علاءالدین",
+       153
+      ],
+      [
+       "چارسو",
+       54
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       349
+      ],
+      [
+       "فردوسی",
+       134
+      ],
+      [
+       "ولیعصر",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_2ded0b981f69557cc899d461",
+      "shop_b836cd8c07edc0d9cdbc05c7",
+      "shop_e1e2e250a84103914a33a559",
+      "shop_ddcf424967e85748ca3700f2",
+      "shop_671768b6298652030086f407",
+      "shop_8927c1047d6a5d10e816fa00",
+      "shop_a6fe812fe45554f77ec4ee83",
+      "shop_54b710e89d43546bb147de25"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_2ded0b981f69557cc899d461",
+       "name": "سروسا مانینا",
+       "n_offers_in_group": 382
+      },
+      {
+       "shop_id": "shop_b836cd8c07edc0d9cdbc05c7",
+       "name": "پاکینا ماهیلا",
+       "n_offers_in_group": 364
+      },
+      {
+       "shop_id": "shop_e1e2e250a84103914a33a559",
+       "name": "آریلا نیکیار",
+       "n_offers_in_group": 354
+      },
+      {
+       "shop_id": "shop_ddcf424967e85748ca3700f2",
+       "name": "پاکوش دیسنوش",
+       "n_offers_in_group": 324
+      },
+      {
+       "shop_id": "shop_671768b6298652030086f407",
+       "name": "پاکوان نیکیلا",
+       "n_offers_in_group": 316
+      }
+     ],
+     "evidence": "402 of 485 hub shops mention «جمهوری» in their address; candidate centre 0.11 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "فردوسی",
+     "display_name": "فردوسی (منوچهری)",
+     "also_mentioned": [
+      "منوچهری"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": null,
+     "center": {
+      "lat": 35.70043,
+      "lon": 51.41922
+     },
+     "radius_km": 0.7,
+     "shop_count": 64,
+     "offer_count": 2048,
+     "share_of_group_offers": 0.108,
+     "share_of_group_shops": 0.096,
+     "top_address_mentions": [
+      [
+       "فردوسی",
+       45
+      ],
+      [
+       "لاله زار",
+       14
+      ],
+      [
+       "منوچهری",
+       10
+      ],
+      [
+       "سعدی",
+       4
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       60
+      ],
+      [
+       "بهارستان",
+       2
+      ],
+      [
+       "ایرانشهر",
+       2
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_27cbdd3166b4dfce0fb09fca",
+      "shop_5b604df686790ea52e706b22",
+      "shop_0201f9487d68b9ba04ec2e1d",
+      "shop_d3c3a46413005b1d7439d65f",
+      "shop_8339b4ba010d2e96250abad5",
+      "shop_ae3b0e7b1864d7c63881aac4",
+      "shop_954e0e0bbbe9cea4e199f83a",
+      "shop_591b4bc17142229e065f921f"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_27cbdd3166b4dfce0fb09fca",
+       "name": "ماندیس نیکیس",
+       "n_offers_in_group": 369
+      },
+      {
+       "shop_id": "shop_5b604df686790ea52e706b22",
+       "name": "آذرنوش پاکیس",
+       "n_offers_in_group": 360
+      },
+      {
+       "shop_id": "shop_0201f9487d68b9ba04ec2e1d",
+       "name": "آروان دیسین",
+       "n_offers_in_group": 258
+      },
+      {
+       "shop_id": "shop_d3c3a46413005b1d7439d65f",
+       "name": "فرآرا سرویار",
+       "n_offers_in_group": 207
+      },
+      {
+       "shop_id": "shop_8339b4ba010d2e96250abad5",
+       "name": "آویسا ویدیس",
+       "n_offers_in_group": 147
+      }
+     ],
+     "evidence": "45 of 64 hub shops mention «فردوسی» in their address; candidate centre 0.64 km from hub centre (median of 555 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "کامپیوتر و لپ‌تاپ",
+   "category_pattern": "لپ تاپ|کامپیوتر|مانیتور|کیبورد|ماوس|هارد|کارت گرافیک|پردازنده|مادربرد|پرینتر|کارتریج|روتر|مودم|کابل شبکه|رک شبکه|سوییچ و اسپلیتر|حافظه رم|فلش مموری",
+   "n_categories": 89,
+   "shops_total": 646,
+   "offers_total": 11922,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین)",
+     "also_mentioned": [
+      "علاءالدین"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69505,
+      "lon": 51.40962
+     },
+     "radius_km": 0.7,
+     "shop_count": 327,
+     "offer_count": 4444,
+     "share_of_group_offers": 0.373,
+     "share_of_group_shops": 0.506,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       284
+      ],
+      [
+       "حافظ",
+       147
+      ],
+      [
+       "علاءالدین",
+       93
+      ],
+      [
+       "شیخ هادی",
+       77
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       230
+      ],
+      [
+       "فردوسی",
+       93
+      ],
+      [
+       "آذربایجان",
+       2
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_37befbca4fa26b53e5bae5bf",
+      "shop_e4e5ba21fae0afe8259268c1",
+      "shop_b101cea36a0c4114b502908c",
+      "shop_26184a4806ca9a48d75e535d",
+      "shop_117aa1e829ecb8d2ef013cbe",
+      "shop_40076dabaad5fa446cf4fc4b",
+      "shop_75357d72fb5068e978a0d0e1",
+      "shop_1575e6a6a64246ba5c0c9ca4"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_37befbca4fa26b53e5bae5bf",
+       "name": "آریلا آووان",
+       "n_offers_in_group": 312
+      },
+      {
+       "shop_id": "shop_e4e5ba21fae0afe8259268c1",
+       "name": "آذریس فریسا",
+       "n_offers_in_group": 263
+      },
+      {
+       "shop_id": "shop_b101cea36a0c4114b502908c",
+       "name": "پاکانوش آویس",
+       "n_offers_in_group": 242
+      },
+      {
+       "shop_id": "shop_26184a4806ca9a48d75e535d",
+       "name": "نییرا نیکوان",
+       "n_offers_in_group": 165
+      },
+      {
+       "shop_id": "shop_117aa1e829ecb8d2ef013cbe",
+       "name": "نویسا نیکسا",
+       "n_offers_in_group": 83
+      }
+     ],
+     "evidence": "284 of 327 hub shops mention «جمهوری» in their address; candidate centre 0.17 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "ایرانشهر",
+     "display_name": "ایرانشهر",
+     "also_mentioned": [],
+     "named_by": "majority shops.location_label",
+     "known_for": null,
+     "center": {
+      "lat": 35.71403,
+      "lon": 51.42149
+     },
+     "radius_km": 0.7,
+     "shop_count": 31,
+     "offer_count": 2829,
+     "share_of_group_offers": 0.237,
+     "share_of_group_shops": 0.048,
+     "top_address_mentions": [
+      [
+       "فردوسی",
+       1
+      ]
+     ],
+     "location_labels": [
+      [
+       "ایرانشهر",
+       25
+      ],
+      [
+       "سنائی",
+       6
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_b6c4b0f718a2a83a07ebff39",
+      "shop_4062d8875b8467d9f43991a7",
+      "shop_6dcf229f4b7d4eafb84fc159",
+      "shop_e505aef81d09ea92347c8c75",
+      "shop_7058055467961516e2ef38ef",
+      "shop_04aec98a77cbf6544eb246d8",
+      "shop_7364d790158ef2b9ee58872a",
+      "shop_cd0218c6442b0a98489c84f6"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_b6c4b0f718a2a83a07ebff39",
+       "name": "آذرورا مانوان",
+       "n_offers_in_group": 409
+      },
+      {
+       "shop_id": "shop_4062d8875b8467d9f43991a7",
+       "name": "آران نیکانوش",
+       "n_offers_in_group": 386
+      },
+      {
+       "shop_id": "shop_6dcf229f4b7d4eafb84fc159",
+       "name": "وییس روورا",
+       "n_offers_in_group": 316
+      },
+      {
+       "shop_id": "shop_e505aef81d09ea92347c8c75",
+       "name": "فروش مهریس",
+       "n_offers_in_group": 284
+      },
+      {
+       "shop_id": "shop_7058055467961516e2ef38ef",
+       "name": "آویس پاکوان",
+       "n_offers_in_group": 214
+      }
+     ],
+     "evidence": "31 shops with 2829 offers within 0.7 km; no candidate bazaar name met the address+distance test"
+    },
+    {
+     "hub_name": "لاله زار",
+     "display_name": "لاله زار",
+     "also_mentioned": [],
+     "named_by": "address_mentions+distance",
+     "known_for": "برق/روشنایی",
+     "center": {
+      "lat": 35.68899,
+      "lon": 51.42192
+     },
+     "radius_km": 0.7,
+     "shop_count": 125,
+     "offer_count": 2168,
+     "share_of_group_offers": 0.182,
+     "share_of_group_shops": 0.193,
+     "top_address_mentions": [
+      [
+       "لاله زار",
+       93
+      ],
+      [
+       "فردوسی",
+       28
+      ],
+      [
+       "جمهوری",
+       19
+      ],
+      [
+       "سعدی",
+       9
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       125
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_cd7e34bc6ece004bf0cec0bb",
+      "shop_7929a7eda286e1dc23d78c7e",
+      "shop_751a5a503c911c1d1b91d0ca",
+      "shop_83305c8c40d8ad414860279f",
+      "shop_3ac8b04074ba3aa2d52e26a7",
+      "shop_7eff8a8ffdd7719b5de1c103",
+      "shop_12128afc0a882f433580d512",
+      "shop_f3dc1940c56a3f833a34eaad"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_cd7e34bc6ece004bf0cec0bb",
+       "name": "آذرسا ویوان",
+       "n_offers_in_group": 255
+      },
+      {
+       "shop_id": "shop_7929a7eda286e1dc23d78c7e",
+       "name": "دیسیلا نیکیلا",
+       "n_offers_in_group": 242
+      },
+      {
+       "shop_id": "shop_751a5a503c911c1d1b91d0ca",
+       "name": "مانوش نیکیس",
+       "n_offers_in_group": 117
+      },
+      {
+       "shop_id": "shop_83305c8c40d8ad414860279f",
+       "name": "نیکیس نیکیسا",
+       "n_offers_in_group": 115
+      },
+      {
+       "shop_id": "shop_3ac8b04074ba3aa2d52e26a7",
+       "name": "آذرین وینوش",
+       "n_offers_in_group": 94
+      }
+     ],
+     "evidence": "93 of 125 hub shops mention «لاله زار» in their address; candidate centre 0.22 km from hub centre (median of 1546 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "ابزار و صنعتی",
+   "category_pattern": "ابزار|دریل|پیچ گوشتی|فرز|اره|آچار|جوش|کمپرسور|پنوماتیک|بلبرینگ|پمپ|الکتروموتور|اینورتر|سیم لخت",
+   "n_categories": 142,
+   "shops_total": 1035,
+   "offers_total": 23143,
+   "hubs": [
+    {
+     "hub_name": "لاله زار",
+     "display_name": "لاله زار (سعدی)",
+     "also_mentioned": [
+      "سعدی"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "برق/روشنایی",
+     "center": {
+      "lat": 35.69019,
+      "lon": 51.42354
+     },
+     "radius_km": 0.7,
+     "shop_count": 521,
+     "offer_count": 14426,
+     "share_of_group_offers": 0.623,
+     "share_of_group_shops": 0.503,
+     "top_address_mentions": [
+      [
+       "لاله زار",
+       227
+      ],
+      [
+       "سعدی",
+       220
+      ],
+      [
+       "جمهوری",
+       87
+      ],
+      [
+       "فردوسی",
+       30
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       327
+      ],
+      [
+       "بهارستان",
+       194
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_c3f4f27075721da0a9fdadc3",
+      "shop_cc6ff015e79ddfe4404c7a76",
+      "shop_395bdb0a9e508e0fbef178f4",
+      "shop_c4a03eeaf0a98b26f95d722a",
+      "shop_ee06309596e956b0e8190be3",
+      "shop_b0eb6c3fdea7cb8b0c5ec7db",
+      "shop_9f0e56d85098a015876b11aa",
+      "shop_19af7ecf1edb08c7cce7e4b6"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_c3f4f27075721da0a9fdadc3",
+       "name": "آوان راموش",
+       "n_offers_in_group": 614
+      },
+      {
+       "shop_id": "shop_cc6ff015e79ddfe4404c7a76",
+       "name": "رویلا راموان",
+       "n_offers_in_group": 287
+      },
+      {
+       "shop_id": "shop_395bdb0a9e508e0fbef178f4",
+       "name": "رامیسا نیکانوش",
+       "n_offers_in_group": 281
+      },
+      {
+       "shop_id": "shop_c4a03eeaf0a98b26f95d722a",
+       "name": "رامیسا رویرا",
+       "n_offers_in_group": 268
+      },
+      {
+       "shop_id": "shop_ee06309596e956b0e8190be3",
+       "name": "نیکسا روان",
+       "n_offers_in_group": 235
+      }
+     ],
+     "evidence": "227 of 521 hub shops mention «لاله زار» in their address; candidate centre 0.09 km from hub centre (median of 1546 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "حافظ",
+     "display_name": "حافظ",
+     "also_mentioned": [],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.6892,
+      "lon": 51.41136
+     },
+     "radius_km": 0.7,
+     "shop_count": 93,
+     "offer_count": 3002,
+     "share_of_group_offers": 0.13,
+     "share_of_group_shops": 0.09,
+     "top_address_mentions": [
+      [
+       "حافظ",
+       42
+      ],
+      [
+       "جمهوری",
+       19
+      ],
+      [
+       "علاءالدین",
+       4
+      ],
+      [
+       "پایتخت",
+       1
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       62
+      ],
+      [
+       "شیخ هادی",
+       31
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_7a1642bd471a1a606b0db75d",
+      "shop_1909f5cec5900c95e4c3074c",
+      "shop_732f8c49dd74203ba5d7ef73",
+      "shop_cf07c27859a7d1dec56ec756",
+      "shop_42bae79daa0d3422d41a9ef8",
+      "shop_fa2c55689225bf3e25634414",
+      "shop_7e7a1a129a984bdf4f13c210",
+      "shop_24b850f9c8b61ad920d35bac"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_7a1642bd471a1a606b0db75d",
+       "name": "آذروش دیسآرا",
+       "n_offers_in_group": 189
+      },
+      {
+       "shop_id": "shop_1909f5cec5900c95e4c3074c",
+       "name": "آوسا آوین",
+       "n_offers_in_group": 172
+      },
+      {
+       "shop_id": "shop_732f8c49dd74203ba5d7ef73",
+       "name": "نییار پاکوان",
+       "n_offers_in_group": 171
+      },
+      {
+       "shop_id": "shop_cf07c27859a7d1dec56ec756",
+       "name": "آوورا فروش",
+       "n_offers_in_group": 167
+      },
+      {
+       "shop_id": "shop_42bae79daa0d3422d41a9ef8",
+       "name": "آرآرا رامینا",
+       "n_offers_in_group": 163
+      }
+     ],
+     "evidence": "42 of 93 hub shops mention «حافظ» in their address; candidate centre 0.63 km from hub centre (median of 1085 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین)",
+     "also_mentioned": [
+      "علاءالدین"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69459,
+      "lon": 51.40559
+     },
+     "radius_km": 0.7,
+     "shop_count": 168,
+     "offer_count": 2048,
+     "share_of_group_offers": 0.088,
+     "share_of_group_shops": 0.162,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       153
+      ],
+      [
+       "ولیعصر",
+       50
+      ],
+      [
+       "علاءالدین",
+       39
+      ],
+      [
+       "شیخ هادی",
+       35
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       154
+      ],
+      [
+       "آذربایجان",
+       14
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_89ce691a001560a8875b3b5a",
+      "shop_b3407990109cbd8c5d183aab",
+      "shop_1ab104f8f4c27b7090cf1279",
+      "shop_3a6d555877d9890a29487797",
+      "shop_c2c3a6234a5cb1af7dea4001",
+      "shop_473ea1cb256d6c00dd999848",
+      "shop_68935d18378dc22058de310f",
+      "shop_0269cab8acb26af2f94b148c"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_89ce691a001560a8875b3b5a",
+       "name": "ویان فرانوش",
+       "n_offers_in_group": 282
+      },
+      {
+       "shop_id": "shop_b3407990109cbd8c5d183aab",
+       "name": "نودیس سرویار",
+       "n_offers_in_group": 257
+      },
+      {
+       "shop_id": "shop_1ab104f8f4c27b7090cf1279",
+       "name": "ماهوش نییار",
+       "n_offers_in_group": 248
+      },
+      {
+       "shop_id": "shop_3a6d555877d9890a29487797",
+       "name": "ماهانوش ماننوش",
+       "n_offers_in_group": 135
+      },
+      {
+       "shop_id": "shop_c2c3a6234a5cb1af7dea4001",
+       "name": "ویان مانان",
+       "n_offers_in_group": 121
+      }
+     ],
+     "evidence": "153 of 168 hub shops mention «جمهوری» in their address; candidate centre 0.54 km from hub centre (median of 2420 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "مبلمان",
+   "category_pattern": "مبل|صندلی|میز|کمد|تخت خواب|کاناپه|کتابخانه|جاکفشی",
+   "n_categories": 85,
+   "shops_total": 279,
+   "offers_total": 7378,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری",
+     "also_mentioned": [],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69019,
+      "lon": 51.41037
+     },
+     "radius_km": 0.7,
+     "shop_count": 141,
+     "offer_count": 5357,
+     "share_of_group_offers": 0.726,
+     "share_of_group_shops": 0.505,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       73
+      ],
+      [
+       "حافظ",
+       72
+      ],
+      [
+       "شیخ هادی",
+       22
+      ],
+      [
+       "علاءالدین",
+       11
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       84
+      ],
+      [
+       "فردوسی",
+       57
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_4986dd91071fbf727bd2865a",
+      "shop_38ac1f578a416c5ce0b74715",
+      "shop_ba74bc4654496d57b4ae1d1c",
+      "shop_4337364d3f6bbea3cd616dd7",
+      "shop_60dbd8220773d0fa398f06e4",
+      "shop_91a70014663402cf748f414d",
+      "shop_1ed5af1b5cb190ff26549a56",
+      "shop_3d0f68fa5c427e158c2523f3"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_4986dd91071fbf727bd2865a",
+       "name": "روآرا پاکیسا",
+       "n_offers_in_group": 1158
+      },
+      {
+       "shop_id": "shop_38ac1f578a416c5ce0b74715",
+       "name": "آذرانوش پاکآرا",
+       "n_offers_in_group": 321
+      },
+      {
+       "shop_id": "shop_ba74bc4654496d57b4ae1d1c",
+       "name": "رامین مانیار",
+       "n_offers_in_group": 313
+      },
+      {
+       "shop_id": "shop_4337364d3f6bbea3cd616dd7",
+       "name": "ویوش آران",
+       "n_offers_in_group": 298
+      },
+      {
+       "shop_id": "shop_60dbd8220773d0fa398f06e4",
+       "name": "آذریس نییس",
+       "n_offers_in_group": 292
+      }
+     ],
+     "evidence": "73 of 141 hub shops mention «جمهوری» in their address; candidate centre 0.53 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "منوچهری",
+     "display_name": "منوچهری (سعدی)",
+     "also_mentioned": [
+      "سعدی"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": null,
+     "center": {
+      "lat": 35.69888,
+      "lon": 51.42318
+     },
+     "radius_km": 0.7,
+     "shop_count": 36,
+     "offer_count": 610,
+     "share_of_group_offers": 0.083,
+     "share_of_group_shops": 0.129,
+     "top_address_mentions": [
+      [
+       "منوچهری",
+       17
+      ],
+      [
+       "سعدی",
+       17
+      ],
+      [
+       "لاله زار",
+       10
+      ],
+      [
+       "فردوسی",
+       8
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       36
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_02aafbf3baa5c77cc717f2b3",
+      "shop_97bf41d123cee5e4d829c156",
+      "shop_1514493b58f0067bf8d79ab1",
+      "shop_1511aeff9f4cd7004aaf3986",
+      "shop_f0f0df5562df635223027cbc",
+      "shop_efe043ff683ba458deddb41c",
+      "shop_44382075e41093b43bcb22ad",
+      "shop_6fe9fae3f75a1dfbc2fe070d"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_02aafbf3baa5c77cc717f2b3",
+       "name": "نیکیرا دیسدیس",
+       "n_offers_in_group": 279
+      },
+      {
+       "shop_id": "shop_97bf41d123cee5e4d829c156",
+       "name": "ماهیلا آرانوش",
+       "n_offers_in_group": 119
+      },
+      {
+       "shop_id": "shop_1514493b58f0067bf8d79ab1",
+       "name": "آوینا نودیس",
+       "n_offers_in_group": 85
+      },
+      {
+       "shop_id": "shop_1511aeff9f4cd7004aaf3986",
+       "name": "فردیس نوین",
+       "n_offers_in_group": 17
+      },
+      {
+       "shop_id": "shop_f0f0df5562df635223027cbc",
+       "name": "آذروش مانیسا",
+       "n_offers_in_group": 16
+      }
+     ],
+     "evidence": "17 of 36 hub shops mention «منوچهری» in their address; candidate centre 0.15 km from hub centre (median of 285 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "پوشاک و کفش",
+   "category_pattern": "پیراهن|شلوار|تیشرت|کفش|کتانی|مانتو|کاپشن|کراوات|لباس|کیف و کوله|جوراب",
+   "n_categories": 138,
+   "shops_total": 428,
+   "offers_total": 14505,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (سعدی و استانبول)",
+     "also_mentioned": [
+      "سعدی",
+      "استانبول"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69593,
+      "lon": 51.42151
+     },
+     "radius_km": 0.7,
+     "shop_count": 155,
+     "offer_count": 9174,
+     "share_of_group_offers": 0.632,
+     "share_of_group_shops": 0.362,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       56
+      ],
+      [
+       "فردوسی",
+       48
+      ],
+      [
+       "سعدی",
+       38
+      ],
+      [
+       "لاله زار",
+       26
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       111
+      ],
+      [
+       "بهارستان",
+       42
+      ],
+      [
+       "ایرانشهر",
+       2
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_319e60c9ff457b598451879e",
+      "shop_314c328a3aca2ac73e1f8f8e",
+      "shop_6f4908dc6577c4f16324d22b",
+      "shop_419a4a08df577c76596a3457",
+      "shop_70fd38e157a1c95f196ff618",
+      "shop_61a987bf85785654f3786747",
+      "shop_710c3b1bb278b7145bdc83de",
+      "shop_2c512d88f9cecfec70fb8d4e"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_319e60c9ff457b598451879e",
+       "name": "نوورا آذریار",
+       "n_offers_in_group": 751
+      },
+      {
+       "shop_id": "shop_314c328a3aca2ac73e1f8f8e",
+       "name": "رویس دیسورا",
+       "n_offers_in_group": 742
+      },
+      {
+       "shop_id": "shop_6f4908dc6577c4f16324d22b",
+       "name": "نیآرا سرووان",
+       "n_offers_in_group": 444
+      },
+      {
+       "shop_id": "shop_419a4a08df577c76596a3457",
+       "name": "پاکیس مانیلا",
+       "n_offers_in_group": 409
+      },
+      {
+       "shop_id": "shop_70fd38e157a1c95f196ff618",
+       "name": "نویار فریلا",
+       "n_offers_in_group": 377
+      }
+     ],
+     "evidence": "56 of 155 hub shops mention «جمهوری» in their address; candidate centre 0.91 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "حافظ",
+     "display_name": "حافظ",
+     "also_mentioned": [],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.68931,
+      "lon": 51.41071
+     },
+     "radius_km": 0.7,
+     "shop_count": 53,
+     "offer_count": 1251,
+     "share_of_group_offers": 0.086,
+     "share_of_group_shops": 0.124,
+     "top_address_mentions": [
+      [
+       "حافظ",
+       31
+      ],
+      [
+       "جمهوری",
+       12
+      ],
+      [
+       "ولیعصر",
+       7
+      ],
+      [
+       "علاءالدین",
+       3
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       27
+      ],
+      [
+       "شیخ هادی",
+       26
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_8a7a9bd96c12c13922dd6013",
+      "shop_70e2a473146d4078bf5da034",
+      "shop_72e9315662385d5566e27e54",
+      "shop_7d5bc44aecee92c449336b94",
+      "shop_e25915bb522d0ac4c40cfa6c",
+      "shop_9b5d33c558c299b39dc333de",
+      "shop_c1af5317ab25691112a2dffe",
+      "shop_68e0fd2a457089ba75e34074"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_8a7a9bd96c12c13922dd6013",
+       "name": "پاکآرا نیورا",
+       "n_offers_in_group": 268
+      },
+      {
+       "shop_id": "shop_70e2a473146d4078bf5da034",
+       "name": "آرنوش ویان",
+       "n_offers_in_group": 225
+      },
+      {
+       "shop_id": "shop_72e9315662385d5566e27e54",
+       "name": "ماهیرا نییسا",
+       "n_offers_in_group": 145
+      },
+      {
+       "shop_id": "shop_7d5bc44aecee92c449336b94",
+       "name": "روین آرنوش",
+       "n_offers_in_group": 117
+      },
+      {
+       "shop_id": "shop_e25915bb522d0ac4c40cfa6c",
+       "name": "سرویس مانیلا",
+       "n_offers_in_group": 73
+      }
+     ],
+     "evidence": "31 of 53 hub shops mention «حافظ» in their address; candidate centre 0.62 km from hub centre (median of 1085 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "ساعت",
+   "category_pattern": "ساعت مچی|ساعت دیواری|ساعت و مچ بند هوشمند",
+   "n_categories": 3,
+   "shops_total": 160,
+   "offers_total": 4437,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین و چارسو)",
+     "also_mentioned": [
+      "علاءالدین",
+      "چارسو"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69459,
+      "lon": 51.40915
+     },
+     "radius_km": 0.7,
+     "shop_count": 101,
+     "offer_count": 2196,
+     "share_of_group_offers": 0.495,
+     "share_of_group_shops": 0.631,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       82
+      ],
+      [
+       "حافظ",
+       73
+      ],
+      [
+       "علاءالدین",
+       32
+      ],
+      [
+       "چارسو",
+       15
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       80
+      ],
+      [
+       "فردوسی",
+       21
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_003188adaa35e2fa95482989",
+      "shop_5b27db5f7c0f05231164d28a",
+      "shop_c3d6e1af2c4d03cfea5ac019",
+      "shop_49eeaba33eeb15a3c7835fd7",
+      "shop_74164480f36fed2cc64315f8",
+      "shop_00b2570189016d84f9494b37",
+      "shop_184dad78e4bb445a0f1093c8",
+      "shop_49b9854ac58b71ef66bd529b"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_003188adaa35e2fa95482989",
+       "name": "آرینا نیآرا",
+       "n_offers_in_group": 303
+      },
+      {
+       "shop_id": "shop_5b27db5f7c0f05231164d28a",
+       "name": "ماهآرا مانیار",
+       "n_offers_in_group": 300
+      },
+      {
+       "shop_id": "shop_c3d6e1af2c4d03cfea5ac019",
+       "name": "نودیس مهریسا",
+       "n_offers_in_group": 300
+      },
+      {
+       "shop_id": "shop_49eeaba33eeb15a3c7835fd7",
+       "name": "مانانوش رامآرا",
+       "n_offers_in_group": 203
+      },
+      {
+       "shop_id": "shop_74164480f36fed2cc64315f8",
+       "name": "فروان آذرآرا",
+       "n_offers_in_group": 127
+      }
+     ],
+     "evidence": "82 of 101 hub shops mention «جمهوری» in their address; candidate centre 0.22 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "باغ فیض",
+     "display_name": "باغ فیض",
+     "also_mentioned": [],
+     "named_by": "majority shops.location_label",
+     "known_for": null,
+     "center": {
+      "lat": 35.73846,
+      "lon": 51.31382
+     },
+     "radius_km": 0.7,
+     "shop_count": 6,
+     "offer_count": 461,
+     "share_of_group_offers": 0.104,
+     "share_of_group_shops": 0.037,
+     "top_address_mentions": [],
+     "location_labels": [
+      [
+       "باغ فیض",
+       6
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_f7e2fe6176faa2ca4ef043fe",
+      "shop_453e38529e2f368cee65199e",
+      "shop_d66252a49842bb155bd90eff",
+      "shop_0a6075cff7a823df4d9a21c5",
+      "shop_6e3fdb5f11a5953b29d3c428",
+      "shop_3bebdfd18ee826120174e53c"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_f7e2fe6176faa2ca4ef043fe",
+       "name": "ماهین آوآرا",
+       "n_offers_in_group": 299
+      },
+      {
+       "shop_id": "shop_453e38529e2f368cee65199e",
+       "name": "مانین آوین",
+       "n_offers_in_group": 99
+      },
+      {
+       "shop_id": "shop_d66252a49842bb155bd90eff",
+       "name": "مانین آرآرا",
+       "n_offers_in_group": 52
+      },
+      {
+       "shop_id": "shop_0a6075cff7a823df4d9a21c5",
+       "name": "مانیرا مهریس",
+       "n_offers_in_group": 8
+      },
+      {
+       "shop_id": "shop_6e3fdb5f11a5953b29d3c428",
+       "name": "رامانوش سروینا",
+       "n_offers_in_group": 2
+      }
+     ],
+     "evidence": "6 shops with 461 offers within 0.7 km; no candidate bazaar name met the address+distance test"
+    },
+    {
+     "hub_name": "فردوسی",
+     "display_name": "فردوسی (سعدی)",
+     "also_mentioned": [
+      "سعدی"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": null,
+     "center": {
+      "lat": 35.69502,
+      "lon": 51.42164
+     },
+     "radius_km": 0.7,
+     "shop_count": 30,
+     "offer_count": 958,
+     "share_of_group_offers": 0.216,
+     "share_of_group_shops": 0.188,
+     "top_address_mentions": [
+      [
+       "فردوسی",
+       20
+      ],
+      [
+       "جمهوری",
+       4
+      ],
+      [
+       "لاله زار",
+       4
+      ],
+      [
+       "سعدی",
+       3
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       28
+      ],
+      [
+       "ایرانشهر",
+       1
+      ],
+      [
+       "ولیعصر",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_7b0fc4046ed230fc397e87a7",
+      "shop_933ba312b67e1e63b3e1e767",
+      "shop_1514493b58f0067bf8d79ab1",
+      "shop_419a4a08df577c76596a3457",
+      "shop_873e0eb2ace39ec44e5bdfea",
+      "shop_5ce1c2d3254d07d57f5d196a",
+      "shop_b044a8da7c9d17e38c4a1168",
+      "shop_c75c5ab16fcd8298c5b24009"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_7b0fc4046ed230fc397e87a7",
+       "name": "پاکدیس نیسا",
+       "n_offers_in_group": 305
+      },
+      {
+       "shop_id": "shop_933ba312b67e1e63b3e1e767",
+       "name": "آذرسا نیکورا",
+       "n_offers_in_group": 300
+      },
+      {
+       "shop_id": "shop_1514493b58f0067bf8d79ab1",
+       "name": "آوینا نودیس",
+       "n_offers_in_group": 85
+      },
+      {
+       "shop_id": "shop_419a4a08df577c76596a3457",
+       "name": "پاکیس مانیلا",
+       "n_offers_in_group": 76
+      },
+      {
+       "shop_id": "shop_873e0eb2ace39ec44e5bdfea",
+       "name": "ویوان ماهین",
+       "n_offers_in_group": 63
+      }
+     ],
+     "evidence": "20 of 30 hub shops mention «فردوسی» in their address; candidate centre 0.12 km from hub centre (median of 555 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "لوازم خانگی",
+   "category_pattern": "یخچال|لباسشویی|ظرفشویی|جارو برقی|جاروبرقی|اتو|مایکروویو|کولر|بخاری|اجاق|سرخ کن|غذاساز|چای ساز|قهوه ساز|تلویزیون|هواکش",
+   "n_categories": 130,
+   "shops_total": 1118,
+   "offers_total": 22821,
+   "hubs": [
+    {
+     "hub_name": "لاله زار",
+     "display_name": "لاله زار (سعدی)",
+     "also_mentioned": [
+      "سعدی"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "برق/روشنایی",
+     "center": {
+      "lat": 35.6916,
+      "lon": 51.42355
+     },
+     "radius_km": 0.7,
+     "shop_count": 602,
+     "offer_count": 13171,
+     "share_of_group_offers": 0.577,
+     "share_of_group_shops": 0.538,
+     "top_address_mentions": [
+      [
+       "لاله زار",
+       322
+      ],
+      [
+       "سعدی",
+       215
+      ],
+      [
+       "جمهوری",
+       101
+      ],
+      [
+       "منوچهری",
+       45
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       436
+      ],
+      [
+       "بهارستان",
+       166
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_0ddb08c427d867e208d404f8",
+      "shop_c53fa562fa009ed4c720f3d3",
+      "shop_1c8cdae51e73279ef48844c1",
+      "shop_7d1e62267fab16acbacc9d80",
+      "shop_bdc8ef838630197a467eb6ce",
+      "shop_f95cdaefacdf20cb491172af",
+      "shop_6f25a1381eef5b813b2471ba",
+      "shop_7b6f5186e609fc5a111abe9b"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_0ddb08c427d867e208d404f8",
+       "name": "آذرانوش وییرا",
+       "n_offers_in_group": 317
+      },
+      {
+       "shop_id": "shop_c53fa562fa009ed4c720f3d3",
+       "name": "سروانوش مهریس",
+       "n_offers_in_group": 313
+      },
+      {
+       "shop_id": "shop_1c8cdae51e73279ef48844c1",
+       "name": "شهر موتور برق",
+       "n_offers_in_group": 312
+      },
+      {
+       "shop_id": "shop_7d1e62267fab16acbacc9d80",
+       "name": "مانیار مانیسا",
+       "n_offers_in_group": 279
+      },
+      {
+       "shop_id": "shop_bdc8ef838630197a467eb6ce",
+       "name": "سرووش آذرین",
+       "n_offers_in_group": 250
+      }
+     ],
+     "evidence": "322 of 602 hub shops mention «لاله زار» in their address; candidate centre 0.11 km from hub centre (median of 1546 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین)",
+     "also_mentioned": [
+      "علاءالدین"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.69513,
+      "lon": 51.40875
+     },
+     "radius_km": 0.7,
+     "shop_count": 338,
+     "offer_count": 6357,
+     "share_of_group_offers": 0.279,
+     "share_of_group_shops": 0.302,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       298
+      ],
+      [
+       "حافظ",
+       128
+      ],
+      [
+       "شیخ هادی",
+       62
+      ],
+      [
+       "ولیعصر",
+       49
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       265
+      ],
+      [
+       "فردوسی",
+       59
+      ],
+      [
+       "آذربایجان",
+       13
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_974140179c80a6dbea226014",
+      "shop_6300398165191887f3ccff0a",
+      "shop_d9a3ca0ea7c02c738e5b5d2e",
+      "shop_c29ee4c3ab568ec713a8d7ed",
+      "shop_de751453d030bf7838baedbe",
+      "shop_6ba1d8b9b4e41fd1500ad8cf",
+      "shop_25c17532389a2d0a31a4dd45",
+      "shop_689cc84418405a322316c091"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_974140179c80a6dbea226014",
+       "name": "نیآرا فریار",
+       "n_offers_in_group": 338
+      },
+      {
+       "shop_id": "shop_6300398165191887f3ccff0a",
+       "name": "ماهسا پاکانوش",
+       "n_offers_in_group": 315
+      },
+      {
+       "shop_id": "shop_d9a3ca0ea7c02c738e5b5d2e",
+       "name": "آذریرا فروش",
+       "n_offers_in_group": 263
+      },
+      {
+       "shop_id": "shop_c29ee4c3ab568ec713a8d7ed",
+       "name": "مهریرا ویسا",
+       "n_offers_in_group": 199
+      },
+      {
+       "shop_id": "shop_de751453d030bf7838baedbe",
+       "name": "آرنوش رامیرا",
+       "n_offers_in_group": 188
+      }
+     ],
+     "evidence": "298 of 338 hub shops mention «جمهوری» in their address; candidate centre 0.25 km from hub centre (median of 2420 shop addresses mentioning it)"
+    }
+   ]
+  },
+  {
+   "group": "عطر و آرایشی",
+   "category_pattern": "عطر|ادکلن|آرایش|رژ لب|ریمل|کرم|رنگ مو|ماسک پوستی",
+   "n_categories": 47,
+   "shops_total": 163,
+   "offers_total": 3566,
+   "hubs": [
+    {
+     "hub_name": "جمهوری",
+     "display_name": "جمهوری (علاءالدین)",
+     "also_mentioned": [
+      "علاءالدین"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": "کامپیوتر/الکترونیک",
+     "center": {
+      "lat": 35.6945,
+      "lon": 51.40517
+     },
+     "radius_km": 0.7,
+     "shop_count": 76,
+     "offer_count": 1316,
+     "share_of_group_offers": 0.369,
+     "share_of_group_shops": 0.466,
+     "top_address_mentions": [
+      [
+       "جمهوری",
+       60
+      ],
+      [
+       "ولیعصر",
+       40
+      ],
+      [
+       "علاءالدین",
+       23
+      ],
+      [
+       "شیخ هادی",
+       12
+      ]
+     ],
+     "location_labels": [
+      [
+       "شیخ هادی",
+       66
+      ],
+      [
+       "آذربایجان",
+       10
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_eae37b54bed3aeb8243fb7d4",
+      "shop_2653cf227b2ac30776e763bc",
+      "shop_5464397c753e299383aae235",
+      "shop_2c564e1ed8be34db1bb94957",
+      "shop_d0aa03bd346ed295cc241131",
+      "shop_1cda6396652c76b44f3c8e4e",
+      "shop_2ebe9f042353957ef45d6f7e",
+      "shop_5129b3d2f8a13a40cc4caacc"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_eae37b54bed3aeb8243fb7d4",
+       "name": "نوان مانآرا",
+       "n_offers_in_group": 295
+      },
+      {
+       "shop_id": "shop_2653cf227b2ac30776e763bc",
+       "name": "نیکسا نوانوش",
+       "n_offers_in_group": 100
+      },
+      {
+       "shop_id": "shop_5464397c753e299383aae235",
+       "name": "سرویس نویس",
+       "n_offers_in_group": 79
+      },
+      {
+       "shop_id": "shop_2c564e1ed8be34db1bb94957",
+       "name": "سرودیس نیسا",
+       "n_offers_in_group": 73
+      },
+      {
+       "shop_id": "shop_d0aa03bd346ed295cc241131",
+       "name": "سروان رامیلا",
+       "n_offers_in_group": 69
+      }
+     ],
+     "evidence": "60 of 76 hub shops mention «جمهوری» in their address; candidate centre 0.57 km from hub centre (median of 2420 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "سعدی",
+     "display_name": "سعدی (منوچهری)",
+     "also_mentioned": [
+      "منوچهری"
+     ],
+     "named_by": "address_mentions+distance",
+     "known_for": null,
+     "center": {
+      "lat": 35.69827,
+      "lon": 51.42336
+     },
+     "radius_km": 0.7,
+     "shop_count": 31,
+     "offer_count": 881,
+     "share_of_group_offers": 0.247,
+     "share_of_group_shops": 0.19,
+     "top_address_mentions": [
+      [
+       "سعدی",
+       14
+      ],
+      [
+       "منوچهری",
+       13
+      ],
+      [
+       "فردوسی",
+       11
+      ],
+      [
+       "لاله زار",
+       5
+      ]
+     ],
+     "location_labels": [
+      [
+       "فردوسی",
+       27
+      ],
+      [
+       "بهارستان",
+       3
+      ],
+      [
+       "ایرانشهر",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_6512af617c7315976da892eb",
+      "shop_97bf41d123cee5e4d829c156",
+      "shop_0b713b699c263daa06a76f31",
+      "shop_72395f2d30e1bd4ef00881e6",
+      "shop_419a4a08df577c76596a3457",
+      "shop_7a991612e35d62108f6447b4",
+      "shop_efe043ff683ba458deddb41c",
+      "shop_5ce1c2d3254d07d57f5d196a"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_6512af617c7315976da892eb",
+       "name": "نیکیرا ماهآرا",
+       "n_offers_in_group": 157
+      },
+      {
+       "shop_id": "shop_97bf41d123cee5e4d829c156",
+       "name": "ماهیلا آرانوش",
+       "n_offers_in_group": 157
+      },
+      {
+       "shop_id": "shop_0b713b699c263daa06a76f31",
+       "name": "رامیسا پاکیسا",
+       "n_offers_in_group": 143
+      },
+      {
+       "shop_id": "shop_72395f2d30e1bd4ef00881e6",
+       "name": "پاکان سرووان",
+       "n_offers_in_group": 141
+      },
+      {
+       "shop_id": "shop_419a4a08df577c76596a3457",
+       "name": "پاکیس مانیلا",
+       "n_offers_in_group": 53
+      }
+     ],
+     "evidence": "14 of 31 hub shops mention «سعدی» in their address; candidate centre 0.87 km from hub centre (median of 961 shop addresses mentioning it)"
+    },
+    {
+     "hub_name": "جنت آباد جنوبی",
+     "display_name": "جنت آباد جنوبی",
+     "also_mentioned": [],
+     "named_by": "majority shops.location_label",
+     "known_for": null,
+     "center": {
+      "lat": 35.73917,
+      "lon": 51.30981
+     },
+     "radius_km": 0.7,
+     "shop_count": 12,
+     "offer_count": 478,
+     "share_of_group_offers": 0.134,
+     "share_of_group_shops": 0.074,
+     "top_address_mentions": [],
+     "location_labels": [
+      [
+       "جنت آباد جنوبی",
+       6
+      ],
+      [
+       "باغ فیض",
+       5
+      ],
+      [
+       "سازمان برنامه شمالی",
+       1
+      ]
+     ],
+     "sample_shop_ids": [
+      "shop_c7b9f47036dbab41aed9659c",
+      "shop_d525f9a1b25a72dcc8e37111",
+      "shop_776c4b4cf69db6c213bb475c",
+      "shop_1569cae75680d31687ae7ab7",
+      "shop_af4527a8aac079c8922892d0",
+      "shop_be8691dc97a1d64fe2de3790",
+      "shop_bebad8bf63c06052ee9dea49",
+      "shop_0a6075cff7a823df4d9a21c5"
+     ],
+     "sample_shops": [
+      {
+       "shop_id": "shop_c7b9f47036dbab41aed9659c",
+       "name": "وییس رووان",
+       "n_offers_in_group": 203
+      },
+      {
+       "shop_id": "shop_d525f9a1b25a72dcc8e37111",
+       "name": "سروورا ماهیرا",
+       "n_offers_in_group": 194
+      },
+      {
+       "shop_id": "shop_776c4b4cf69db6c213bb475c",
+       "name": "نووان ویوش",
+       "n_offers_in_group": 41
+      },
+      {
+       "shop_id": "shop_1569cae75680d31687ae7ab7",
+       "name": "آویار نویس",
+       "n_offers_in_group": 22
+      },
+      {
+       "shop_id": "shop_af4527a8aac079c8922892d0",
+       "name": "مانیس نییار",
+       "n_offers_in_group": 7
+      }
+     ],
+     "evidence": "12 shops with 478 offers within 0.7 km; no candidate bazaar name met the address+distance test"
+    }
+   ]
+  }
+ ]
+}

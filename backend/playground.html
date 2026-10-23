@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ترب — Playground</title>
+<style>
+@font-face{font-family:'Vazirmatn';src:url('/pg/static/Vazirmatn-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Vazirmatn',sans-serif;direction:rtl;color:#1A1F36;font-size:14px;line-height:1.75;-webkit-font-smoothing:antialiased;min-height:100vh;
+ background:radial-gradient(260px 220px at 82% 30%,rgba(255,218,228,.55),transparent 70%),radial-gradient(280px 260px at 12% 42%,rgba(214,222,255,.55),transparent 70%),radial-gradient(300px 260px at 75% 88%,rgba(234,224,255,.45),transparent 70%),#FCFCFE;background-attachment:fixed}
+.wrap{max-width:1280px;margin:0 auto;padding:0 12px 120px}
+.top{position:sticky;top:0;z-index:5;background:rgba(252,252,254,.88);backdrop-filter:blur(14px);padding:10px 4px 8px;border-bottom:1px solid #ECEDF3}
+.trow{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px}.brand img{width:30px;height:30px}
+.spend{font-size:12px;color:#4E5368;background:#fff;border:1px solid #ECEDF3;border-radius:14px;padding:3px 10px}.spend b{color:#1A1F36}
+.spend.warn{background:#FFF4E5;border-color:#FFD9A8}
+.seg{display:flex;background:rgba(238,239,245,.85);border-radius:22px;padding:4px;margin-top:8px;box-shadow:inset 0 0 0 1px rgba(225,227,236,.7)}
+.seg button{flex:1;border:0;background:none;font:inherit;padding:7px 4px;border-radius:18px;color:#9A9DAC;font-weight:500;font-size:14px;cursor:pointer}
+.seg button.on{background:linear-gradient(180deg,#fff,#FFF5F6);color:#1A1F36;font-weight:800;box-shadow:0 4px 14px rgba(232,120,140,.14),0 1px 2px rgba(30,30,60,.06)}
+.bar{display:flex;gap:6px;justify-content:flex-end;margin-top:6px;flex-wrap:wrap}
+.btn{border:1px solid #E4E6F0;background:#fff;border-radius:14px;padding:3px 10px;font:inherit;font-size:12px;color:#5B6072;cursor:pointer}
+.btn:hover{background:#F4F5F8}
+.urow{display:flex;gap:10px;align-items:flex-start;margin:14px 0 10px}
+.uav{width:32px;height:32px;border-radius:50%;background:#E9ECF8;color:#5E6683;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}
+.ububble{background:#EDF0FD;border-radius:22px;padding:9px 15px;font-size:14.5px;max-width:85%}
+.arow{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+.aav{width:36px;height:36px;border-radius:50%;flex-shrink:0;background:#fff;box-shadow:0 4px 12px rgba(150,120,160,.18)}
+.acol{flex:1;min-width:0}
+.abubble{background:#F4F5F8;border-radius:22px;padding:10px 15px;font-size:14.5px;white-space:pre-wrap;word-wrap:break-word}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:1300px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.col3{background:rgba(255,255,255,.6);border:1px solid #ECEDF3;border-radius:20px;padding:10px}
+.vtag{display:inline-block;font-weight:800;font-size:12.5px;background:#1A1F36;color:#fff;border-radius:10px;padding:1px 10px;margin-bottom:6px}
+.vtag.current{background:#6B7280}.vtag.v3{background:#4F5BD5}.vtag.jev{background:#E8475B}.vtag.v3plus{background:#0E9F6E}
+.metrics{display:flex;flex-wrap:wrap;gap:6px;font-size:11.5px;color:#5B6072;margin:6px 0}
+.metrics span{background:#fff;border:1px solid #ECEDF3;border-radius:10px;padding:1px 8px}
+.eng{font-size:11px;color:#B45309}
+.card{background:#fff;border-radius:22px;box-shadow:0 10px 34px rgba(40,44,90,.07),0 1px 3px rgba(40,44,90,.03);border:1px solid rgba(236,237,243,.8)}
+.pcard{display:flex;gap:12px;padding:12px;margin:10px 0}
+.tile{width:92px;height:110px;border-radius:18px;background:#F4F5F7;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.tile img{width:100%;height:100%;object-fit:cover}
+.pcol{flex:1;min-width:0}
+.ttl{font-size:14px;font-weight:800;line-height:1.6}
+.sub{font-size:11.5px;color:#8A8EA0}
+.prange{font-size:12.5px;color:#4E5368;margin-top:5px}.prange b{font-weight:800;color:#1A1F36;font-size:13.5px}
+.fresh{font-size:10.5px;color:#A3A6B4}
+.note{font-size:12.5px;color:#4E5368;margin-top:5px;background:#F8F8FC;border-radius:12px;padding:5px 9px}
+.flag{display:inline-block;font-size:11px;border-radius:9px;padding:0 7px;margin:3px 0 0 4px}
+.flag.stale{background:#FFF4E5;color:#B45309}.flag.sus{background:#FDECEE;color:#C0263B}
+.scard{padding:11px 13px;margin:8px 0}
+.srow{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.sname{font-weight:800}.price{font-weight:800;white-space:nowrap}
+.addr{font-size:12px;color:#5B6072}
+.meta{font-size:11px;color:#8A8EA0;display:flex;gap:8px;flex-wrap:wrap}
+.btitle{font-size:12.5px;font-weight:800;color:#5B6072;margin:12px 4px 2px}
+table.cmp{width:100%;border-collapse:collapse;font-size:12px}table.cmp td,table.cmp th{border-bottom:1px solid #F0F1F5;padding:6px;text-align:right;vertical-align:top}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{border:1px solid #E4E6F0;background:#fff;border-radius:16px;padding:4px 12px;font:inherit;font-size:12.5px;cursor:pointer;box-shadow:0 2px 8px rgba(60,60,110,.05)}
+.step{display:flex;gap:8px;padding:8px 0;border-bottom:1px dashed #ECEDF3}.step:last-child{border:0}
+.sn{width:24px;height:24px;border-radius:50%;background:#EDF0FD;color:#4F5BD5;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}
+details.dbg{margin-top:6px;font-size:11.5px}details.dbg summary{cursor:pointer;color:#8A8EA0}
+details.dbg pre{direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word;background:#1A1F36;color:#E5E7F0;border-radius:12px;padding:8px;max-height:420px;overflow:auto;font-size:11px;margin-top:4px}
+.composer{position:fixed;bottom:0;left:0;right:0;padding:8px 12px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(rgba(252,252,254,0),rgba(252,252,254,.96) 30%)}
+.cbox{max-width:900px;margin:0 auto;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border:1px solid rgba(228,230,240,.9);box-shadow:0 12px 34px rgba(110,110,170,.12);border-radius:28px;padding:6px 8px 6px 6px}
+.cbox input{flex:1;border:0;outline:0;background:none;font:inherit;font-size:15px;padding:8px 10px;min-width:0}
+.send{border:0;background:#E8475B;color:#fff;font:inherit;font-weight:800;border-radius:22px;padding:8px 18px;cursor:pointer}
+.send:disabled{opacity:.5}
+.hint{font-size:11px;color:#B45309;text-align:center;margin-bottom:4px}
+.empty{color:#A6A9B7;text-align:center;margin:40px 0;font-size:13px}
+.spin{color:#8A8EA0;font-size:12.5px;margin:8px 0}
+
+/* ---- drill-down drawer / related / suggestions / memory (all $0, DB only) ---- */
+[data-pid],[data-sid]{cursor:pointer}
+.pcard[data-pid]{transition:box-shadow .15s,transform .15s}.pcard[data-pid]:hover{box-shadow:0 14px 38px rgba(40,44,90,.12);transform:translateY(-1px)}
+.more{font-size:11.5px;color:#4F5BD5;font-weight:700;margin-top:4px}
+.slink{color:#1A1F36;text-decoration:none;border-bottom:1px dashed #C9CCE0}
+.rel{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.rel::-webkit-scrollbar{height:6px}.rel::-webkit-scrollbar-thumb{background:#E4E6F0;border-radius:6px}
+.rcard{flex:0 0 150px;scroll-snap-align:start;padding:9px;border-radius:18px}
+.rcard .tile{width:100%;height:96px;border-radius:14px;margin-bottom:6px}
+.rcard .ttl{font-size:12px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:37px}
+.rcard .prange{font-size:12px;margin-top:3px}
+.sugg{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.sugg .chip{background:linear-gradient(180deg,#fff,#F7F8FF);border-color:#DCE0F7;color:#3B44A8}
+.sugg .chip::before{content:'↖ ';color:#A3A9E0}
+.memrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px;font-size:11.5px;color:#8A8EA0}
+.mchip{display:inline-flex;align-items:center;gap:4px;background:#F1F3FC;color:#4E5368;border-radius:12px;padding:1px 4px 1px 9px}
+.mchip button{border:0;background:none;color:#A3A6B4;cursor:pointer;font:inherit;font-size:13px;line-height:1;padding:0 3px}
+.mchip button:hover{color:#E8475B}
+.dback{position:fixed;inset:0;background:rgba(26,31,54,.28);backdrop-filter:blur(2px);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
+.dback.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(440px,100vw);background:#FCFCFE;z-index:21;box-shadow:-20px 0 60px rgba(40,44,90,.18);
+ transform:translateX(105%);transition:transform .25s ease;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+@media(max-width:600px){.drawer{top:auto;width:100vw;height:88vh;border-radius:24px 24px 0 0;transform:translateY(105%)}.drawer.on{transform:none}}
+.dhead{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #ECEDF3}
+.dhead .dt{flex:1;font-weight:800;font-size:14.5px;line-height:1.5;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ib{border:0;background:#F1F2F7;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;color:#4E5368;flex-shrink:0}
+.dbody{overflow-y:auto;padding:12px 14px 30px;flex:1}
+.dsum{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.dsum .tile{width:72px;height:80px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:12.5px;margin:6px 0}.kv dt{color:#8A8EA0}.kv dd{color:#1A1F36}
+.stats{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.stats span{background:#fff;border:1px solid #ECEDF3;border-radius:10px;padding:1px 8px;font-size:11.5px;color:#4E5368}
+.disc{font-size:11.5px;color:#6B7080;background:#F4F5FB;border-radius:12px;padding:6px 10px;margin:8px 0}
+.orow{display:flex;justify-content:space-between;gap:10px;padding:10px 4px;border-bottom:1px solid #F0F1F5}
+.orow.dim{opacity:.72}
+.orow .sname{font-size:13px}
+.orow .sub{font-size:11px}
+.oprice{text-align:left;white-space:nowrap}.oprice b{font-size:13.5px}
+.unk{color:#A3A6B4}
+.hours{width:100%;border-collapse:collapse;font-size:12.5px}.hours td{padding:3px 4px;border-bottom:1px solid #F3F4F8}.hours tr.today td{font-weight:800;color:#4F5BD5}
+.sec{font-size:12.5px;font-weight:800;color:#5B6072;margin:14px 0 4px}
+.gal{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 8px;margin-top:8px}
+.gal img{flex:0 0 auto;height:118px;max-width:170px;object-fit:contain;background:#fff;border:1px solid #ECEEF3;border-radius:12px;scroll-snap-align:start;padding:6px;cursor:zoom-in}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:6px 0}
+.kv div{background:#F7F8FB;border-radius:10px;padding:6px 9px;font-size:12px}.kv b{display:block;color:#8A8EA0;font-weight:600;font-size:11px}
+details.spec{border:1px solid #ECEEF3;border-radius:12px;margin:6px 0;background:#fff}
+details.spec summary{cursor:pointer;padding:8px 11px;font-weight:700;font-size:12.5px;color:#3A3F52;list-style:none}
+details.spec summary::after{content:'‹';float:left;transition:.2s;color:#A0A4B3}details.spec[open] summary::after{transform:rotate(-90deg)}
+details.spec table{width:100%;border-collapse:collapse;font-size:12px}details.spec td{padding:6px 11px;border-top:1px solid #F1F2F6;vertical-align:top}
+details.spec td:first-child{color:#7A7F92;width:38%}
+.about{background:linear-gradient(180deg,#FBFAFF,#fff);border:1px solid #ECE8FB;border-radius:14px;padding:10px 12px;margin:10px 0}
+.about p{margin:4px 0;font-size:13px;line-height:1.9;color:#2E3242}.about .srcs{margin-top:6px;font-size:11px;color:#9AA0B2}
+.about .srcs a{color:#8C86B8;text-decoration:none;margin-left:8px}.proute{display:inline-block;font-size:11px;color:#6B5BD2;background:#F1EEFF;border:1px solid #E1DBFF;border-radius:999px;padding:2px 10px;margin:0 0 6px}.about sup.ref{color:#8C86B8;font-size:10px}.about.loading .spin{font-size:12px;color:#9AA0B2;padding:6px 0}.about .srcs a:hover{text-decoration:underline}
+.pill{display:inline-block;background:#F1F3FC;border-radius:10px;padding:0 8px;margin:2px;font-size:11.5px;color:#4E5368}
+.maplink{display:inline-block;margin-top:6px;background:#EDF0FD;color:#3B44A8;border-radius:12px;padding:4px 12px;text-decoration:none;font-size:12.5px;font-weight:700}
+.derr{text-align:center;padding:30px 10px;display:flex;flex-direction:column;align-items:center;gap:10px}.derr-ic{font-size:30px}.derr-t{font-weight:700;font-size:14px;line-height:1.8}
+.fake{font-size:11px;color:#B45309;background:#FFF4E5;border-radius:8px;padding:0 6px;margin-right:4px}
+
+/* ---- clarifying question cards ---- */
+.qwrap{margin:10px 0 4px;display:flex;flex-direction:column;gap:8px}
+.qcard{padding:11px 13px;border-radius:18px}
+.qt{font-weight:800;font-size:13.5px;margin-bottom:6px}
+.qopts{display:flex;flex-wrap:wrap;gap:6px}
+.qo{border:1px solid #E4E6F0;background:#fff;border-radius:16px;padding:4px 12px;font:inherit;font-size:12.5px;cursor:pointer;color:#3E4357}
+.qo.on{background:#1A1F36;border-color:#1A1F36;color:#fff}
+.qin{margin-top:7px;width:100%;border:1px solid #E4E6F0;border-radius:12px;padding:6px 10px;font:inherit;font-size:13px;outline:0;background:#FBFBFE}
+.qin:focus{border-color:#B9BFEA}
+.qsend{align-self:flex-start;border:0;background:#E8475B;color:#fff;font:inherit;font-weight:800;border-radius:16px;padding:6px 16px;cursor:pointer;font-size:13px}
+.qsend:disabled{opacity:.45;cursor:default}
+.qdone{font-size:11.5px;color:#8A8EA0}
+
+/* ---- saved lists / basket ---- */
+.pcard,.rcard{position:relative}
+.savebtn{position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;border:1px solid #ECEDF3;background:rgba(255,255,255,.92);cursor:pointer;font-size:15px;line-height:1;color:#8A8EA0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(40,44,90,.08);z-index:2}
+.savebtn:hover{color:#E8475B;border-color:#F6C9D0}
+.savebtn.on{color:#E8475B}
+.savebtn.inl{position:static;width:26px;height:26px;font-size:13px;margin-top:4px;display:inline-flex}
+.listbtn{white-space:nowrap;border:1px solid #E4E6F0;background:#fff;border-radius:14px;padding:3px 12px;font:inherit;font-size:12.5px;cursor:pointer;color:#1A1F36;font-weight:700}
+.listbtn b{background:#E8475B;color:#fff;border-radius:9px;padding:0 6px;font-size:11px;margin-right:4px}
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%) translateY(20px);background:#1A1F36;color:#fff;border-radius:16px;padding:8px 16px;font-size:13px;z-index:40;opacity:0;transition:all .2s;pointer-events:none;max-width:92vw}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.ltabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ltab{border:1px solid #E4E6F0;background:#fff;border-radius:16px;padding:3px 12px;font:inherit;font-size:12.5px;cursor:pointer}
+.ltab.on{background:#1A1F36;color:#fff;border-color:#1A1F36}
+.lhead{display:flex;align-items:center;gap:8px;margin:4px 0 8px}
+.lhead .ln{font-weight:800;font-size:15px;flex:1}
+.lhead input{flex:1;font:inherit;font-size:14px;border:1px solid #DCE0F7;border-radius:10px;padding:4px 8px}
+.ltot{display:flex;justify-content:space-between;align-items:center;background:#F4F5FB;border-radius:14px;padding:8px 12px;margin:6px 0 10px}
+.ltot b{font-size:15px}
+.lrow{display:flex;gap:10px;padding:10px 2px;border-bottom:1px solid #F0F1F5;align-items:flex-start}
+.lrow .tile{width:52px;height:58px;border-radius:12px}
+.lrow .lc{flex:1;min-width:0}
+.lact{display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap}
+.lact select{font:inherit;font-size:11.5px;border:1px solid #E4E6F0;border-radius:8px;padding:1px 4px;background:#fff}
+.mini{border:0;background:#F1F2F7;border-radius:10px;padding:2px 9px;font:inherit;font-size:11.5px;cursor:pointer;color:#4E5368}
+.mini:hover{background:#E7E9F2}
+#lmap{height:220px;border-radius:16px;margin:8px 0;overflow:hidden;background:#EEF0F6}
+.hook{background:linear-gradient(180deg,#FFF5F6,#fff)!important;border-color:#F6C9D0!important;color:#C0263B!important}
+.hook::before{content:'＋ '!important;color:#E8475B!important}
+
+/* ---- «بورس این کالا» ---- */
+.proj{padding:12px 14px;margin:10px 0;border-radius:20px;background:linear-gradient(180deg,#FFFFFF,#FBF9FF)}
+.proj .pt{font-weight:800;font-size:14.5px;color:#2B2F40}.proj .pa{font-size:12px;color:#7A7F92;margin:2px 0 8px}
+.nrow{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #F1F2F6}
+.nrow.off{opacity:.45}.nrow input[type=checkbox]{width:17px;height:17px;accent-color:#E8475B}
+.nrow .ni{font-weight:700;font-size:13px}.nrow .nw{font-size:11.5px;color:#8A8EA0}
+.pri{font-size:10.5px;border-radius:8px;padding:0 6px;margin-right:4px;background:#EEF7F2;color:#0E9F6E}.pri.opt{background:#F3F4F8;color:#7A7F92}
+.qty{display:flex;align-items:center;gap:4px;font-size:11.5px;color:#7A7F92;white-space:nowrap}.qty input{width:52px;border:1px solid #E3E5EC;border-radius:10px;padding:3px 6px;font:inherit;text-align:center}
+.parea{width:100%;box-sizing:border-box;border:1px solid #E3E5EC;border-radius:12px;padding:6px 10px;font:inherit;font-size:12.5px;margin:8px 0}
+.pgo{border:0;background:#E8475B;color:#fff;font:inherit;font-weight:800;border-radius:16px;padding:7px 18px;cursor:pointer}.pgo:disabled{opacity:.5}
+.ptabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 8px}.ptab{border:1px solid #E3E5EC;background:#fff;border-radius:14px;padding:5px 11px;font:inherit;font-size:12px;cursor:pointer;text-align:right}
+.ptab.on{border-color:#E8475B;background:#FFF4F6;color:#C2334A}.ptab b{display:block;font-size:13px}
+.pkpi{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}.pkpi span{background:#F5F6FA;border-radius:10px;padding:3px 9px;font-size:12px}.pkpi b{color:#2B2F40}
+.prow{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-top:1px solid #F1F2F6;font-size:12.5px}
+.prow .pp{font-weight:700;cursor:pointer}.prow .ps{color:#4F5BD5;cursor:pointer}.prow .pr{text-align:left;white-space:nowrap}
+.pmap{height:190px;border-radius:14px;margin:6px 0;overflow:hidden;background:#F3F4F8;position:relative;z-index:0;isolation:isolate}
+.nf{color:#B4232F;font-weight:700}.fresh.ok{color:#0E9F6E}
+.bz{padding:11px 13px;margin:10px 0;border-radius:18px;background:linear-gradient(180deg,#FFFFFF,#F7F8FF)}
+.bz .bzt{font-size:11.5px;color:#8A8EA0}.bz .bzh{font-weight:800;font-size:14.5px;margin:2px 0}
+.bz .bzs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bz .bzs span{background:#fff;border:1px solid #E4E6F0;border-radius:12px;padding:1px 9px;font-size:12px;cursor:pointer}
+</style></head><body>
+<div class="top"><div class="wrap" style="padding-bottom:0">
+ <div class="trow"><div class="brand"><img src="/pg/static/logo.png" alt="">ترب · زمین بازی</div>
+  <div style="display:flex;gap:6px;align-items:center"><button class="listbtn" id="listsbtn">لیست‌های من <b id="lcount">۰</b></button><div class="spend" id="spend">هزینهٔ BoxAPI (این جلسه): …</div></div></div>
+ <div class="seg" id="seg">
+  <button data-m="current">فعلی</button><button data-m="v3">V3</button><button data-m="jev" class="on">JEV</button><button data-m="v3plus">V3+</button><button data-m="compare">مقایسه</button></div>
+ <div class="bar" id="bar"></div>
+ <div class="memrow" id="mem" style="display:none"></div>
+</div></div>
+<div class="wrap" id="main"></div>
+<div class="composer"><div class="hint" id="hint" style="display:none">حالت مقایسه: هر پیام به هر چهار نسخه می‌رود (حدود ۴ برابر هزینه)</div>
+ <div class="cbox"><input id="inp" placeholder="مثلاً: ارزان‌ترین پلی استیشن ۵" autocomplete="off"><button class="send" id="sendb">ارسال</button></div></div>
+<div class="dback" id="dback"></div>
+<div class="toast" id="toast"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true"><div class="dhead"><button class="ib" id="dbackbtn" title="بازگشت" style="visibility:hidden">→</button><div class="dt" id="dtitle"></div><button class="ib" id="dclose" title="بستن">✕</button></div><div class="dbody" id="dbody"></div></aside>
+<script>
+const TOKEN=new URLSearchParams(location.search).get('token')||'';
+let SID=localStorage.getItem('pg_sid');if(!SID){SID=Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('pg_sid',SID)}
+const NAMES={current:'فعلی',v3:'V3',jev:'JEV',v3plus:'V3+'};
+let mode='jev';const LOG={current:[],v3:[],jev:[],v3plus:[],compare:[]};let busy=false;
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const toman=n=>n==null?'—':fa(Number(n).toLocaleString('en-US').replace(/,/g,'٬'))+' تومان';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// ---- robust fetch: timeout (AbortController), one retry for reads, pinggy no-screen header, typed errors ----
+class NetErr extends Error{constructor(kind,msg){super(msg);this.kind=kind}}
+async function req(path,{body,timeout=10000,retries=1}={}){
+ const url=path+(path.includes('?')?'&':'?')+'token='+encodeURIComponent(TOKEN);let last;
+ for(let a=0;a<=retries;a++){const ac=new AbortController();const tm=setTimeout(()=>ac.abort(),timeout);
+  try{const r=await fetch(url,{method:body?'POST':'GET',headers:{'Content-Type':'application/json','X-Pinggy-No-Screen':'true'},body:body?JSON.stringify(body):undefined,signal:ac.signal,cache:'no-store'});
+   const ct=r.headers.get('content-type')||'';
+   if(!ct.includes('application/json')){clearTimeout(tm);throw new NetErr(r.ok?'interstitial':'dead','HTTP '+r.status+' '+ct)}
+   const j=await r.json();clearTimeout(tm);
+   if(!r.ok){if(r.status===402)return j;throw new NetErr(r.status===403?'auth':r.status===404?'notfound':'server',j.detail||j.error||('HTTP '+r.status))}
+   return j}
+  catch(e){clearTimeout(tm);last=e instanceof NetErr?e:(e.name==='AbortError'?new NetErr('timeout','timeout'):new NetErr('network',String(e&&e.message||e)));
+   if(['auth','notfound'].includes(last.kind))break}
+  if(a<retries)await new Promise(r=>setTimeout(r,700))}
+ console.warn('request failed',path,last);throw last}
+function errMsg(e){const k=e&&e.kind;return k==='network'||k==='dead'?'لینک عوض شده؛ صفحه را با لینک جدید باز کنید (لینک تازه هر ساعت عوض می‌شود).':k==='timeout'?'پاسخ سرور بیش از حد طول کشید.':k==='interstitial'?'صفحهٔ هشدار pinggy جلوی درخواست را گرفت؛ صفحه را یک بار تازه کنید.':k==='auth'?'توکن نامعتبر است؛ لینک کامل را باز کنید.':k==='notfound'?'این مورد در داده‌ها پیدا نشد.':'خطای سرور: '+String(e&&e.message||e).slice(0,120)}
+async function api(p,b){try{return await req(p,{body:b,timeout:p==='/api/send'?90000:10000,retries:p==='/api/send'?0:1})}catch(e){return {error:errMsg(e),kind:e.kind}}}
+function setStatus(s){if(!s)return;const e=document.getElementById('spend');e.innerHTML=`هزینهٔ BoxAPI (این جلسه): <b>$${s.spent_session.toFixed(4)}</b> · ${fa(s.calls)} پاسخ · سقف جلسه $${s.cap_session} · کل پروژه ≈ $${s.project_total_est.toFixed(3)}`;e.classList.toggle('warn',s.spent_session>s.cap_session*.7)}
+function shopLine(sh){if(!sh)return'';return `<div class="addr">${esc(sh.address||'')}${sh.label?' · '+esc(sh.label):''}</div><div class="meta">${sh.km_from_area!=null?'<span>فاصله: '+fa(sh.km_from_area)+' کیلومتر</span>':''}${sh.hours_today?'<span>امروز: '+esc(sh.hours_today)+'</span>':''}${(sh.installment||[]).length?'<span>اقساط: '+esc(sh.installment.slice(0,3).join('، '))+'</span>':''}${sh.lat?`<a href="https://www.openstreetmap.org/?mlat=${sh.lat}&mlon=${sh.lon}#map=17/${sh.lat}/${sh.lon}" target="_blank">نقشه</a>`:''}</div>`}
+function flags(o){let h='';if(o.stale||o.min_price_stale)h+='<span class="flag stale">قیمت قدیمی</span>';if(o.suspicious_low||o.min_price_suspicious_low)h+='<span class="flag sus">قیمت مشکوک</span>';return h}
+function offerCard(o){if(o.shop&&!o.offer_id)return `<div class="card scard" data-sid="${esc(o.shop.shop_id)}"><div class="sname">${esc(o.shop.name)}</div>${shopLine(o.shop)}${o.note?'<div class="note">'+esc(o.note)+'</div>':''}</div>`;
+ return `<div class="card scard"><div class="srow"><div><div class="sname"><span class="slink" data-sid="${esc(o.shop_id||o.shop?.shop_id||'')}">${esc(o.shop?.name||'')}</span></div><div class="sub"><span class="slink" data-pid="${esc(o.product_id||'')}">${esc(o.product_title||'')}</span></div></div><div class="price">${toman(o.price_toman)}</div></div>${shopLine(o.shop)}<div class="fresh">آخرین تغییر قیمت: ${esc(o.last_price_change_fa||'—')} ${flags(o)}</div>${o.freshness_note_fa?'<div class="note">'+esc(o.freshness_note_fa)+'</div>':''}${o.note?'<div class="note">'+esc(o.note)+'</div>':''}</div>`}
+function renderBlocks(bs){let h='';for(const b of bs||[]){
+ if(b.type==='product_cards'){h+='<div class="btitle">کالاها</div>';for(const p of b.items)h+=`<div class="card pcard" data-pid="${esc(p.product_id)}">${saveBtn(p.product_id)}<div class="tile">${p.image?`<img loading="lazy" src="${esc(p.image)}" onerror="this.remove()">`:''}</div><div class="pcol"><div class="ttl">${esc(p.title)}</div><div class="sub">${esc(p.brand||'')} · ${esc(p.category||'')}</div><div class="prange">از <b>${toman(p.min_price)}</b>${p.median_price&&p.median_price!==p.min_price?' · میانه '+toman(p.median_price):''}</div><div class="fresh">${fa(p.shops??0)} فروشنده · قیمت کمترین: ${esc(p.min_price_date_fa||p.last_change_fa||'—')} ${flags(p)}</div>${p.note?'<div class="note">'+esc(p.note)+'</div>':''}<div class="more">همهٔ پیشنهادها و فروشنده‌ها ›</div></div></div>`}
+ else if(b.type==='sellers'||b.type==='verify'){h+=`<div class="btitle">${b.type==='verify'?'پیش از خرید بررسی کنید':'فروشنده‌ها'}</div>`;for(const o of b.items)h+=offerCard(o)}
+ else if(b.type==='compare'){const ps=b.products;h+='<div class="btitle">مقایسه</div><div class="card" style="padding:8px;overflow-x:auto"><table class="cmp"><tr><th></th>'+ps.map(p=>'<th><span class="slink" data-pid="'+esc(p.product_id)+'">'+esc(p.title)+'</span></th>').join('')+'</tr>';for(const [k,l,f] of [['min_price','کمترین قیمت',toman],['median_price','میانه',toman],['shops','فروشنده',fa],['brand','برند',esc],['min_price_date_fa','تاریخ قیمت',esc]])h+='<tr><td><b>'+l+'</b></td>'+ps.map(p=>'<td>'+(p[k]!=null?f(p[k]):'—')+'</td>').join('')+'</tr>';h+='</table>'+(b.note?'<div class="note">'+esc(b.note)+'</div>':'')+'</div>'}
+ else if(b.type==='map'){h+='<div class="btitle">روی نقشه</div><div class="card scard">'+b.pins.map((p,i)=>`<div class="step"><div class="sn">${fa(i+1)}</div><div><div class="sname"><span class="slink" data-sid="${esc(p.shop_id)}">${esc(p.name)}</span></div><div class="addr">${esc(p.address||'')}</div><a class="meta" target="_blank" href="https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=17/${p.lat}/${p.lon}">باز کردن نقشه</a></div></div>`).join('')+'</div>'}
+ else if(b.type==='plan'){h+='<div class="btitle">برنامهٔ خرید</div><div class="card scard">'+b.steps.map((s,i)=>`<div class="step"><div class="sn">${fa(i+1)}</div><div>${s.shop?'<div class="sname"><span class="slink" data-sid="'+esc(s.shop.shop_id)+'">'+esc(s.shop.name)+'</span></div>'+shopLine(s.shop):''}${s.note?'<div>'+esc(s.note)+'</div>':''}</div></div>`).join('')+'</div>'}
+ else if(b.type==='chips'){h+='<div class="chips">'+b.options.map(o=>`<button class="chip" data-chip="${esc(o)}">${esc(o)}</button>`).join('')+'</div>'}
+}return h}
+function bzHTML(bz){if(!bz||!bz.hubs||!bz.hubs.length)return'';const h=bz.hubs[0];const pct=Math.round((h.share_of_group_offers||0)*100);
+ return `<div class="card bz"><div class="bzt">بورس این کالا · ${esc(bz.group)}</div><div class="bzh">${esc(h.name)}</div><div class="sub">${pct>=10?'حدود '+fa(pct)+'٪ پیشنهادهای این دسته در این داده همین‌جاست':'یکی از تمرکزهای این دسته'}${bz.hubs[1]?' · بعدی: '+esc(bz.hubs[1].name):''}</div>
+ <div class="bzs">${(h.shops||[]).slice(0,4).map(s=>`<span data-sid="${esc(s.shop_id)}">${esc(s.name)}</span>`).join('')}<a class="mini" style="text-decoration:none" href="${esc(h.map_url)}" target="_blank" rel="noopener">نقشهٔ محدوده</a></div></div>`}
+function relHTML(rs){if(!rs||!rs.length)return'';return '<div class="btitle">محصولات مرتبط <span class="sub">· قیمت‌ها از داده‌های ترب</span></div><div class="rel">'+rs.map(p=>`<div class="card rcard" data-pid="${esc(p.product_id)}">${saveBtn(p.product_id)}<div class="tile">${p.image?`<img loading="lazy" src="${esc(p.image)}" onerror="this.remove()">`:''}</div><div class="ttl">${esc(p.title)}</div><div class="prange">${p.price&&p.price.fresh?'از ':''}<b>${toman(p.price?.price_toman)}</b></div><div class="fresh">${fa(p.n_shops)} فروشنده${(p.price?.labels||[]).map(l=>' <span class="flag '+(l==='قدیمی'?'stale':'sus')+'">'+l+'</span>').join('')}</div></div>`).join('')+'</div>'}
+function suggHTML(ss,hook){if((!ss||!ss.length)&&!hook)return'';return '<div class="sugg">'+(ss||[]).map(o=>`<button class="chip" data-chip="${esc(o)}">${esc(o)}</button>`).join('')+(hook?`<button class="chip hook" data-hook="${esc(JSON.stringify(hook))}" title="${esc((hook.title||'')+(hook.shop_name?' — '+hook.shop_name:''))}">${esc(hook.label)}</button>`:'')+'</div>'}
+let QN=0;
+function qHTML(qs,r){if(!qs||!qs.length)return'';if(r._qdone)return '<div class="qdone">✓ پاسخ سؤال‌ها فرستاده شد</div>';const k='q'+(++QN);r._qk=k;
+ return `<div class="qwrap" data-qset="${k}">`+qs.map(q=>`<div class="card qcard" data-q="${esc(q.id)}" data-qtype="${esc(q.type)}" data-qtitle="${esc(q.title)}"><div class="qt">${esc(q.title)}</div>${q.options&&q.options.length?'<div class="qopts">'+q.options.map(o=>`<button class="qo" data-qv="${esc(o.label)}">${esc(o.label)}</button>`).join('')+'</div>':''}${q.allow_custom||q.type==='text'||!q.options.length?`<input class="qin" placeholder="${q.options&&q.options.length?'یا خودتان بنویسید…':'بنویسید…'}">`:''}</div>`).join('')+`<button class="qsend" data-qsend="${k}" disabled>ارسال پاسخ</button></div>`}
+const QTPL={budget:x=>'بودجه‌ام '+x,price:x=>'بودجه‌ام '+x,recipient:x=>'برای '+x,gender:x=>'برای '+x,for:x=>'برای '+x,use:x=>'بیشتر برای '+x,usage:x=>'بیشتر برای '+x,area:x=>'حوالی '+x,location:x=>'حوالی '+x,size:x=>'سایز '+x,condition:x=>x,brand:x=>'برند '+x};
+function qCollect(set){const ans=[];set.querySelectorAll('.qcard').forEach(c=>{const vals=[...c.querySelectorAll('.qo.on')].map(b=>b.dataset.qv);const t=(c.querySelector('.qin')?.value||'').trim();if(t)vals.push(t);
+ if(vals.length){const x=vals.join(' و ');const f=QTPL[c.dataset.q]||QTPL[c.dataset.q.split('_')[0]]||(y=>y);ans.push({id:c.dataset.q,title:c.dataset.qtitle,answer:x,phrase:f(x)})}});return ans}
+function qRefresh(set){set.querySelector('.qsend').disabled=!qCollect(set).length}
+const PJ={};let PJN=0;
+function projHTML(r){const P=r.project;if(!P||!P.needs)return'';if(!P._k){P._k='p'+(++PJN)}PJ[P._k]=r;const k=P._k;
+ let h=`<div class="card proj" data-pk="${k}"><div class="pt">🧺 خرید یکجا · ${esc(P.title||'')}</div>${P.assumptions?`<div class="pa">${esc(P.assumptions)}</div>`:''}`;
+ h+=P.needs.map((n,i)=>`<div class="nrow${n.enabled===false?' off':''}"><input type="checkbox" data-pn="${k}|${i}" ${n.enabled===false?'':'checked'}><div><div class="ni">${esc(n.item)}<span class="pri${n.priority==='optional'?' opt':''}">${n.priority==='optional'?'اختیاری':'ضروری'}</span></div><div class="nw">${esc([n.specs,n.why].filter(Boolean).join(' · '))}</div></div><label class="qty"><input type="number" min="1" max="500" value="${n.qty}" data-pq="${k}|${i}">${esc(n.unit||'عدد')}</label></div>`).join('');
+ h+=`<input class="parea" data-parea="${k}" placeholder="محدودهٔ ترجیحی در تهران (اختیاری)، مثلاً لاله‌زار یا ونک" value="${esc(P.area||'')}"><button class="pgo" data-pgo="${k}"${P._busy?' disabled':''}>${P._busy?'در حال جستجو…':(P.result?'جستجوی دوباره':'جستجوی همه')}</button>`;
+ if(P._err)h+=`<div class="note">${esc(P._err)}</div>`;
+ if(P.result)h+=planHTML(P,k);
+ return h+'</div>'}
+function planHTML(P,k){const R=P.result;let h='';if(R.summary)h+=`<div class="abubble" style="margin-top:10px">${esc(R.summary)}</div>`;
+ if(!R.plans.length)return h+'<div class="note">برای این اقلام پیشنهاد قیمت‌داری در داده‌ها پیدا نشد.</div>'+nfHTML(R);
+ const cur=R.plans.find(p=>p.key===P._sel)||R.plans[0];
+ h+='<div class="ptabs">'+R.plans.map(p=>`<button class="ptab${p===cur?' on':''}" data-ptab="${k}|${p.key}"><b>${esc(p.name)}</b>${p.also?'<span class="sub">= '+esc(p.also.join('، '))+'</span><br>':''}${toman(p.total_toman)}${p.total_is_partial?' +نامشخص':''} · ${fa(p.n_shops)} فروشگاه</button>`).join('')+'</div>';
+ h+=`<div class="pkpi"><span>جمع: <b>${toman(cur.total_toman)}</b>${cur.total_is_partial?' + '+fa(cur.n_unknown)+' قلم نامشخص':''}</span><span>${fa(cur.n_shops)} فروشگاه</span>${cur.n_shops>1?`<span>پراکندگی ~${fa(Math.max(1,Math.round(cur.spread_km)))} کیلومتر</span>`:''}${cur.system_label?`<span>🔌 ${esc(cur.system_label)}</span>`:''}${cur.n_incompatible?`<span class="nf">${fa(cur.n_incompatible)} قلم ناسازگار احتمالی</span>`:''}${cur.hub?`<span>📍 ${esc(cur.hub.name)}${cur.hub.all_shops_in_hub?'':' (بیشترِ فروشگاه‌ها)'}</span>`:''}${cur.n_stale?`<span>${fa(cur.n_stale)} قیمت قدیمی</span>`:''}</div>`;
+ h+=`<div class="pmap" id="pmap_${k}"></div>`;
+ h+=cur.rows.map(r=>`<div class="prow"><div style="min-width:0"><div class="pp" data-pid="${esc(r.product_id)}">${esc(r.item)} × ${fa(r.qty)} <span class="sub">${esc(r.unit||'')}</span></div><div class="sub" data-pid="${esc(r.product_id)}" style="cursor:pointer">${esc(String(r.title).slice(0,70))}</div><div class="ps" data-sid="${esc(r.shop_id)}">${esc(r.shop_name)} <span class="sub">· ${U(r.shop_area)}</span></div></div><div class="pr"><b>${toman(r.line_total_toman)}</b>${r.qty>1?`<div class="sub">هر عدد ${toman(r.price_toman)}</div>`:''}<div class="fresh${r.stale?'':' ok'}">${r.compat_badge?`<span class="flag sus" title="${r.incompatible?'این قلم با سیستم انتخاب‌شدهٔ این برنامه جور نیست':'سیستم این قلم از عنوانش مشخص نیست'}">${esc(r.compat_badge)}</span> `:''}${r.stale?'<span class="flag stale">قدیمی</span> ':''}${esc(r.date_fa||'')}</div></div></div>`).join('');
+ h+=nfHTML(R);
+ h+=`<div style="display:flex;gap:8px;margin-top:10px;align-items:center"><button class="pgo" data-psave="${k}|${cur.key}"${P._saved===cur.key?' disabled':''}>${P._saved===cur.key?'✓ در «لیست‌های من» ذخیره شد':'ذخیره در لیست'}</button><span class="sub">قیمت‌ها از داده‌های ترب؛ موجودی تضمین نیست</span></div>`;
+ return h}
+function nfHTML(R){return (R.not_found||[]).map(x=>`<div class="prow"><div><span class="nf">پیدا نشد:</span> ${esc(x.item)}${x.alternative?`<div class="sub">جایگزین نزدیک (دقیقاً همان نیست): <span class="ps" data-pid="${esc(x.alternative.product_id)}">${esc(String(x.alternative.title).slice(0,60))}</span></div>`:''}</div><div class="pr"><span class="unk">نامشخص</span></div></div>`).join('')}
+async function drawPlanMaps(){for(const k in PJ){const P=PJ[k].project;if(!P||!P.result||!P.result.plans.length)continue;const el=document.getElementById('pmap_'+k);if(!el||el._done)continue;
+ const cur=P.result.plans.find(p=>p.key===P._sel)||P.result.plans[0];const pts=cur.shops.filter(s=>s.lat!=null);if(!pts.length){el.style.display='none';continue}
+ try{await loadLeaflet();el._done=1;const m=L.map(el,{zoomControl:false,scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(m);
+  pts.forEach(s=>L.marker([s.lat,s.lon]).addTo(m).bindPopup(esc(s.name)+' · '+fa(s.n_items)+' قلم'));if(pts.length===1)m.setView([pts[0].lat,pts[0].lon],16);else m.fitBounds(pts.map(s=>[s.lat,s.lon]),{padding:[24,24],maxZoom:17})}
+ catch(e){el.outerHTML='<div class="sub">'+cur.shops.map(s=>s.map_url?`<a href="${esc(s.map_url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:esc(s.name)).join(' · ')+'</div>'}}}
+async function projSearch(k){const r=PJ[k];const P=r.project;P._busy=true;P._err=null;render();
+ try{const needs=P.needs.filter(n=>n.enabled!==false);if(!needs.length){P._busy=false;P._err='حداقل یک قلم را انتخاب کنید.';render();return}
+  P.result=await req('/api/project/search',{body:{needs,area:P.area||null,goal:P.goal},timeout:40000,retries:0});P._sel=null;P._saved=null;
+  if(r.metrics&&P.result.summary_usage){r.metrics.cost_usd=(r.metrics.cost_usd||0)+P.result.summary_usage.cost_usd;r.metrics.llm_calls=(r.metrics.llm_calls||0)+1}}
+ catch(e){P._err=errMsg(e)}P._busy=false;render();req('/api/status').then(j=>setStatus(j.status||j)).catch(()=>{})}
+async function projSave(k,key){const P=PJ[k].project;const plan=P.result.plans.find(p=>p.key===key);
+ try{const j=await req('/api/project/save',{body:{cid:CID,name:(P.title||'خرید یکجا').slice(0,30)+' · '+plan.name.split(' ')[0],rows:plan.rows.map(r=>({product_id:r.product_id,shop_id:r.shop_id,offer_id:r.offer_id,qty:r.qty}))},retries:0});
+  setLists(j);CURL=j.list_id;P._saved=key;render();toast('لیست «'+(j.lists.find(l=>l.list_id===j.list_id)||{}).name+'» ساخته شد')}catch(e){toast(errMsg(e))}}
+function answerHTML(r){if(r.pending)return '<div class="spin">در حال پاسخ…</div>';const m=r.metrics||{};
+ const met=`<div class="metrics"><span>⏱ ${fa(m.latency_s??'—')} ث</span><span>${fa(m.llm_calls??'—')} فراخوانی LLM</span><span>${fa(m.tokens??'—')} توکن</span><span>$${(m.cost_usd??0).toFixed(5)}</span>${r.engine&&r.engine!==r.version&&r.version!=='current'?`<span class="eng">موتور: ${esc(r.engine)}</span>`:''}</div>`;
+ return `<div data-v="${esc(r.version||'')}">${r.project_route&&r.project_route!=='answers'?'<div class="proute">🧺 درخواست چندقلمی تشخیص داده شد · خرید یکجا</div>':''}<div class="abubble">${esc(r.text)}</div>${qHTML(r.questions,r)}${projHTML(r)}${bzHTML(r.bazaar)}${renderBlocks(r.blocks)}${relHTML(r.related)}${suggHTML(r.suggestions,r.list_hook)}${met}<details class="dbg"><summary>دیباگ</summary><pre>${esc(JSON.stringify(r.debug,null,1))}</pre></details></div>`}
+function convo(list,v){if(!list.length)return `<div class="empty">گفتگو با نسخهٔ «${NAMES[v]}» — هر نسخه حافظهٔ گفتگوی خودش را دارد.</div>`;
+ return list.map(t=>`<div class="urow"><div class="uav">شما</div><div class="ububble">${esc(t.q)}</div></div><div class="arow"><img class="aav" src="/pg/static/mascot_avatar.png"><div class="acol">${answerHTML(t.r)}</div></div>`).join('')}
+function render(){setTimeout(drawPlanMaps,0);document.querySelectorAll('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));document.getElementById('hint').style.display=mode==='compare'?'block':'none';renderMem();
+ const bar=document.getElementById('bar');const main=document.getElementById('main');
+ if(mode!=='compare'){bar.innerHTML=`<button class="btn" data-reset="${mode}">＋ گفتگوی جدید «${NAMES[mode]}»</button>`;main.innerHTML=convo(LOG[mode],mode)}
+ else{bar.innerHTML=['current','v3','jev','v3plus'].map(v=>`<button class="btn" data-reset="${v}">↺ ${NAMES[v]}</button>`).join('')+'<button class="btn" data-reset="all">↺ همه</button>';
+  main.innerHTML=LOG.compare.length?LOG.compare.map(t=>`<div class="urow"><div class="uav">شما</div><div class="ububble">${esc(t.q)}</div></div><div class="grid">${['current','v3','jev','v3plus'].map(v=>`<div class="col3"><span class="vtag ${v}">${NAMES[v]}</span>${answerHTML(t.r[v])}</div>`).join('')}</div>`).join(''):'<div class="empty">پیام در حالت مقایسه به هر چهار نسخه ارسال می‌شود و پاسخ‌ها کنار هم نمایش داده می‌شوند (روی موبایل زیر هم). هر نسخه با حافظهٔ گفتگوی خودش جواب می‌دهد.</div>'}}
+async function send(text,answers){text=(text||'').trim();if(!text||busy)return;
+ if(mode==='compare'&&!confirm('هشدار هزینه: این پیام به هر چهار نسخه ارسال می‌شود (حدود ۴ برابر هزینهٔ یک پیام). سقف بودجه سخت است. ادامه می‌دهید؟'))return;
+ busy=true;document.getElementById('sendb').disabled=true;document.getElementById('inp').value='';
+ const m=mode;let t;if(m==='compare'){t={q:text,r:{current:{pending:1},v3:{pending:1},jev:{pending:1},v3plus:{pending:1}}};LOG.compare.push(t)}else{t={q:text,r:{pending:1}};LOG[m].push(t)}
+ render();window.scrollTo(0,document.body.scrollHeight);
+ const j=await api('/api/send',{message:text,mode:m,sid:SID,answers:answers||undefined});
+ if(j.error){const e={text:'⚠ '+j.error,blocks:[],debug:{},metrics:{}};if(m==='compare')t.r={current:e,v3:e,jev:e,v3plus:e};else t.r=e}
+ else{for(const r of j.results){if(m==='compare')t.r[r.version]=r;else t.r=r;if(m==='compare')LOG[r.version].push({q:text,r});if(r.memory)MEM=r.memory.chips||[]}}
+ setStatus(j.status);busy=false;document.getElementById('sendb').disabled=false;render()}
+document.getElementById('seg').onclick=e=>{const b=e.target.closest('button');if(b){mode=b.dataset.m;render()}};
+document.addEventListener('input',e=>{const s=e.target.closest('[data-qset]');if(s)qRefresh(s);
+ const pq=e.target.closest('[data-pq]');if(pq){const [k,i]=pq.dataset.pq.split('|');PJ[k].project.needs[+i].qty=Math.max(1,Math.min(500,parseInt(pq.value.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))||1))}
+ const pa=e.target.closest('[data-parea]');if(pa)PJ[pa.dataset.parea].project.area=pa.value});
+document.addEventListener('change',e=>{const pn=e.target.closest('[data-pn]');if(pn){const [k,i]=pn.dataset.pn.split('|');PJ[k].project.needs[+i].enabled=pn.checked;pn.closest('.nrow').classList.toggle('off',!pn.checked)}});
+document.addEventListener('click',async e=>{const c=e.target.closest('[data-chip]');if(c){send(c.dataset.chip);return}
+ const pg=e.target.closest('[data-pgo]');if(pg){projSearch(pg.dataset.pgo);return}
+ const pt=e.target.closest('[data-ptab]');if(pt){const [k,key]=pt.dataset.ptab.split('|');PJ[k].project._sel=key;render();return}
+ const ps=e.target.closest('[data-psave]');if(ps){const [k,key]=ps.dataset.psave.split('|');ps.disabled=true;projSave(k,key);return}
+ const qo=e.target.closest('.qo');if(qo){const card=qo.closest('.qcard');if(card.dataset.qtype!=='multi')card.querySelectorAll('.qo.on').forEach(b=>{if(b!==qo)b.classList.remove('on')});qo.classList.toggle('on');qRefresh(qo.closest('[data-qset]'));return}
+ const qs=e.target.closest('[data-qsend]');if(qs){const set=qs.closest('[data-qset]');const ans=qCollect(set);if(!ans.length)return;
+  for(const L of Object.values(LOG))for(const t of L){const rs=t.r&&t.r.questions?[t.r]:Object.values(t.r||{});for(const r of rs)if(r&&r._qk===set.dataset.qset)r._qdone=true}
+  send(ans.map(a=>a.phrase).join('، '),ans.map(({id,title,answer})=>({id,title,answer})));return}
+ const sv=e.target.closest('[data-save]');if(sv){e.stopPropagation();const [pid,sid,oid]=sv.dataset.save.split('|');saveItem(pid,sid||null,oid||null,sv);return}
+ const hk=e.target.closest('[data-hook]');if(hk){const h=JSON.parse(hk.dataset.hook);saveItem(h.product_id,h.shop_id,h.offer_id,hk);hk.disabled=true;hk.textContent='✓ به لیست اضافه شد';return}
+ const la=e.target.closest('[data-lact]');if(la){listAction(la.dataset.lact,la.dataset.id,la);return}
+ const pc=e.target.closest('[data-pid]');if(pc&&pc.dataset.pid&&!e.target.closest('#drawer .orow [data-sid]')){openProduct(pc.dataset.pid,verOf(pc),!!e.target.closest('#drawer'));return}
+ const sc=e.target.closest('[data-sid]');if(sc&&sc.dataset.sid){openShop(sc.dataset.sid,verOf(sc),!!e.target.closest('#drawer'));return}
+ const mc=e.target.closest('[data-memclear]');if(mc){const j=await api('/api/memory/clear',{sid:SID,version:'v3plus',key:mc.dataset.memclear});MEM=j.chips||[];renderMem();return}
+ const r=e.target.closest('[data-reset]');if(r){const v=r.dataset.reset;await api('/api/reset',{version:v,sid:SID});if(v==='v3plus'||v==='all')MEM=[];if(v==='all'){LOG.current=[];LOG.v3=[];LOG.jev=[];LOG.v3plus=[];LOG.compare=[]}else{LOG[v]=[]}render()}});
+document.getElementById('sendb').onclick=()=>send(document.getElementById('inp').value);
+document.getElementById('inp').onkeydown=e=>{if(e.key==='Enter')send(e.target.value)};
+
+// ---------------- drill-down drawer (DB only, no LLM) ----------------
+let MEM=[];let DSTACK=[];let DVER='';let DSEQ=0;let DRETRY=null;
+function verOf(el){const w=el.closest('[data-v]');return w?w.dataset.v:DVER}
+function renderMem(){const e=document.getElementById('mem');if(mode!=='v3plus'||!MEM.length){e.style.display='none';return}
+ e.style.display='flex';e.innerHTML='<span>حافظهٔ گفتگو:</span>'+MEM.map(c=>`<span class="mchip">${esc(c.label)}<button data-memclear="${esc(c.key)}" title="فراموش کن">×</button></span>`).join('')+'<button class="btn" data-memclear="all" style="padding:0 8px">پاک کردن حافظه</button>'}
+const U=v=>(v==null||v===''||v==='نامشخص')?'<span class="unk">نامشخص</span>':esc(v);
+function labelPills(ls){return (ls||[]).map(l=>`<span class="flag ${l==='قدیمی'?'stale':'sus'}">${esc(l)}</span>`).join('')}
+function ageFa(d){if(d==null)return'';if(d<1)return'امروز';return fa(d)+' روز پیش'}
+function dOpen(title,html,push){const dr=document.getElementById('drawer');if(!push)DSTACK=[];DSTACK.push({title,html});dShow();dr.classList.add('on');document.getElementById('dback').classList.add('on')}
+function dSet(title,html){DSTACK[DSTACK.length-1]={title,html};dShow()}
+function dShow(){const t=DSTACK[DSTACK.length-1];document.getElementById('dtitle').textContent=t.title;document.getElementById('dbody').innerHTML=t.html;document.getElementById('dbody').scrollTop=0;document.getElementById('dbackbtn').style.visibility=DSTACK.length>1?'visible':'hidden'}
+function dClose(){DSEQ++;document.getElementById('drawer').classList.remove('on');document.getElementById('dback').classList.remove('on')}
+function dError(e,retry){DRETRY=retry;const dead=e&&(e.kind==='network'||e.kind==='dead');
+ dSet('خطا',`<div class="derr"><div class="derr-ic">${dead?'🔗':'⚠️'}</div><div class="derr-t">${esc(errMsg(e))}</div>${dead?'<div class="sub">آخرین لینک را از سازندهٔ دمو بگیرید.</div>':''}<button class="qsend" data-dretry="1">تلاش دوباره</button></div>`)}
+document.getElementById('dclose').onclick=dClose;document.getElementById('dback').onclick=dClose;
+document.getElementById('dbackbtn').onclick=()=>{if(DSTACK.length>1){DSEQ++;DSTACK.pop();dShow()}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')dClose()});
+function remember(kind,id,v){if(v!=='v3plus')return;api('/api/memory/select',{sid:SID,version:v,kind,id}).then(j=>{if(j&&j.chips){MEM=j.chips;renderMem()}})}
+function productHTML(d){const offers=d.offers||[];const rules=d.rules||{stale_days:30,suspicious_ratio:.4,median_needs_priced_offers:3};
+ let h=`<div class="dsum"><div class="tile">${d.image?`<img src="${esc(d.image)}" onerror="this.remove()">`:''}</div><div><div class="sub">${U(d.brand)} · ${U(d.category)}</div><div class="prange">${d.min_fresh_price?'کمترین قیمت به‌روز: <b>'+toman(d.min_fresh_price)+'</b>':(d.min_price?'قیمت به‌روزی نیست؛ کمترین قیمت ثبت‌شده: <b>'+toman(d.min_price)+'</b> <span class="flag stale">قدیمی/مشکوک</span>':'قیمتی ثبت نشده')}</div>${d.median_price?'<div class="sub">میانهٔ قیمت پیشنهادها: '+toman(d.median_price)+'</div>':''}</div></div><div id="dabout"></div><div id="ddet"></div>`;
+ h+=`<div class="sec">پیشنهادهای فروشندگان</div><div class="stats"><span>${fa(d.n_offers||0)} پیشنهاد</span><span>${fa(d.n_shops||0)} فروشگاه</span>${d.n_stale?'<span>'+fa(d.n_stale)+' قدیمی</span>':''}${d.n_suspicious?'<span>'+fa(d.n_suspicious)+' مشکوک</span>':''}</div>`;
+ h+=`<div class="disc">${esc(d.note||'پیشنهاد ثبت‌شده؛ موجودی تضمین نیست')} · «قدیمی» = آخرین تغییر قیمت بیش از ${fa(rules.stale_days)} روز پیش · «مشکوک» = کمتر از ${fa(Math.round(rules.suspicious_ratio*100))}٪ میانهٔ قیمت${d.median_price?'':' (میانه با کمتر از '+fa(rules.median_needs_priced_offers)+' قیمت محاسبه نمی‌شود)'} · ترتیب: به‌روز و ارزان‌تر اول</div>`;
+ if(!offers.length)h+='<div class="empty" style="margin:18px 0">برای این کالا پیشنهادی در داده‌ها ثبت نشده است.</div>';
+ h+=offers.map(o=>`<div class="orow${o.stale||o.suspicious||!o.price_toman?' dim':''}"><div style="min-width:0"><div class="sname">${o.shop_id?`<span class="slink" data-sid="${esc(o.shop_id)}">${U(o.shop_name)}</span>`:U(o.shop_name)}</div><div class="sub">${U(o.shop_area)}${o.warranty&&o.warranty!=='نامشخص'?' · گارانتی: '+esc(o.warranty):''}</div>${o.seller_title?'<div class="sub">«'+esc(String(o.seller_title).slice(0,70))+'»</div>':''}</div><div class="oprice">${o.price_toman?'<b>'+toman(o.price_toman)+'</b>':'<span class="unk">'+esc(o.price_note||'نامشخص')+'</span>'}<div class="fresh">${o.date_fa&&o.date_fa!=='نامشخص'?esc(o.date_fa)+' · '+ageFa(o.age_days):'<span class="unk">تاریخ نامشخص</span>'}</div><div>${labelPills(o.labels)}</div>${saveBtn(d.product_id,o.shop_id,o.offer_id,true)}</div></div>`).join('');
+ return h+'<div id="dbz"></div><div class="sec">محصولات مرتبط</div><div id="drel"><div class="spin">…</div></div>'}
+function detHTML(x){let h='';const im=(x.images||[]).filter(Boolean);
+ if(im.length>1)h+='<div class="gal">'+im.map(u=>`<img src="${esc(u)}" loading="lazy" onerror="this.remove()" onclick="window.open(this.src,'_blank')">`).join('')+'</div>';
+ const st=x.stats||{};const kv=[['برند',x.brand],['دسته',x.category],['مدل',x.model],['بیشترین قیمت',st.max_price?toman(st.max_price):''],['آخرین تغییر قیمت',st.latest_price_change_fa],['تعداد مشخصات',x.n_specs?fa(x.n_specs):'']].filter(a=>a[1]&&a[1]!=='نامشخص');
+ if(kv.length)h+='<div class="kv">'+kv.map(a=>`<div><b>${a[0]}</b>${esc(String(a[1]))}</div>`).join('')+'</div>';
+ const sp=x.specs||[];if(sp.length){h+='<div class="sec">مشخصات کامل</div>'+sp.map((g,i)=>`<details class="spec"${i===0?' open':''}><summary>${esc(g.section||'مشخصات')} <span class="sub">(${fa(g.items.length)})</span></summary><table>${g.items.map(it=>`<tr><td>${esc(it.key)}</td><td>${esc(it.value)}</td></tr>`).join('')}</table></details>`).join('')}
+ return h}
+function aboutHTML(a){if(!a||!a.sentences||!a.sentences.length)return'';
+ const cit=a.cited&&a.cited.length===a.sentences.length?a.cited:a.sentences.map(t=>({text:t,refs:[]}));
+ return `<div class="about"><div class="sec" style="margin-top:0">دربارهٔ این محصول</div>${cit.map(c=>'<p>'+esc(c.text)+((c.refs||[]).length?' <sup class="ref">'+c.refs.map(n=>fa(n)).join('،')+'</sup>':'')+'</p>').join('')}<div class="srcs">منبع: ${(a.sources||[]).map((s,i)=>{let host='';try{host=new URL(s.url).hostname.replace(/^www\./,'')}catch(e){}return `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow" title="${esc(s.title)}">${fa(s.n||i+1)} · ${esc(host||s.title)}</a>`}).join('')}</div></div>`}
+function dKeep(){if(DSTACK.length)DSTACK[DSTACK.length-1].html=document.getElementById('dbody').innerHTML}
+async function openProduct(pid,v,push){DVER=v||DVER;const seq=++DSEQ;dOpen('در حال بارگذاری…','<div class="spin">در حال خواندن پیشنهادها از داده‌ها…</div>',push);
+ let d;try{d=await req('/api/product/'+encodeURIComponent(pid)+'/offers')}catch(e){if(seq===DSEQ)dError(e,()=>openProduct(pid,v,true));return}
+ if(seq!==DSEQ)return;
+ try{dSet(d.title||'کالا',productHTML(d))}catch(e){console.error(e);dError(new NetErr('server','نمایش ناموفق: '+e.message),()=>openProduct(pid,v,true));return}
+ remember('product',pid,DVER);
+ req('/api/product/'+encodeURIComponent(pid)+'/details').then(x=>{if(seq!==DSEQ)return;const el=document.getElementById('ddet');if(el){el.innerHTML=detHTML(x);dKeep()}}).catch(()=>{});
+ {const el0=document.getElementById('dabout');if(el0)el0.innerHTML='<div class="about loading"><div class="sec" style="margin-top:0">دربارهٔ این محصول</div><div class="spin">در حال جمع‌آوری اطلاعات از منابع…</div></div>';}
+ const aboutDone=html=>{if(seq!==DSEQ)return;const el=document.getElementById('dabout');if(el){el.innerHTML=html;dKeep()}};
+ req('/api/product/'+encodeURIComponent(pid)+'/about',{timeout:45000,retries:0}).then(a=>aboutDone(aboutHTML(a))).catch(()=>aboutDone(''));
+ req('/api/bazaar?product_id='+encodeURIComponent(pid)).then(bz=>{if(seq!==DSEQ)return;const el=document.getElementById('dbz');if(el&&bz&&bz.hubs&&bz.hubs.length){el.innerHTML=bzHTML(bz);DSTACK[DSTACK.length-1].html=document.getElementById('dbody').innerHTML}}).catch(()=>{});
+ req('/api/product/'+encodeURIComponent(pid)+'/related?k=8').then(rel=>{if(seq!==DSEQ)return;const el=document.getElementById('drel');if(!el)return;
+  el.outerHTML=relHTML(rel.related||[]).replace(/^<div class="btitle">.*?<\/div>/,'')||'<div class="sub">موردی پیدا نشد</div>';DSTACK[DSTACK.length-1].html=document.getElementById('dbody').innerHTML})
+  .catch(()=>{if(seq!==DSEQ)return;const el=document.getElementById('drel');if(el)el.innerHTML='<div class="sub">محصولات مرتبط بارگذاری نشد.</div>'})}
+function shopHTML(s){const pay=s.payment_options||[],cats=s.categories||[],rec=s.recent_offers||[];
+ let h=`<dl class="kv"><dt>آدرس</dt><dd>${U(s.address)}</dd><dt>محله</dt><dd>${U(s.area)}</dd><dt>شهر</dt><dd>${U(s.city)}</dd><dt>مختصات</dt><dd>${s.lat!=null&&s.lon!=null?fa(Number(s.lat).toFixed(5))+'، '+fa(Number(s.lon).toFixed(5)):U(null)}</dd>${s.website?'<dt>وب‌سایت</dt><dd style="direction:ltr;text-align:right">'+esc(s.website)+'</dd>':''}${s.instagram?'<dt>اینستاگرام</dt><dd style="direction:ltr;text-align:right">'+esc(s.instagram)+'</dd>':''}<dt>ارسال سریع</dt><dd>${s.fast_delivery==null?U(null):(s.fast_delivery?'دارد':'ندارد')}</dd>${s.phone_display?'<dt>تلفن</dt><dd><span style="color:#8A8EA0">'+esc(s.phone_display)+'</span><span class="fake">'+esc(s.phone_note||'شمارهٔ نمایشی دیتاست، واقعی نیست')+'</span></dd>':''}</dl>`;
+ if(s.map_url)h+=`<a class="maplink" href="${esc(s.map_url)}" target="_blank" rel="noopener">نمایش روی نقشه (OpenStreetMap)</a>`;
+ h+='<div class="sec">ساعت کاری</div>'+(s.hours&&s.hours.length?'<table class="hours">'+s.hours.map(x=>`<tr class="${x.today?'today':''}"><td>${esc(x.day)}${x.today?' (امروز)':''}</td><td>${U(x.hours)}</td></tr>`).join('')+'</table><div class="sub">'+esc(s.hours_note||'')+'</div>':'<div class="unk">نامشخص</div>');
+ if(pay.length)h+='<div class="sec">اقساط / پرداخت</div>'+pay.map(p=>`<span class="pill">${esc(p.provider)} · ${esc(p.channel)}</span>`).join('');
+ if(cats.length)h+='<div class="sec">دسته‌ها</div>'+cats.map(c=>`<span class="pill">${esc(c)}</span>`).join('')+(s.n_categories>cats.length?`<span class="pill">+${fa(s.n_categories-cats.length)}</span>`:'');
+ h+=`<div class="sec">چند پیشنهاد اخیر این فروشگاه <span class="sub">(${fa(s.n_offers||0)} پیشنهاد، ${fa(s.n_products||0)} کالا)</span></div>`+(rec.length?rec.map(o=>`<div class="orow" data-pid="${esc(o.product_id)}"><div class="sname" style="font-weight:600;min-width:0">${esc(o.title)}</div><div class="oprice"><b>${toman(o.price_toman)}</b><div class="fresh">${esc(o.date_fa)}</div><div>${labelPills(o.labels)}</div>${saveBtn(o.product_id,s.shop_id,o.offer_id,true)}</div></div>`).join(''):'<div class="sub">پیشنهاد قیمت‌داری ثبت نشده.</div>')+'<div class="disc">پیشنهاد ثبت‌شده؛ موجودی تضمین نیست</div>';
+ return h}
+async function openShop(sid,v,push){DVER=v||DVER;const seq=++DSEQ;dOpen('در حال بارگذاری…','<div class="spin">در حال خواندن اطلاعات فروشگاه…</div>',push);
+ let s;try{s=await req('/api/shop/'+encodeURIComponent(sid))}catch(e){if(seq===DSEQ)dError(e,()=>openShop(sid,v,true));return}
+ if(seq!==DSEQ)return;
+ try{dSet(s.name||'فروشگاه',shopHTML(s))}catch(e){console.error(e);dError(new NetErr('server','نمایش ناموفق: '+e.message),()=>openShop(sid,v,true));return}
+ remember('shop',sid,DVER)}
+document.addEventListener('click',e=>{if(e.target.closest('[data-dretry]')&&DRETRY){const f=DRETRY;DRETRY=null;DSTACK.pop();f()}});
+
+// ---------------- saved lists / basket (no AI; user_lists.sqlite) ----------------
+let CID=localStorage.getItem('pg_cid');if(!CID){CID='c'+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('pg_cid',CID)}
+let LISTS=null,CURL=null,SAVED=new Set();
+function saveKey(pid,sid){return pid+'|'+(sid||'')}
+function saveBtn(pid,sid,oid,inline){const on=SAVED.has(saveKey(pid,sid));return `<button class="savebtn${inline?' inl':''}${on?' on':''}" data-save="${esc(pid)}|${esc(sid||'')}|${esc(oid||'')}" title="ذخیره در لیست">${on?'♥':'♡'}</button>`}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2200)}
+function setLists(j){if(!j||!j.lists)return;LISTS=j.lists;if(!CURL||!LISTS.find(l=>l.list_id===CURL))CURL=LISTS[0].list_id;SAVED=new Set();let n=0;for(const l of LISTS)for(const it of l.items){SAVED.add(saveKey(it.product_id,it.shop_id));n++}
+ document.getElementById('lcount').textContent=fa(n)}
+async function loadLists(){try{setLists(await req('/api/lists?cid='+encodeURIComponent(CID)))}catch(e){}}
+async function saveItem(pid,sid,oid,btn){try{const j=await req('/api/lists/items',{body:{cid:CID,product_id:pid,shop_id:sid,offer_id:oid,list_id:CURL},retries:0});setLists(j);
+  const l=LISTS.find(x=>x.list_id===j.list_id);toast(j.already_saved?`قبلاً در «${l?l.name:''}» بود`:`به «${l?l.name:''}» اضافه شد`);if(btn&&btn.classList.contains('savebtn')){btn.classList.add('on');btn.textContent='♥'}
+  if(document.getElementById('drawer').classList.contains('on')&&document.getElementById('dtitle').textContent==='لیست‌های من')showLists()}catch(e){toast(errMsg(e))}}
+function listHTML(){const l=LISTS.find(x=>x.list_id===CURL);let h='<div class="ltabs">'+LISTS.map(x=>`<button class="ltab${x.list_id===CURL?' on':''}" data-lact="pick" data-id="${x.list_id}">${esc(x.name)} · ${fa(x.n_items)}</button>`).join('')+'<button class="ltab" data-lact="new">＋ لیست جدید</button></div>';
+ h+=`<div class="lhead" id="lhead"><div class="ln">${esc(l.name)}</div><button class="mini" data-lact="rename" data-id="${l.list_id}">✎ تغییر نام</button>${LISTS.length>1?`<button class="mini" data-lact="del" data-id="${l.list_id}">حذف لیست</button>`:''}</div>`;
+ h+=`<div class="ltot"><div><div class="sub">جمع ${fa(l.n_items)} قلم${l.n_unknown_price?' (قیمت '+fa(l.n_unknown_price)+' قلم نامشخص)':''}</div><b>${l.n_items?(l.total_toman?toman(l.total_toman):'نامشخص'):'—'}</b></div><button class="mini" data-lact="refresh" data-id="${l.list_id}">↻ بروزرسانی قیمت‌ها</button></div>`;
+ if(!l.items.length)return h+'<div class="empty" style="margin:24px 0">هنوز چیزی ذخیره نشده. روی ♡ کارت‌ها یا ردیف فروشنده‌ها بزنید.</div>';
+ h+=l.items.map(it=>`<div class="lrow"><div class="tile">${it.image?`<img src="${esc(it.image)}" onerror="this.remove()">`:''}</div><div class="lc"><div class="sname"><span class="slink" data-pid="${esc(it.product_id)}">${esc(it.title)}</span></div>
+  <div class="sub">${it.shop?`<span class="slink" data-sid="${esc(it.shop.shop_id)}">${esc(it.shop.name)}</span> · ${U(it.shop.area)}`:'کمترین قیمت بین همهٔ فروشنده‌ها'}</div>
+  <div class="prange"><b>${it.price_toman?toman(it.price_toman):'<span class="unk">نامشخص</span>'}</b>${it.qty>1?' × '+fa(it.qty):''} <span class="fresh">${esc(it.price_date_fa||'')}</span> ${labelPills(it.labels)}</div>
+  <div class="lact">${LISTS.length>1?`<select data-move="${it.item_id}"><option value="">انتقال به…</option>${LISTS.filter(x=>x.list_id!==CURL).map(x=>`<option value="${x.list_id}">${esc(x.name)}</option>`).join('')}</select>`:''}<button class="mini" data-lact="rm" data-id="${it.item_id}">حذف</button>${it.shop&&it.shop.map_url?`<a class="mini" style="text-decoration:none" href="${esc(it.shop.map_url)}" target="_blank" rel="noopener">نقشه</a>`:''}</div></div></div>`).join('');
+ if(l.shops.length)h+=`<div class="sec">فروشگاه‌های این لیست</div><div id="lmap"></div><div id="lmapfb" class="sub">${l.shops.map(sh=>`<div>• <a href="${esc(sh.map_url)}" target="_blank" rel="noopener">${esc(sh.name)}</a> · ${U(sh.area)} · ${fa(sh.n_items)} قلم</div>`).join('')}</div>`;
+ return h+`<div class="disc">${esc('قیمت‌ها از داده‌های ترب؛ پیشنهاد ثبت‌شده؛ موجودی تضمین نیست')}</div>`}
+function loadLeaflet(){return new Promise((ok,no)=>{if(window.L)return ok();const c=document.createElement('link');c.rel='stylesheet';c.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(c);
+ const s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.onload=()=>ok();s.onerror=()=>no();document.head.appendChild(s);setTimeout(()=>window.L?ok():no(),6000)})}
+async function drawMap(){const l=LISTS.find(x=>x.list_id===CURL);const el=document.getElementById('lmap');if(!el||!l.shops.length)return;
+ try{await loadLeaflet();if(!document.getElementById('lmap'))return;const m=L.map('lmap',{zoomControl:false,attributionControl:true});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(m);
+  const pts=l.shops.map(sh=>[sh.lat,sh.lon]);l.shops.forEach(sh=>L.marker([sh.lat,sh.lon]).addTo(m).bindPopup(esc(sh.name)));if(pts.length===1)m.setView(pts[0],15);else m.fitBounds(pts,{padding:[24,24]})}
+ catch(e){el.style.display='none'}}
+async function showLists(push){if(!LISTS)await loadLists();if(!LISTS){dOpen('لیست‌های من','<div class="note">لیست‌ها بارگذاری نشد.</div>',push);return}
+ if(document.getElementById('drawer').classList.contains('on')&&document.getElementById('dtitle').textContent==='لیست‌های من')dSet('لیست‌های من',listHTML());else dOpen('لیست‌های من',listHTML(),push);drawMap()}
+async function listAction(a,id,el){try{let j;
+ if(a==='pick'){CURL=id;return showLists()}
+ if(a==='new'){j=await req('/api/lists',{body:{cid:CID,name:'لیست '+fa((LISTS||[]).length+1)},retries:0});setLists(j);CURL=j.created_list_id;showLists();return listAction('rename',CURL)}
+ if(a==='rename'){const hd=document.getElementById('lhead');const l=LISTS.find(x=>x.list_id===id);hd.innerHTML=`<input id="lname" value="${esc(l.name)}" maxlength="40"><button class="mini" data-lact="rename_ok" data-id="${id}">ذخیره</button>`;const i=document.getElementById('lname');i.focus();i.select();i.onkeydown=e=>{if(e.key==='Enter')listAction('rename_ok',id)};return}
+ if(a==='rename_ok'){j=await req('/api/lists/'+id+'/rename',{body:{cid:CID,name:document.getElementById('lname').value},retries:0})}
+ if(a==='del'){if(!confirm('این لیست و همهٔ اقلامش حذف شود؟'))return;j=await req('/api/lists/'+id+'/delete',{body:{cid:CID},retries:0});CURL=null}
+ if(a==='rm'){j=await req('/api/lists/items/'+id+'/delete',{body:{cid:CID},retries:0})}
+ if(a==='refresh'){el.textContent='…';j=await req('/api/lists/'+id+'/refresh',{body:{cid:CID},retries:0});toast(j.changes&&j.changes.length?fa(j.changes.length)+' قیمت تغییر کرد':'قیمت‌ها به‌روزند (از داده‌ها)')}
+ setLists(j);showLists()}catch(e){toast(errMsg(e))}}
+document.addEventListener('change',async e=>{const m=e.target.closest('[data-move]');if(m&&m.value){try{setLists(await req('/api/lists/items/'+m.dataset.move+'/move',{body:{cid:CID,to_list_id:m.value},retries:0}));toast('منتقل شد');showLists()}catch(er){toast(errMsg(er))}}});
+document.getElementById('listsbtn').onclick=()=>showLists(false);
+loadLists();
+api('/api/status').then(setStatus);api('/api/memory?sid='+encodeURIComponent(SID)+'&version=v3plus').then(j=>{MEM=j.chips||[];renderMem()});render();
+</script></body></html>

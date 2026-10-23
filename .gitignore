@@ -1,0 +1,28 @@
+# secrets
+.env
+.env.*
+!.env.example
+**/playground_token.txt
+# data (lives on the Liara disk / outside git)
+*.sqlite
+*.sqlite.gz
+*.sqlite-journal
+*.npy
+backend/product_emb_ids.json
+backend/playground_spent.txt
+# caches / runs / logs
+backend/*_cache*/
+backend/mall_cache/
+backend/v3plus_runs/
+backend/runs/
+backend/*_runs/
+*.log
+__pycache__/
+*.pyc
+# frontend
+frontend/node_modules/
+frontend/dist/
+# screenshots
+shots/
+qa_shots/
+*.png.bak

@@ -1,0 +1,153 @@
+/* «راهنمای رسیدن داخل پاساژ» — tokens from /workspace/torob/ux_handoff/spec-mall.md. Everything is namespaced .mg-* */
+.mg-story, .mg-entry {
+  --mg-ink: #24253a; --mg-mute: #8a8b9c; --mg-accent: #e6395c; --mg-card: #f6f6f9; --mg-card2: #f4f3f8;
+  --mg-track: #ececf1; --mg-line: #e7e7ee;
+}
+
+/* ---------- entry row (shop sheet) ---------- */
+.mg-entry { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px; border: 0; border-radius: 18px; background: var(--mg-card);
+  font: inherit; color: var(--mg-ink); text-align: right; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform .15s ease, background .15s ease; }
+.mg-entry:active { transform: scale(.985); background: #f0f0f5; }
+.mg-entry-ic { flex: none; width: 40px; height: 40px; border-radius: 14px; background: #fff; display: grid; place-items: center; }
+.mg-entry-c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.mg-entry-c b { font-size: 14.5px; font-weight: 700; line-height: 22px; }
+.mg-entry-c small { font-size: 12px; color: var(--mg-mute); line-height: 18px; }
+.mg-entry-chev { flex: none; color: var(--mg-mute); display: grid; place-items: center; width: 20px; }
+
+/* ---------- story overlay ---------- */
+.mg-story { position: absolute; inset: 0; z-index: 900; background: #fff; color: var(--mg-ink); display: flex; flex-direction: column;
+  user-select: none; -webkit-user-select: none; touch-action: none; overflow: hidden; animation: mg-up .28s cubic-bezier(.22,1,.36,1);
+  transition: opacity .2s ease, transform .2s ease; font-family: 'Vazirmatn', system-ui, sans-serif; }
+body > .mg-story { position: fixed; }
+.mg-story.out { opacity: 0; transform: translateY(40px); }
+.mg-safe { height: max(env(safe-area-inset-top, 0px), 10px); flex: none; }
+.mg-chrome { flex: none; padding: 6px 16px 0; transition: opacity .25s ease; }
+.mg-story.paused .mg-chrome { opacity: .4; }
+.mg-prog { display: flex; gap: 4px; direction: rtl; }
+.mg-seg { flex: 1; height: 3px; border-radius: 2px; background: var(--mg-track); overflow: hidden; }
+.mg-seg i { display: block; height: 100%; width: 100%; background: var(--mg-ink); transform-origin: right center; transform: scaleX(0); border-radius: 2px; }
+.mg-seg i.done { transform: scaleX(1); }
+.mg-seg i.cur { animation: mg-fill .45s cubic-bezier(.22,1,.36,1) forwards; }
+.mg-seg i.cur.auto { animation: none; }
+.mg-head { display: flex; align-items: center; gap: 10px; margin-top: 11px; height: 36px; }
+.mg-av { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--mg-card); display: grid; place-items: center; overflow: hidden; }
+.mg-av img { width: 26px; height: auto; display: block; }
+.mg-ht { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.mg-ht b { font-size: 13px; line-height: 18px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mg-ht small { font-size: 11px; line-height: 16px; color: var(--mg-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mg-x { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--mg-card); color: var(--mg-ink); display: grid; place-items: center; cursor: pointer; }
+
+.mg-frame { flex: 1; min-height: 0; display: flex; flex-direction: column; position: relative; }
+.mg-frame.fwd { animation: mg-in-f .32s cubic-bezier(.22,1,.36,1); }
+.mg-frame.back { animation: mg-in-b .32s cubic-bezier(.22,1,.36,1); }
+.mg-art { position: relative; flex: 0 1 400px; min-height: 250px; margin: 50px 20px 0; border-radius: 28px; background: var(--mg-card); overflow: hidden; }
+.mg-art.short { flex-basis: 380px; }
+.mg-art.photo { background: #dcdce3; }
+.mg-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mg-credit { position: absolute; bottom: 12px; left: 16px; font-size: 10.5px; color: #fff; background: rgba(36,37,58,.45); padding: 3px 8px; border-radius: 999px; text-decoration: none; }
+
+.mg-text { flex: none; padding: 34px 28px 0; display: flex; flex-direction: column; }
+.mg-art.short + .mg-text { padding-top: 26px; }
+.mg-step { font-size: 12px; color: var(--mg-mute); line-height: 18px; }
+.mg-text h1 { margin: 6px 0 0; font-size: 26px; line-height: 38px; font-weight: 800; letter-spacing: -.2px; }
+.mg-text h1.long { font-size: 22px; line-height: 34px; }
+.mg-text p { margin: 6px 0 0; font-size: 14px; line-height: 24px; color: var(--mg-mute); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mg-text p + p { margin-top: 0; }
+.mg-text p.mg-meta { margin-top: 10px; color: var(--mg-ink); font-size: 13.5px; display: flex; align-items: center; gap: 6px; }
+.mg-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #b9bac6; margin-left: 6px; vertical-align: middle; }
+.mg-dot.on { background: #2eb872; }
+.mg-sep { color: var(--mg-mute); }
+.mg-price { font-weight: 700; }
+.mg-text p.mg-facts { margin-top: 10px; font-size: 12px; line-height: 20px; color: var(--mg-mute); }
+.mg-src { margin-right: 6px; white-space: nowrap; }
+.mg-facts a { color: var(--mg-mute); text-decoration: underline; text-decoration-color: #c9c9d4; text-underline-offset: 3px; }
+.mg-text p.mg-facts + p.mg-facts { margin-top: 2px; }
+
+.mg-btns { position: absolute; left: 20px; right: 20px; bottom: calc(34px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 10px; }
+.mg-btns.col { flex-direction: column; }
+.mg-btns.col .mg-btn { flex: none; }
+.mg-btn { flex: 1; height: 52px; border-radius: 26px; border: 0; font: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  gap: 8px; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform .12s ease; }
+.mg-btn:active { transform: scale(.98); }
+.mg-btn.mg-pri { background: var(--mg-ink); color: #fff; }
+.mg-btn.mg-pri img { width: 22px; height: auto; }
+.mg-btn.mg-sec { background: var(--mg-card2); color: var(--mg-ink); }
+.mg-btns:not(.col) .mg-btn { height: 48px; font-size: 14px; }
+
+/* ---------- mascot ---------- */
+.mg-mascot { position: relative; display: block; pointer-events: none; }
+.mg-mascot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.mg-mascot.bob { animation: mg-bob 3.2s ease-in-out infinite; }
+.mg-mascot.bob .mg-leaves { transform-origin: 60% 25%; animation: mg-leaf 3.2s ease-in-out infinite; }
+.mg-mascot.pop { animation: mg-pop .6s cubic-bezier(.34,1.56,.64,1) both, mg-bob 3.2s ease-in-out .6s infinite; }
+
+/* ---------- 1 building ---------- */
+.mg-bld { position: absolute; inset: 0; }
+.mg-tower { position: absolute; left: 50%; bottom: 84px; width: 194px; height: 262px; margin-left: -97px; background: #fff; border: 1px solid var(--mg-line); border-bottom: 0;
+  border-radius: 18px 18px 0 0; }
+.mg-win { display: grid; grid-template-columns: repeat(3, 38px); gap: 20px 16px; justify-content: center; padding-top: 25px; }
+.mg-win i { height: 36px; border-radius: 8px; background: #f0f0f4; }
+.mg-win i:nth-child(n+10) { visibility: hidden; }
+.mg-door { position: absolute; bottom: 0; left: 50%; width: 60px; height: 60px; margin-left: -30px; border-radius: 8px 8px 0 0; background: var(--mg-accent); }
+.mg-door i { position: absolute; left: 50%; top: 6px; bottom: 0; width: 2px; margin-left: -1px; background: rgba(255,255,255,.75); }
+.mg-ground { position: absolute; left: 36px; right: 36px; bottom: 83px; height: 1.5px; background: var(--mg-line); border-radius: 1px; }
+.mg-cap { position: absolute; left: 0; right: 0; bottom: 46px; text-align: center; font-size: 13px; color: var(--mg-mute); }
+.mg-bld-m { position: absolute; left: 22px; bottom: 54px; }
+
+/* ---------- 2 floors ---------- */
+.mg-toggle { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); display: flex; padding: 3px; border-radius: 999px; background: var(--mg-track); z-index: 2; }
+.mg-toggle button { border: 0; background: transparent; font: inherit; font-size: 12px; color: var(--mg-mute); padding: 5px 14px; border-radius: 999px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.mg-toggle button.on { background: #fff; color: var(--mg-ink); font-weight: 700; box-shadow: 0 1px 3px rgba(36,37,58,.08); }
+.mg-floors { position: absolute; inset: 64px 0 22px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; }
+.mg-frow { display: flex; align-items: center; gap: 2px; margin-left: -44px; }
+.mg-slab { width: 210px; height: 50px; border-radius: 12px; background: #fff; border: 1px solid var(--mg-line); display: flex; align-items: center; padding: 0 18px;
+  font-size: 14.5px; font-weight: 500; color: var(--mg-mute); }
+.mg-slab.on { background: var(--mg-accent); border-color: var(--mg-accent); color: #fff; font-weight: 800; font-size: 15px; box-shadow: 0 8px 22px rgba(230,57,92,.22);
+  animation: mg-slab .5s cubic-bezier(.34,1.56,.64,1) .12s both; }
+.mg-slab.ghost { height: 26px; background: transparent; border: 1px dashed #dcdce4; }
+.mg-slab.gap { height: 22px; background: transparent; border: 0; justify-content: center; color: #c3c3cf; }
+.mg-slab.gap i { font-style: normal; font-size: 18px; line-height: 1; }
+.mg-fslot { width: 74px; height: 50px; position: relative; }
+.mg-fslot .mg-mascot { position: absolute; top: -14px; left: -6px; }
+
+/* ---------- 3 corridor ---------- */
+.mg-corr { position: absolute; inset: 0; }
+.mg-units { position: absolute; right: 17px; left: 17px; display: flex; gap: 12px; justify-content: center; direction: rtl; }
+.mg-units.r0 { top: 84px; } .mg-units.r1 { top: 226px; }
+.mg-unit { width: 70px; height: 90px; border-radius: 10px; background: #fff; border: 1px solid var(--mg-line); display: grid; place-items: center; }
+.mg-unit.on { background: var(--mg-accent); border-color: var(--mg-accent); color: #fff; font-weight: 800; font-size: 18px; box-shadow: 0 8px 22px rgba(230,57,92,.22);
+  animation: mg-slab .5s cubic-bezier(.34,1.56,.64,1) .12s both; }
+.mg-unit.on span { padding: 0 4px; text-align: center; line-height: 1.25; }
+.mg-unit.on span.sm { font-size: 13px; }
+.mg-aisle { position: absolute; left: 26px; top: 190px; font-size: 12px; color: var(--mg-mute); }
+.mg-arrow { position: absolute; top: 180px; right: 124px; }
+.mg-path { position: absolute; top: 211px; right: 80px; width: 40px; border-top: 2px dotted var(--mg-ink); opacity: .55; }
+.mg-corr-m { position: absolute; right: 0px; top: 164px; }
+.mg-corr-m.mid { right: 50%; margin-right: -48px; top: 160px; }
+
+/* ---------- 4 shop ---------- */
+.mg-shopv { position: absolute; inset: 0; }
+.mg-sign { position: absolute; top: 48px; left: 50px; right: 50px; height: 172px; background: #fff; border: 1px solid var(--mg-line); border-radius: 18px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; padding: 0 14px; }
+.mg-awn { align-self: stretch; margin: 0 -14px; height: 20px; display: flex; }
+.mg-awn i { flex: 1; background: var(--mg-accent); opacity: .9; }
+.mg-awn i:nth-child(even) { background: #fff; }
+.mg-sign b { margin-top: 38px; font-size: 22px; font-weight: 800; line-height: 32px; text-align: center; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mg-sign small { margin-top: 6px; font-size: 12.5px; color: var(--mg-mute); }
+.mg-shop-m { position: absolute; left: 50%; margin-left: -85px; bottom: -8px; }
+
+/* ---------- motion ---------- */
+@keyframes mg-up { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes mg-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes mg-in-f { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+@keyframes mg-in-b { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@keyframes mg-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes mg-leaf { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-4deg); } }
+@keyframes mg-pop { from { transform: scale(.6) translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes mg-slab { from { transform: scale(.92); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .mg-story, .mg-frame.fwd, .mg-frame.back, .mg-mascot, .mg-mascot .mg-leaves, .mg-slab.on, .mg-unit.on { animation: none !important; }
+}
+
+/* isolate from global button rules in styles.css */
+.mg-story button, .mg-story a, button.mg-entry { margin: 0; }
