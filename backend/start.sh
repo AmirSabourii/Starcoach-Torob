@@ -29,7 +29,11 @@ else:
     os.replace(tmp, dst)
 PY
 fi
-[ -s "$TOROB_DB_PATH" ] || echo "[start] WARNING: DB not found at $TOROB_DB_PATH (app will fail to query)"
+# 1b) still no DB: run the bootstrap upload server (data_loader.py) until the data has been pushed, then continue
+if [ ! -s "$TOROB_DB_PATH" ]; then
+  echo "[start] DB not found at $TOROB_DB_PATH -> starting data_loader on :$PORT (see DEPLOY.md)"
+  python "$HERE/data_loader.py" || true
+fi
 
 # 2) link data files / writable state from the disk into the code dir
 ln -sfn "$TOROB_DB_PATH" "$HERE/torob.sqlite"

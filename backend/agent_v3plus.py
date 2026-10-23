@@ -205,6 +205,8 @@ def _quality_ok(title, cat, include_used, acc_ok=False):
 
 _ALLCATS = None
 _CAT_STOP = {'و', 'سایر', 'لوازم', 'انواع', 'محصولات', 'برای', 'از', 'با', 'در'}
+_Q_STOP = {'یک', 'دو', 'سه', 'چهار', 'پنج', 'شش', 'هفت', 'هشت', 'نه', 'ده', 'نفره', 'تا', 'زیر', 'حدود', 'میلیون', 'هزار', 'تومان', 'تومن',
+           'لوکس', 'مدرن', 'خوب', 'ارزان', 'ارزون', 'ارزانترین', 'بهترین', 'جدید', 'می\u200cخوام', 'میخوام', 'دنبال', 'هستم', 'یه', 'برام', 'الان', 'کجا'}
 def _cat_toks(s):
     return [t for t in re.split(r'[\s\u200c،,؛()/\-]+', norm(s or '')) if t and t not in _CAT_STOP]
 
@@ -218,8 +220,9 @@ def _resolve_categories(given, need):
         _ALLCATS = [(c, n) for (c, n) in RO.execute('SELECT category_name, COUNT(*) FROM products WHERE category_name IS NOT NULL GROUP BY category_name')]
     q = []
     for g in list(given) + ([need] if need else []):
-        q += [t for t in _cat_toks(g) if len(t) >= 2 and not re.fullmatch(r'[0-9۰-۹]+', t)]
+        q += [t for t in _cat_toks(g) if len(t) >= 2 and t not in _Q_STOP and not re.fullmatch(r'[0-9۰-۹]+', t)]
     qs = set(q)
+    nh = next((t for t in _cat_toks(need) if t not in _Q_STOP and len(t) >= 2), None) if need else None   # the shopper's head noun
     if not qs:
         return []
     def tm(ct):       # 1 whole-token match, 0.6 prefix match (مبل ~ مبلمان), else 0
@@ -238,6 +241,8 @@ def _resolve_categories(given, need):
         head = m[0]
         extra = sum(1 for x in m if x == 0)
         v = hit + (1.0 if head == 1.0 else (0.4 if head else -1.2)) - 0.35 * extra + (0.3 if not extra else 0) + min(n, 300) / 3000.0
+        if nh and nh in ct:
+            v += 0.5
         if v > 0:
             score[c] = v
             hits[c] = (hit, head)
@@ -353,7 +358,7 @@ def _offer_view(o, pt=None, shop=None):
             v['km'] = round(T.haversine(pt[0], pt[1], shop[1], shop[2]), 2)
     return v
 
-def tool_find_products(a):
+def _find_products_core(a):
     t0 = time.time()
     need = (a.get('need') or '').strip()
     cats = [c for c in (a.get('categories') or []) if isinstance(c, str)]
@@ -536,6 +541,19 @@ def tool_find_products(a):
                     'result_ids': [r['product_id'] for r in res], 'pmin': pmin, 'pmax': pmax})
     return out
 
+
+def tool_find_products(a):
+    """find_products + one automatic relax: if required_terms leave nothing, return the closest items of the same kind (flagged)"""
+    out = _find_products_core(a)
+    if isinstance(out, dict) and not out.get('error') and not out.get('results') and not out.get('nearest_outside_area') and a.get('required_terms'):
+        keep = getattr(_RUN, 'constraints_new', None)
+        r2 = _find_products_core(dict(a, required_terms=[]))
+        if keep is not None: _RUN.constraints_new = keep      # remember the shopper's terms, not the relaxed call
+        if isinstance(r2, dict) and r2.get('results'):
+            r2['terms_relaxed'] = a.get('required_terms')
+            r2['note'] = 'no item matches every required term; these are the closest items of the same kind: show them as cards and say in one short sentence how they differ'
+            return r2
+    return out
 
 _EMB = {}
 def _similarity(ref_pid, pids):

@@ -23,7 +23,13 @@ deploy/liara_setup.sh   one-shot API setup (create app, disk, envs, FTP data upl
 `user_lists.sqlite`, `playground_spent.txt` and all caches (`/data/cache/*`) are created at runtime.
 Disk size: 2 GB is enough (raw DB + gz + embeddings ≈ 1.05 GB). After the first boot you may delete `torob.sqlite.gz`.
 
-Alternative to FTP: put `torob.sqlite.gz` in object storage and set `TOROB_DB_URL` to a pre-signed URL;
+**Recommended upload path (used for the live deploy): `deploy/upload_data.sh`.** While `/data/torob.sqlite` is missing,
+`start.sh` runs `backend/data_loader.py` on `$PORT` instead of the app: a token-protected, chunked (20 MB) PUT endpoint
+(`/__upload/<file>?token=…&offset=…`, `/__status`, `/__done`). `upload_data.sh` pushes the 3 files over HTTPS, `/__done`
+gunzips the DB (gzip CRC-checked) and exits, and `start.sh` then launches uvicorn. Liara's disk FTP (`*.liara.cloud:21`)
+only works after the first release and was not reachable from our build box.
+
+Alternative: put `torob.sqlite.gz` in object storage and set `TOROB_DB_URL` to a pre-signed URL;
 `start.sh` downloads + unpacks it on first boot if `/data/torob.sqlite` is missing.
 
 ## Environment variables (Liara console -> app -> Settings -> Environment variables)
@@ -35,8 +41,15 @@ See `.env.example`. Required: `BOXAPI_API_KEY`, `AVALAI_API_KEY`, `PLAYGROUND_TO
 Cheapest workable: **small-g2** (0.5 GB RAM, 0.5 vCPU, 5 GB storage) + feature bundle **basic**
 (Liara: small-g2 475,000 Toman/month ≈ 659.72/h; basic bundle 275,000 Toman/month ≈ 381.94/h; total 750,000 Toman/month).
 g2 plans require a private network id (`GET /v1/networks`) and a bundle plan when creating the app.
+Live: app `torob-assistant-hk26` -> https://torob-assistant-hk26.liara.run/app/?token=<PLAYGROUND_TOKEN>.
+Container memory sits at the 512 MiB limit (mostly page cache of the 737 MB DB; no OOM restarts observed).
+First query after boot is slow (~30 s cold disk cache), warm queries ~4 s tool time.
 Note: idle RSS ≈ 140 MB; first embedding search loads ~230 MB more. If the app is OOM-killed, resize to `medium-g2`
 (`POST /v1/projects/<app>/resize {"planID":"medium-g2"}`).
+
+## Team account
+All API calls carry `?teamID=$LIARA_TEAM_ID` (balance is on the team). Team network: `6ada0991215dadb3a758935b`
+(`golbazar-hamrah-1022-net`). Both come from `secrets/.env_liara` / the script defaults.
 
 ## Steps (API, scripted)
 ```
@@ -44,7 +57,9 @@ Note: idle RSS ≈ 140 MB; first embedding search loads ~230 MB more. If the app
 deploy/liara_setup.sh app     # POST /v1/projects
 deploy/liara_setup.sh disk    # POST /v1/projects/<app>/disks  {name:data,size:2}
 deploy/liara_setup.sh envs    # POST /v1/projects/update-envs
-deploy/liara_setup.sh data    # POST /v1/projects/<app>/disks/data/ftp  + curl FTP upload of 3 files
+deploy/liara_setup.sh deploy  # first deploy: app boots into data_loader (DB missing)
+deploy/upload_data.sh         # chunked HTTPS upload -> /data, then app starts
+# (alt) deploy/liara_setup.sh data   # FTP upload (needs a release + port 21 reachable); delete FTP access afterwards
 deploy/liara_setup.sh deploy  # POST /v2/projects/<app>/sources (tar.gz) + POST /v2/projects/<app>/releases (disk mount /data)
 deploy/liara_setup.sh check   # GET https://<app>.liara.run/app/?token=...  -> 200
 ```

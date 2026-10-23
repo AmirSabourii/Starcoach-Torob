@@ -108,6 +108,10 @@ export default function App() {
     if (q) send(q, att)
     else setInitAtt(att || null)
   }
+  const askShop = (sid: string, name: string) => {    // map mini-card «دربارهٔ این مغازه بپرس»: chat with that shop's DB facts as context
+    if (top.k !== 'chat') push({ k: 'chat' })
+    send(`دربارهٔ مغازهٔ «${name}» بگو؛ چی می‌فروشه و ساعت کاریش چیه؟`, null, undefined, { shop_id: sid })
+  }
   const clearChip = async (key: string) => {
     try {
       const r = await api<{ chips: { key: string; label: string }[] }>('/api/memory/clear', { body: { sid: SID, version: 'v3plus', key } })
@@ -122,7 +126,7 @@ export default function App() {
         {stack.map((s, i) => {
           const hidden = i !== stack.length - 1
           const wrap = (el: JSX.Element) => <div key={i + s.k} className="layer" style={{ display: hidden ? 'none' : undefined }}>{el}</div>
-          if (s.k === 'home') return wrap(<Home tab={tab} setTab={setTab} onAsk={ask} onTile={(key, label) => push({ k: 'cat', key, label })} onDeals={() => push({ k: 'deals' })}
+          if (s.k === 'home') return wrap(<Home tab={tab} setTab={setTab} onAsk={ask} onAskShop={askShop} onTile={(key, label) => push({ k: 'cat', key, label })} onDeals={() => push({ k: 'deals' })}
             onOpen={openProduct} onShop={openShop} area={area.key} areaLabel={area.label} onArea={() => setOverlays((o) => [...o, { k: 'area' }])} deals={deals} sbar={sbar} />)
           if (s.k === 'chat') return wrap(<><div className="sb-space">{sbar ? <StatusBar /> : null}</div><ChatScreen msgs={msgs} busy={busy} mascot={mascot} onSend={send} onBack={pop} onOpen={openProduct} onShop={openShop}
             onTab={() => push({ k: 'chatmap', q: lastUserQ?.text || '' })} area={area.key} areaLabel={area.label} onArea={() => setOverlays((o) => [...o, { k: 'area' }])}

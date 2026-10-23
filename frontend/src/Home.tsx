@@ -4,7 +4,7 @@ import { Mascot3D } from './mascot3d/Mascot3D'
 import { useMascot } from './useMascot'
 import { Chevron, ChevLeft, Pin, Plus, Spark } from './icons'
 import { Composer, MascotAvatar, ProductTile, type Attachment, type GridProduct } from './ui'
-import { MapTab } from './MapView'
+import { LiveMap } from './LiveMap'
 import { StatusBar } from './StatusBar'
 import phone from './assets/thumbs/phone.png'
 import headphones from './assets/thumbs/headphones.png'
@@ -38,8 +38,8 @@ export const TILES = [
   { key: 'tools', label: 'ابزار و ساختمان', img: cTools, c: 'c8' },
 ]
 
-export function Home({ tab, setTab, onAsk, onTile, onDeals, onOpen, onShop, area, areaLabel, onArea, deals, sbar }: {
-  tab: 'chat' | 'map'; setTab: (t: 'chat' | 'map') => void; onAsk: (q: string, att?: Attachment | null) => void
+export function Home({ tab, setTab, onAsk, onAskShop, onTile, onDeals, onOpen, onShop, area, areaLabel, onArea, deals, sbar }: {
+  tab: 'chat' | 'map'; setTab: (t: 'chat' | 'map') => void; onAsk: (q: string, att?: Attachment | null) => void; onAskShop?: (sid: string, name: string) => void
   onTile: (key: string, label: string) => void; onDeals: () => void; onOpen: (pid: string) => void; onShop: (sid: string) => void
   area: string; areaLabel: string; onArea: () => void; deals: GridProduct[] | null; sbar: boolean
 }) {
@@ -92,7 +92,7 @@ export function Home({ tab, setTab, onAsk, onTile, onDeals, onOpen, onShop, area
         </div>
 
         {tab === 'map' ? (
-          <MapTab area={area} areaLabel={areaLabel} onShop={onShop} onArea={onArea} />
+          <LiveMap area={area} areaLabel={areaLabel} onShop={onShop} onArea={onArea} onAsk={(q) => onAsk(q)} onAskShop={(sid, name) => (onAskShop ? onAskShop(sid, name) : onAsk(`دربارهٔ «${name}» بگو`))} />
         ) : (
           <>
             <div className="mascot-stage">

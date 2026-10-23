@@ -995,3 +995,47 @@ button { font: inherit; color: inherit; border: 0; background: none; padding: 0;
 .ln-route { display: inline-flex; gap: 6px; font-size: 12px; } .ln-route a { color: var(--ln-accent); font-weight: 700; text-decoration: none; } .ln-route i { color: #c4c4cf; font-style: normal; }
 
 .ln-pt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+
+/* ---- interactive home map (LiveMap: MapLibre + OpenFreeMap positron) ---- */
+.home-scroll:has(.lm) { overflow: hidden; display: flex; flex-direction: column; }
+.lm { position: relative; flex: 1; min-height: 420px; height: calc(100% - 52px); margin-top: 8px; overflow: hidden; isolation: isolate; }
+.lm .lm-map, .lm .lm-map.maplibregl-map { position: absolute !important; inset: 0; width: 100%; height: 100%; }
+.lm::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 60px; background: linear-gradient(#fff, rgba(255,255,255,0)); z-index: 2; pointer-events: none; }
+.lm-top { position: absolute; top: 10px; inset-inline: 12px; display: flex; gap: 8px; z-index: 3; }
+.lm-chip { height: 34px; padding: 0 14px; border-radius: 999px; border: 0; background: #fff; box-shadow: 0 2px 10px rgba(20,20,60,.10), 0 0 0 1px #efeff4; font: 600 13px Vazirmatn, sans-serif; color: #0b0c22; display: inline-flex; align-items: center; gap: 6px; }
+.lm-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: #e6395c; }
+.lm-pill { position: absolute; top: 54px; left: 50%; transform: translateX(-50%); height: 32px; padding: 0 12px; border-radius: 999px; background: #fff; box-shadow: 0 2px 10px rgba(20,20,60,.12); display: flex; align-items: center; gap: 8px; font: 700 13px Vazirmatn, sans-serif; z-index: 3; }
+.lm-pill button { width: 18px; height: 18px; border-radius: 50%; border: 0; background: #f2f1f6; font-size: 10px; line-height: 18px; padding: 0; }
+.lm-reply { position: absolute; bottom: 92px; inset-inline: 16px; z-index: 3; display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
+.lm-bub { align-self: flex-start; max-width: 250px; background: #14152a; color: #fff; border-radius: 20px 20px 6px 20px; padding: 8px 14px; font: 500 13.5px/21px Vazirmatn, sans-serif; }
+.lm-ans { align-self: flex-end; background: #fff; border-radius: 999px; padding: 8px 14px; font: 700 13px Vazirmatn, sans-serif; box-shadow: 0 2px 10px rgba(20,20,60,.10); }
+.lm-sheet { position: absolute; inset-inline: 12px; bottom: 28px; z-index: 4; background: #fff; border-radius: 24px; padding: 18px; box-shadow: 0 10px 40px rgba(20,20,60,.14), 0 0 0 1px rgba(236,235,244,.8); }
+.lm-sheet h2 { margin: 0; font: 800 16px/24px Vazirmatn, sans-serif; color: #0b0c22; }
+.lm-sheet p { margin: 2px 0 12px; font: 400 12px/18px Vazirmatn, sans-serif; color: #74758a; }
+.lm-grab { width: 34px; height: 4px; border-radius: 4px; background: #e4e4ea; margin: -8px auto 10px; }
+.lm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.lm-c { height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #f6f6f8; font: 600 13px Vazirmatn, sans-serif; color: #0b0c22; }
+.lm-c.on { background: #fff; box-shadow: inset 0 0 0 1.5px #e6395c; font-weight: 800; }
+.lm-later { margin-top: 12px; border: 0; background: none; color: #74758a; font: 600 13px Vazirmatn, sans-serif; padding: 0; }
+.lm-row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.lm-row1 b { font: 800 15px/22px Vazirmatn, sans-serif; }
+.lm-price { font: 700 13px Vazirmatn, sans-serif; white-space: nowrap; } .lm-price small { font: 500 11px Vazirmatn, sans-serif; color: #74758a; }
+.lm-row2 { margin: 6px 0 14px; display: flex; align-items: center; gap: 6px; font: 400 12px/18px Vazirmatn, sans-serif; color: #74758a; }
+.lm-sd { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #b9b9c4; margin-inline-end: 4px; } .lm-sd.on { background: #e6395c; }
+.lm-sep { color: #c9c9d4; }
+.lm-acts { display: flex; gap: 8px; }
+.lm-primary { flex: 1; height: 48px; border-radius: 999px; border: 0; background: #0b0c22; color: #fff; font: 800 14px Vazirmatn, sans-serif; }
+.lm-route { width: 48px; height: 48px; border-radius: 50%; border: 0; background: #f2f1f6; display: grid; place-items: center; color: #0b0c22; text-decoration: none; font-size: 17px; }
+.lm-here { max-height: 40%; overflow: auto; }
+.lm-item { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; text-align: start; border: 0; background: #f6f6f8; border-radius: 16px; padding: 11px 14px; margin-top: 8px; font: 400 12px Vazirmatn, sans-serif; color: #74758a; }
+.lm-item b { font: 700 14px Vazirmatn, sans-serif; color: #0b0c22; } .lm-item small { font-size: 11.5px; }
+.lm-composer { position: absolute; inset-inline: 16px; bottom: 24px; z-index: 4; height: 58px; border-radius: 999px; background: #fff; box-shadow: 0 10px 40px rgba(20,20,60,.14), 0 0 0 1px rgba(236,235,244,.8); display: flex; align-items: center; padding: 0 7px 0 7px; }
+.lm-composer input { flex: 1; border: 0; outline: 0; background: none; padding: 0 12px; font: 500 14px Vazirmatn, sans-serif; }
+.lm-composer button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: #14152a; color: #fff; font-size: 18px; }
+.lm-me { width: 14px; height: 14px; border-radius: 50%; background: #e6395c; border: 3px solid #fff; box-shadow: 0 0 0 14px rgba(230,57,92,.13); }
+.lm-pin { width: 26px; height: 26px; padding: 0; border: 2px solid #fff; background: #e6395c; border-radius: 50% 50% 50% 0; transform: rotate(-45deg) translate(-2px, -2px); box-shadow: 0 3px 8px rgba(160,30,60,.28); cursor: pointer; position: relative; }
+.lm-pin::after { content: ''; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #fff; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.lm-pin.sel { width: 34px; height: 34px; box-shadow: 0 0 0 6px rgba(230,57,92,.16), 0 3px 8px rgba(160,30,60,.28); }
+.lm-dot { width: 14px; height: 14px; padding: 0; border-radius: 50%; background: #b9b9c4; border: 2px solid #fff; cursor: pointer; }
+.lm-dot.sel { width: 20px; height: 20px; background: #8e8e9c; box-shadow: 0 0 0 6px rgba(140,140,160,.18); }
+.lm .maplibregl-ctrl-attrib { font-size: 9px; }

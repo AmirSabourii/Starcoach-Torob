@@ -716,6 +716,7 @@ async def send_stream(req: Request):
             return
         if kind == 'cards':
             if sent_cards: return   # at most one cards event per turn
+            if not (data.get('items') or []): return   # empty agent selection: the final's cards (e.g. late-night block) are streamed once at the end
             sent_cards.append(1)
             data = {'items': data.get('items') or [], 'final': True}
         loop.call_soon_threadsafe(q.put_nowait, (kind, data))

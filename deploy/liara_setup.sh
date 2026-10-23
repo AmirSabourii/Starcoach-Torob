@@ -17,10 +17,13 @@ set +a
 API=https://api.iran.liara.ir
 APP="${LIARA_APP_NAME:-torob-assistant-hk26}"
 PLAN="${LIARA_PLAN:-small-g2}"; BUNDLE="${LIARA_BUNDLE:-basic}"
-NETWORK_ID="${LIARA_NETWORK_ID:-}"          # g2 plans need a private network id (GET /v1/networks)
+NETWORK_ID="${LIARA_NETWORK_ID:-6ada0991215dadb3a758935b}"          # g2 plans need a private network id (GET /v1/networks)
 DISK=data; DISK_SIZE="${DISK_SIZE:-2}"     # GB
 DATA_SRC="${DATA_SRC:-/workspace/torob/deploy/data}"
-api() { local m=$1 p=$2; shift 2; curl -sS -m 900 -X "$m" -H "Authorization: Bearer $LIARA_API_TOKEN" "$API$p" "$@"; }
+# every call is scoped to the team that holds the balance (LIARA_TEAM_ID from LIARA_ENV)
+api() { local m=$1 p=$2 sep='?'; shift 2; [[ $p == *\?* ]] && sep='&'
+  [ -n "${LIARA_TEAM_ID:-}" ] && p="$p${sep}teamID=$LIARA_TEAM_ID"
+  curl -sS -m 900 -X "$m" -H "Authorization: Bearer $LIARA_API_TOKEN" "$API$p" "$@"; }
 step=${1:-all}
 
 if [[ $step == all || $step == app ]]; then
@@ -63,9 +66,10 @@ if [[ $step == all || $step == data ]]; then
 fi
 if [[ $step == all || $step == deploy ]]; then
   TAR=/tmp/torob_src.tar.gz
-  tar --exclude='./frontend/node_modules' --exclude='./frontend/dist' --exclude='*.sqlite*' --exclude='*.npy' --exclude='.env' --exclude='__pycache__' -czf "$TAR" -C "$HERE" .
+  tar --exclude='./.git' --exclude='./frontend/node_modules' --exclude='./frontend/dist' --exclude='*.sqlite*' --exclude='*.npy' --exclude='.env' --exclude='__pycache__' -czf "$TAR" -C "$HERE" .
   echo "[deploy] upload source $(du -h $TAR | cut -f1)"
-  SID=$(api POST "/v2/projects/$APP/sources" -F "file=@$TAR" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('sourceID') or d)")
+  SID=$(api POST "/v2/projects/$APP/sources" -F "file=@$TAR;type=application/gzip" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('sourceID') or '');d.get('sourceID') or print(d,file=sys.stderr)")
+  [ -n "$SID" ] || { echo "  source upload failed"; exit 1; }
   echo "  sourceID=$SID"
   api POST "/v2/projects/$APP/releases" -H 'Content-Type: application/json' \
     -d "{\"sourceID\":\"$SID\",\"port\":8000,\"type\":\"docker\",\"disks\":[{\"name\":\"$DISK\",\"mountTo\":\"/data\"}],\"message\":\"hackathon snapshot\"}" -w ' HTTP %{http_code}\n'
